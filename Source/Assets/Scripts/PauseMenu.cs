@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +29,9 @@ public class PauseMenu : MonoBehaviour
             canvasGroup.alpha = 0f;
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
@@ -38,6 +40,9 @@ public class PauseMenu : MonoBehaviour
             canvasGroup.alpha = 1f;
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         isPaused = !isPaused;
