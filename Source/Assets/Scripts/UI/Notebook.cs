@@ -14,7 +14,7 @@ public class Notebook : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
     private bool isOpen = false;
-    [SerializeField] private List<Button> tabs;
+    [SerializeField] private List<NotebookTab> tabs;
 
     [SerializeField]
     private EvidenceTab EvidenceTab;
@@ -67,7 +67,7 @@ public class Notebook : MonoBehaviour
     public void HighlightTab(int n)
     {
         UnHighlightAllTabs();
-        tabs[n].GetComponent<NotebookTab>().Highlight();
+        tabs[n].Highlight();
         Debug.Log("ButtonPressed");
     }
 
@@ -75,7 +75,7 @@ public class Notebook : MonoBehaviour
     {
         foreach (var tab in tabs)
         {
-            tab.GetComponent<NotebookTab>().UnHighlight();
+            tab.UnHighlight();
         }
     }
 
