@@ -4,12 +4,11 @@ using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class Interactable : MonoBehaviour, IInteractable
-{
+{ 
     public UnityEvent onInteract;
-   [HideInInspector] public int id;
-   [SerializeField] private new string name = "";
-    
-    private void Start()
+    [HideInInspector] public int id;
+
+   private void Start()
     {
         id = Random.Range(0, 999999);
     }
@@ -19,8 +18,8 @@ public class Interactable : MonoBehaviour, IInteractable
         Debug.Log("Interacted");
     }
 
-    public virtual string GetDescription()
+    public virtual string GetName()
     {
-        return name;
+        return "";
     }
 }

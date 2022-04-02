@@ -210,7 +210,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HELLO WORLD
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 240577502}
   - component: {fileID: 240577501}
   - component: {fileID: 240577500}
+  - component: {fileID: 240577504}
   m_Layer: 5
   m_Name: InteractionUI
   m_TagString: Untagged
@@ -481,6 +482,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!225 &240577504
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240577498}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &434368991
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,10 +704,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   id: 0
-  name: Evidence 1
-  originalPosition: {x: 0, y: 0, z: 0}
-  originalRotation: {x: 0, y: 0, z: 0, w: 0}
-  interactor: {fileID: 0}
+  evidenceData: {fileID: 11400000, guid: 849bb35433482e1418e3b2297bb0c32b, type: 2}
 --- !u!65 &548318719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1296,12 +1306,11 @@ MonoBehaviour:
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  cameraTransform: {fileID: 963194228}
   interactionUI: {fileID: 914438350}
   interactionText: {fileID: 215763676}
-  cameraTransform: {fileID: 963194228}
   inspectionDistance: 1
   isInspecting: 0
-  currentlyInspected: {fileID: 0}
 --- !u!1 &669679249
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,7 +1713,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   id: 0
-  name: Box
 --- !u!54 &854044970
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2069,10 +2077,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   id: 0
-  name: Evidence 2
-  originalPosition: {x: 0, y: 0, z: 0}
-  originalRotation: {x: 0, y: 0, z: 0, w: 0}
-  interactor: {fileID: 0}
+  evidenceData: {fileID: 11400000, guid: 29c7c7476d903d34f991d87387c21531, type: 2}
 --- !u!65 &1497216452
 BoxCollider:
   m_ObjectHideFlags: 0

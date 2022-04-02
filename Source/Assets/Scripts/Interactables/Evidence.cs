@@ -5,13 +5,18 @@ using UnityEngine;
 using UnityEngine.Events;
 public class Evidence : Interactable
 {
-    [Header("Evidence")]
+    [Header("Evidence")] 
+    
+    [SerializeField] private EvidenceData evidenceData;
+
+    private new string name;
+    private string description;
+    
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     private PlayerInteractor interactor;
     
     //description, sound, other effects...
-
     private void Awake()
     {
         interactor = FindObjectOfType<PlayerInteractor>();
@@ -19,6 +24,12 @@ public class Evidence : Interactable
 
     private void Start()
     {
+        if (evidenceData != null)
+        {
+            name = evidenceData.name;
+            description = evidenceData.description;
+        }
+        
         originalPosition = transform.position;
         originalRotation = transform.rotation;
     }
@@ -42,5 +53,16 @@ public class Evidence : Interactable
         transform.position = originalPosition;
         transform.rotation = originalRotation;
     }
+
     
+    public override string GetName()
+    {
+        return name;
+    }
+
+    
+    public string GetDescription()
+    {
+        return description;
+    }
 }
