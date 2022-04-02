@@ -75,7 +75,7 @@ public class PlayerInteractor : MonoBehaviour
             interactable = hit.collider.GetComponent<Interactable>();
             if (interactable != null)
             {
-                interactionText.text = interactable.GetDescription();
+                interactionText.text = interactable.GetName();
                 showInteractToolTip = true;
             }
         }
