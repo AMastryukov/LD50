@@ -8,20 +8,24 @@ public class PlayerInteractor : MonoBehaviour
 { 
     
    [Header("Interaction")] 
-   [SerializeField] private float interactionDistance = 4f;
+   [SerializeField] private float interactionDistance = 2.5f;
    [SerializeField] private LayerMask interactableLayerMask;
+   [SerializeField] private Transform cameraTransform;
+   [Space]
    [SerializeField] private Canvas interactionUI;
    [SerializeField] private TextMeshProUGUI interactionText;
-   [SerializeField] private Transform cameraTransform;
-   private Interactable interactable;
+   
+   
    
    [Space]
    [Header("Inspection")]
    public float inspectionDistance = 1f;
    public bool isInspecting = false;
-
-   [SerializeField] private Interactable currentlyInspected;
-   private Vector2 objectRotation = Vector2.zero;
+   
+   
+   private Vector2 inspectionObjectRotation = Vector2.zero;
+   private Interactable currentlyInspected;
+   private Interactable interactable;
    
    
    private void Update()
@@ -112,9 +116,9 @@ public class PlayerInteractor : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            objectRotation.x -= Input.GetAxisRaw("Mouse Y") * 2f;
-            objectRotation.y += Input.GetAxisRaw("Mouse X") * 2f;
-            currentlyInspected.transform.rotation = Quaternion.Euler(objectRotation.x, objectRotation.y, 0f);
+            inspectionObjectRotation.x -= Input.GetAxisRaw("Mouse Y") * 2f;
+            inspectionObjectRotation.y += Input.GetAxisRaw("Mouse X") * 2f;
+            currentlyInspected.transform.rotation = Quaternion.Euler(inspectionObjectRotation.x, inspectionObjectRotation.y, 0f);
         }
     }
     

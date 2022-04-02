@@ -6,9 +6,11 @@ using UnityEngine.Events;
 public class Evidence : Interactable
 {
     [Header("Evidence")]
-    [SerializeField] private Vector3 originalPosition;
-    [SerializeField] private Quaternion originalRotation;
-    [SerializeField] private PlayerInteractor interactor;
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+    private PlayerInteractor interactor;
+    
+    //description, sound, other effects...
 
     private void Awake()
     {
@@ -40,10 +42,5 @@ public class Evidence : Interactable
         transform.position = originalPosition;
         transform.rotation = originalRotation;
     }
-
     
-    public override string GetDescription()
-    {
-        return name;
-    }
 }
