@@ -7,12 +7,12 @@ using DG.Tweening;
 
 public class NotebookTab : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup content;
+    [SerializeField] protected CanvasGroup content;
     private const float ScaleFactor = 1.1f;
     private readonly Vector3 originalScale = new Vector3(1f,1f,1f);
     private Button button;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         button = GetComponent<Button>();
     }

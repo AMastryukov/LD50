@@ -14,21 +14,25 @@ public class Notebook : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
     private bool isOpen = false;
-    [SerializeField] private List<NotebookTab> tabs;
+    private List<NotebookTab> tabs;
+
+    
+    [SerializeField]
+    private LogsTab logsTab;
+    
+    [SerializeField]
+    private EvidenceTab evidenceTab;
 
     [SerializeField]
-    private EvidenceTab EvidenceTab;
+    private PersonnelTab personnelTab;
 
-    [SerializeField]
-    private PersonnelTab PersonnelTab;
 
-    [SerializeField]
-    private LogsTab LogsTab;
 
     // Start is called before the first frame update
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        tabs = new List<NotebookTab> {logsTab, evidenceTab, personnelTab};
     }
 
     // Update is called once per frame
@@ -81,16 +85,16 @@ public class Notebook : MonoBehaviour
 
     public void AddEvidence(EvidenceData evidence)
     {
-        EvidenceTab.Add(evidence);
+        evidenceTab.Add(evidence);
     }
 
     public void AddPersonnel(PersonnelData personnel)
     {
-        PersonnelTab.Add(personnel);
+        personnelTab.Add(personnel);
     }
 
     public void AddLog(string log)
     {
-        LogsTab.Add(log);
+        logsTab.Add(log);
     }
 }
