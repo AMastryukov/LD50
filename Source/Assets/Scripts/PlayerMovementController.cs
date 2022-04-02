@@ -12,12 +12,10 @@ public class PlayerMovementController : MonoBehaviour
     private void Awake()
     {
         manager = FindObjectOfType<PlayerManager>();
-
     }
 
     private void Update()
     {
-        
         GetMovementInput();
         MovePlayer();
     }
@@ -25,11 +23,13 @@ public class PlayerMovementController : MonoBehaviour
     private void GetMovementInput()
     {
         
-        if (manager.playerState == PlayerManager.PlayerStates.Inspect)
+        if (manager.playerState == PlayerManager.PlayerStates.Inspect ||
+            manager.playerState == PlayerManager.PlayerStates.Interrogate)
         {
             desiredMovementVector = Vector3.zero;
             return;
         }
+        
         // Get axis input on horizontal and vertical axes
         float verticalInput = Input.GetAxisRaw("Vertical");
         float horizontalInput = Input.GetAxisRaw("Horizontal");

@@ -20,9 +20,8 @@ public class PlayerInteractor : MonoBehaviour
    [Space]
    [Header("Inspection")]
    public float inspectionDistance = 1f;
-  // public bool isInspecting = false;
-   
-   
+
+
    private Vector2 inspectionObjectRotation = Vector2.zero;
    private Interactable currentlyInspected;
    private Interactable interactable;
@@ -54,6 +53,11 @@ public class PlayerInteractor : MonoBehaviour
                    currentlyInspected.onInteract.Invoke();
                }
            }
+       }else if (manager.playerState == PlayerManager.PlayerStates.Interrogate)
+       {
+           if(Input.GetMouseButtonDown(0))
+                manager.playerState = PlayerManager.PlayerStates.Move;
+
        }
    }
 
