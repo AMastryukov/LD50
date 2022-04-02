@@ -9,12 +9,18 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Update()
     {
+        
         GetMovementInput();
         MovePlayer();
     }
 
     private void GetMovementInput()
     {
+        if (PlayerInteractor.Instance.isInspecting)
+        {
+            desiredMovementVector = Vector3.zero;
+            return;
+        }
         // Get axis input on horizontal and vertical axes
         float verticalInput = Input.GetAxisRaw("Vertical");
         float horizontalInput = Input.GetAxisRaw("Horizontal");

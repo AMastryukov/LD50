@@ -37,7 +37,7 @@ public class PlayerCameraController : MonoBehaviour
     private void Update()
     {
         // If the game is paused, don't do anything
-        if (Time.timeScale == 0f) { return; }
+        if (Time.timeScale == 0f || PlayerInteractor.Instance.isInspecting) { return; }
 
         xCameraRotation -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity;
         yCameraRotation += Input.GetAxisRaw("Mouse X") * yMouseSensitivity;
