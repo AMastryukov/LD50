@@ -4,13 +4,26 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+public enum Tabs { 
+    LOG,
+    EVIDENCE,
+    PERSONNEL
+}
+
 public class Notebook : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
     private bool isOpen = false;
     [SerializeField] private List<Button> tabs;
 
+    [SerializeField]
     private EvidenceTab EvidenceTab;
+
+    [SerializeField]
+    private PersonnelTab PersonnelTab;
+
+    [SerializeField]
+    private LogsTab LogsTab;
 
     // Start is called before the first frame update
     private void Awake()
@@ -69,5 +82,15 @@ public class Notebook : MonoBehaviour
     public void AddEvidence(EvidenceData evidence)
     {
         EvidenceTab.Add(evidence);
+    }
+
+    public void AddPersonnel(PersonnelData personnel)
+    {
+        PersonnelTab.Add(personnel);
+    }
+
+    public void AddLog(string log)
+    {
+        LogsTab.Add(log);
     }
 }
