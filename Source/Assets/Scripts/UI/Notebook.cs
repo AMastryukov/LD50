@@ -10,6 +10,8 @@ public class Notebook : MonoBehaviour
     private bool isOpen = false;
     [SerializeField] private List<Button> tabs;
 
+    private EvidenceTab EvidenceTab;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -62,5 +64,10 @@ public class Notebook : MonoBehaviour
         {
             tab.GetComponent<NotebookTab>().UnHighlight();
         }
+    }
+
+    public void AddEvidence(EvidenceData evidence)
+    {
+        EvidenceTab.Add(evidence);
     }
 }
