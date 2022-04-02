@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Journal : MonoBehaviour
 {
-    List<ScriptableEvidence> Evidence;
 
-    List<ScriptablePersonnel> Personnel;
+    public List<EvidenceData> Evidence { get; private set; }
+
+    public List<PersonnelData> Personnel { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,16 @@ public class Journal : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Add(EvidenceData evidence)
+    {
+        Evidence.Add(evidence);
+    }
+
+    public void Add(PersonnelData personnel)
+    {
+        Personnel.Add(personnel);
     }
 
 
