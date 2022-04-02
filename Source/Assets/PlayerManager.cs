@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     {
         Move,
         Inspect,
+        Interrogate
     }
     
     public PlayerStates playerState = PlayerStates.Move;
