@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
+
+    [SerializeField] private AudioSource voiceSource;
+    [SerializeField] private SubtitleAudio[] voiceLines;
+    [SerializeField] private TextMeshProUGUI subtitleBox;
 
     private List<AudioSource> musicSources;
     private List<AudioSource> sfxSources;
@@ -76,5 +81,25 @@ public class AudioManager : MonoBehaviour
         }
 
         sfxVolumeSlider.value = sfxVolume;
+    }
+
+    public IEnumerator WaitForVoiceline(int ID)
+    {
+        if (ID >= voiceLines.Length) { yield break; }
+
+        voiceSource.clip = voiceLines[ID].clip;
+        voiceSource.Play();
+
+        if (subtitleBox != null)
+        {
+            subtitleBox.text = voiceLines[ID].subtitle;
+        }
+
+        yield return new WaitForSeconds(voiceSource.clip.length);
+
+        if (subtitleBox != null)
+        {
+            subtitleBox.text = "";
+        }
     }
 }
