@@ -20,24 +20,31 @@ public class PlayerInteractor : MonoBehaviour
    [Space]
    [Header("Inspection")]
    public float inspectionDistance = 1f;
-   public bool isInspecting = false;
+  // public bool isInspecting = false;
    
    
    private Vector2 inspectionObjectRotation = Vector2.zero;
    private Interactable currentlyInspected;
    private Interactable interactable;
-   
+   private PlayerManager manager;
+
+
+   private void Awake()
+   {
+       manager = FindObjectOfType<PlayerManager>();
+   }
+
    
    private void Update()
    {
-       if (isInspecting)
+       if (manager.playerState == PlayerManager.PlayerStates.Inspect)
        {
            interactionUI.enabled = false;
            RotateInspectedObject();
            if(Input.GetMouseButtonDown(0))
                EndInspect();
        }
-       else
+       else if(manager.playerState == PlayerManager.PlayerStates.Move)
        {
            if (interactable != null)
            {
@@ -53,7 +60,7 @@ public class PlayerInteractor : MonoBehaviour
    
    private void FixedUpdate()
     {
-        if (!isInspecting) //Or pause or anything else
+        if (manager.playerState == PlayerManager.PlayerStates.Move) //Or pause or anything else
         {
             Interactor();
         }
@@ -93,10 +100,10 @@ public class PlayerInteractor : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             
-            isInspecting = true;
             Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * inspectionDistance;
-            
             currentlyInspected.GetComponent<Evidence>().StartInspect(inspectionPosition);
+
+            manager.playerState = PlayerManager.PlayerStates.Inspect;
         }
     }
 
@@ -108,7 +115,8 @@ public class PlayerInteractor : MonoBehaviour
         
         currentlyInspected.GetComponent<Evidence>().StopInspect();
         currentlyInspected = null;
-        isInspecting = false;
+
+        manager.playerState = PlayerManager.PlayerStates.Move;
     }
 
     

@@ -7,11 +7,11 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float walkSpeed = 3f;
 
     Vector3 desiredMovementVector = Vector3.zero;
-    private PlayerInteractor interactor; 
+    private PlayerManager manager; 
 
     private void Awake()
     {
-        interactor = FindObjectOfType<PlayerInteractor>();
+        manager = FindObjectOfType<PlayerManager>();
 
     }
 
@@ -23,7 +23,8 @@ public class PlayerMovementController : MonoBehaviour
 
     private void GetMovementInput()
     {
-        if (interactor.isInspecting)
+        
+        if (manager.playerState == PlayerManager.PlayerStates.Inspect)
         {
             desiredMovementVector = Vector3.zero;
             return;
