@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Notebook.unity
-    guid: 717cdcb38cc91c049815c54c05ec4d0b
+    path: Assets/Scenes/Notebook2.unity
+    guid: 8e702186d45d90a499143afe14bf69ae
   m_configObjects: {}
