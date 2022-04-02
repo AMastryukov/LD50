@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
@@ -6,6 +7,13 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float walkSpeed = 3f;
 
     Vector3 desiredMovementVector = Vector3.zero;
+    private PlayerInteractor interactor; 
+
+    private void Awake()
+    {
+        interactor = FindObjectOfType<PlayerInteractor>();
+
+    }
 
     private void Update()
     {
@@ -16,7 +24,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void GetMovementInput()
     {
-        if (PlayerInteractor.Instance.isInspecting)
+        if (interactor.isInspecting)
         {
             desiredMovementVector = Vector3.zero;
             return;

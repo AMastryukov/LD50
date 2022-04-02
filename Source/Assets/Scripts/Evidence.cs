@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,13 @@ public class Evidence : Interactable
     [Header("Evidence")]
     [SerializeField] private Vector3 originalPosition;
     [SerializeField] private Quaternion originalRotation;
+    [SerializeField] private PlayerInteractor interactor;
 
-    
+    private void Awake()
+    {
+        interactor = FindObjectOfType<PlayerInteractor>();
+    }
+
     private void Start()
     {
         originalPosition = transform.position;
@@ -18,7 +24,7 @@ public class Evidence : Interactable
     
     public override void Interact()
     {
-        PlayerInteractor.Instance.StartInspect(id);
+        interactor.StartInspect(id);
     }
 
     

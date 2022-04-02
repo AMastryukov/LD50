@@ -7,13 +7,12 @@ using UnityEngine;
 public class PlayerInteractor : MonoBehaviour
 { 
     
-    private static PlayerInteractor _instance;
-    
    [Header("Interaction")] 
    [SerializeField] private float interactionDistance = 4f;
    [SerializeField] private LayerMask interactableLayerMask;
-   [SerializeField] private GameObject interactionUI;
+   [SerializeField] private Canvas interactionUI;
    [SerializeField] private TextMeshProUGUI interactionText;
+   [SerializeField] private Transform cameraTransform;
    private Interactable interactable;
    
    [Space]
@@ -24,21 +23,12 @@ public class PlayerInteractor : MonoBehaviour
    [SerializeField] private Interactable currentlyInspected;
    private Vector2 objectRotation = Vector2.zero;
    
-   public static PlayerInteractor Instance
-   {
-       get
-       {
-           if (_instance == null) _instance = GameObject.FindObjectOfType<PlayerInteractor>();
-           return _instance;
-       }
-   }
-
    
    private void Update()
    {
        if (isInspecting)
        {
-           interactionUI.SetActive(false);
+           interactionUI.enabled = false;
            RotateInspectedObject();
            if(Input.GetMouseButtonDown(0))
                EndInspect();
@@ -76,7 +66,7 @@ public class PlayerInteractor : MonoBehaviour
         RaycastHit hit;
         bool showInteractToolTip = false;
         
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, interactionDistance, interactableLayerMask))
+        if(Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactionDistance, interactableLayerMask))
         {
             interactable = hit.collider.GetComponent<Interactable>();
             if (interactable != null)
@@ -87,8 +77,8 @@ public class PlayerInteractor : MonoBehaviour
         }
         else
             interactable = null;
-    
-        interactionUI.SetActive(showInteractToolTip);
+
+        interactionUI.enabled = showInteractToolTip;
     }
 
     
@@ -100,7 +90,7 @@ public class PlayerInteractor : MonoBehaviour
             Cursor.visible = true;
             
             isInspecting = true;
-            Vector3 inspectionPosition = Camera.main.transform.position + Camera.main.transform.forward * inspectionDistance;
+            Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * inspectionDistance;
             
             currentlyInspected.GetComponent<Evidence>().StartInspect(inspectionPosition);
         }

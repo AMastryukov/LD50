@@ -694,6 +694,7 @@ MonoBehaviour:
   name: Evidence 1
   originalPosition: {x: 0, y: 0, z: 0}
   originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  interactor: {fileID: 0}
 --- !u!65 &548318719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1295,12 +1296,11 @@ MonoBehaviour:
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  interactionUI: {fileID: 240577498}
+  interactionUI: {fileID: 914438350}
   interactionText: {fileID: 215763676}
+  cameraTransform: {fileID: 963194228}
   inspectionDistance: 1
-  inspectingPos: {fileID: 0}
   isInspecting: 0
-  canInspect: 0
   currentlyInspected: {fileID: 0}
 --- !u!1 &669679249
 GameObject:
@@ -2072,6 +2072,7 @@ MonoBehaviour:
   name: Evidence 2
   originalPosition: {x: 0, y: 0, z: 0}
   originalRotation: {x: 0, y: 0, z: 0, w: 0}
+  interactor: {fileID: 0}
 --- !u!65 &1497216452
 BoxCollider:
   m_ObjectHideFlags: 0
