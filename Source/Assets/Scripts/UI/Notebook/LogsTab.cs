@@ -35,8 +35,8 @@ public class LogsTab : NotebookTab
                 return;
             }
         }
-        Logs.Add(log);
-        GameObject logObject = Instantiate(logPrefab, content.gameObject.transform);
+        Logs.Add(log); 
+        GameObject logObject = Instantiate(logPrefab, scrollViewContent.transform);
         logObject.GetComponent<LogObject>().InitializeLog(log);
     }
     
