@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,13 @@ public class PlayerCameraController : MonoBehaviour
 
     private Vector3 targetCameraPosition;
 
+    private PlayerInteractor interactor;
+
+    private void Awake()
+    {
+        interactor = FindObjectOfType<PlayerInteractor>();
+    }
+
     private void Start()
     {
         // Disable and lock the cursor
@@ -37,7 +45,7 @@ public class PlayerCameraController : MonoBehaviour
     private void Update()
     {
         // If the game is paused, don't do anything
-        if (Time.timeScale == 0f) { return; }
+        if (Time.timeScale == 0f || interactor.isInspecting) { return; }
 
         xCameraRotation -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity;
         yCameraRotation += Input.GetAxisRaw("Mouse X") * yMouseSensitivity;
