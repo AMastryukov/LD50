@@ -26,8 +26,8 @@ public class Evidence : Interactable
     {
         if (evidenceData != null)
         {
-            name = evidenceData.name;
-            description = evidenceData.description;
+            name = evidenceData.EvidenceName;
+            description = evidenceData.Description;
         }
         
         originalPosition = transform.position;
