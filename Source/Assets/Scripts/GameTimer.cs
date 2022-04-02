@@ -16,7 +16,6 @@ public class GameTimer : UnitySingletonPersistent<GameTimer>
     private void AssignDelegates()
     {
         GameEventSystem.Instance.OnTimerStart += StartGameTimer;
-        GameEventSystem.Instance.OnEvidenceFound += IncreaseGameTimer;
     }
 
     private void UnAssignDelegates()
@@ -24,20 +23,19 @@ public class GameTimer : UnitySingletonPersistent<GameTimer>
         if (GameEventSystem.Quitting)
             return;
         GameEventSystem.Instance.OnTimerStart -= StartGameTimer;
-        GameEventSystem.Instance.OnEvidenceFound -= IncreaseGameTimer;
-
     }
 
     #endregion
 
-    #region UnityFunctions
+    #region UnityEventFunctions
 
-    void Start()
+    public override void Awake()
     {
+        base.Awake();
         AssignDelegates();
     }
-
-    private void OnDisable()
+    
+    private void OnDestroy()
     {
         UnAssignDelegates();
     }

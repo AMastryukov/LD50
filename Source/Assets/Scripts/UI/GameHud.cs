@@ -22,20 +22,35 @@ public class GameHud : MonoBehaviour
             return;
         GameEventSystem.Instance.OnTimerStart -= ShowTimer;
     }
-
+    
     #endregion
+
+    #region UnityEventFunctions
+    void Awake()
+    {
+        AssignDelegates();
+    }
+
+    void OnDestroy()
+    {
+        UnAssignDelegates();
+    }
+
     void Start()
     {
         //InitializeTimerValue
         UpdateTimer();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if(GameTimer.Instance.HasTimerStarted())
             UpdateTimer();
     }
+    
+
+    #endregion
+   
 
     private void UpdateTimer()
     {
