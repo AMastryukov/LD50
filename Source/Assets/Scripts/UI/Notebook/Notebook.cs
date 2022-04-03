@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class Notebook : MonoBehaviour
     private CanvasGroup canvasGroup;
     private bool isOpen = false;
     private List<NotebookTab> tabs;
+    private DataManager dataManager;
 
     
     [SerializeField]
@@ -33,6 +35,26 @@ public class Notebook : MonoBehaviour
     {
         canvasGroup = GetComponent<CanvasGroup>();
         tabs = new List<NotebookTab> {logsTab, evidenceTab, personnelTab};
+    }
+
+    private void Start()
+    {
+        dataManager = DataManager.Instance;
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        foreach (var log in dataManager.LogsListInNotebook)
+        {
+            logsTab.InstantiateLog(log);
+        }
+
+        foreach (var evidenceKey in dataManager.evidenceListInNotebook)
+        {
+            EvidenceData data = dataManager.GetEvidenceDataFromKey(evidenceKey);
+            evidenceTab.InstantiateEvidence(data);
+        }
     }
 
     // Update is called once per frame
@@ -83,9 +105,9 @@ public class Notebook : MonoBehaviour
         }
     }
 
-    public void AddEvidence(EvidenceData evidence)
+    public void AddEvidence(EvidenceKey key)
     {
-        evidenceTab.Add(evidence);
+        evidenceTab.Add(key);
     }
 
     public void AddPersonnel(PersonnelData personnel)
