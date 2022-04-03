@@ -57,8 +57,7 @@ public class CrimeSceneManager : MonoBehaviour
     {
         foreach (var evidence in evidenceData)
         {
-            notebook.AddEvidence(evidence.name);
-            
+            notebook.AddEvidence(evidence.Name);
         }
 
         OnAllEvidenceFound?.Invoke();

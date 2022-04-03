@@ -27,13 +27,12 @@ public class Notebook : MonoBehaviour
 
     private void AssignDelegates()
     {
-        GameEventSystem.Instance.OnEvidenceInspected += AddEvidence;
+        Evidence.OnInspect += OnEvidenceInspected;
     }
 
     private void UnAssignDelegates()
     {
-        if(GameEventSystem.Quitting)
-            GameEventSystem.Instance.OnEvidenceInspected -= AddEvidence;
+        Evidence.OnInspect -= OnEvidenceInspected;
     }
 
     #endregion
@@ -128,6 +127,11 @@ public class Notebook : MonoBehaviour
         {
             tab.UnHighlight();
         }
+    }
+
+    private void OnEvidenceInspected(Evidence evidence)
+    {
+        AddEvidence(evidence.evidenceData.Name);
     }
 
     public void AddEvidence(string name)
