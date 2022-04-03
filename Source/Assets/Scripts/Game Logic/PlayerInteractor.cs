@@ -52,24 +52,15 @@ public class PlayerInteractor : MonoBehaviour
             case PlayerManager.PlayerStates.Move:
                 if (lookingAtInteractable != null)
                 {
-                    
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        
+                        clickedInteractable = lookingAtInteractable;
+                        clickedInteractable.OnInteract?.Invoke();
                             
-                            clickedInteractable = lookingAtInteractable;
-                            
-                            clickedInteractable.OnInteract?.Invoke();
-                            
-                            Debug.Log(clickedInteractable);
-                            
-                            if (clickedInteractable is Evidence)
-                            {
-                                StartInspect((Evidence)clickedInteractable);
-                            }
-                        
-                        
-
+                        if (clickedInteractable is Evidence)
+                        {
+                            StartInspect((Evidence)clickedInteractable);
+                        }
                     }
                 }
                 break;
