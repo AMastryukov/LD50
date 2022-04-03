@@ -12,8 +12,7 @@ using UtilityCode;
 public class GameManager : UnitySingletonPersistent<GameManager>
 {
     private SceneLoader SL;
-    private Door Door;
-    private CrimeSceneManager Manager;
+    private GameSceneManager Manager;
 
     public override void Awake()
     {
@@ -39,13 +38,14 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     /// <param name="mode"></param>
     private void SceneLoadEvent(Scene scene, LoadSceneMode mode)
     {
-        this.Door = FindObjectOfType<Door>();
+        
+        this.Manager = FindObjectOfType<GameSceneManager>();
 
-
-        if (!this.Door)
+        if (this.Manager == null)
         {
-            Debug.LogWarning("This scene does not have a door");
+            Debug.LogWarning("This scene is missing a GameSceneManager");
         }
+        
 
     }
 
@@ -55,7 +55,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     /// <param name="scene"></param>
     private void SceneUnloadEvent(Scene scene)
     {
-        this.Door = null;
+
     }
 
     private void Start()
@@ -102,20 +102,12 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     {
         // Wait for scene to load
         yield return SL.ChangeScene("CrimeScene1");
-
         Debug.Log("Loaded CrimeScene1");
 
-        bool leaveScene = false;
+        bool sceneLeft = false;
+        Manager.SceneLeft += () => sceneLeft = true;
 
-        if (!Door)
-        {
-            Debug.LogError("Door not found in scene");
-        }
-
-        Door.Leave += () => leaveScene = true;
-
-
-        while (!leaveScene)
+        while (!sceneLeft)
         {
             yield return null;
         }
@@ -125,14 +117,15 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator Interrogation1(HashSet<EvidenceKey> evidenceFound)
     {
+        // Wait for scene to load
         yield return SL.ChangeScene("Interrogation1");
         Debug.Log("Interrogation1");
-        //SceneManager.LoadScene("Interrogation1");
 
-        bool leaveInterrogation = false;
-        //TODO: Add event delegate for leave event
+        bool sceneLeft = false;
+        Manager.SceneLeft += () => sceneLeft = true;
+        Manager.FoundEvidence += (EvidenceKey evidence) => evidenceFound.Add(evidence);
 
-        while (!leaveInterrogation)
+        while (!sceneLeft)
         {
             yield return null;
         }
@@ -142,6 +135,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameWinSequence()
     {
+        Debug.Log("GameWinSequence");
         yield return null;
     }
 
