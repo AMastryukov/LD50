@@ -11,11 +11,17 @@ public class Door : Interactable
 
     public void GoToNextScene()
     {
-        if (SceneName.Equals("")) { Debug.LogError("This door is not bound to any scene"); }
-        
-        if (IsUnlocked)
-        {
-            SceneLoader.Instance.ChangeScene(SceneName);
+        if (!IsUnlocked) 
+        { 
+            Debug.Log("Door is locked"); 
+            return; 
         }
+
+        if (SceneName.Equals("")) 
+        { 
+            Debug.LogError("This door is not bound to any scene"); 
+        }
+
+        SceneLoader.Instance.ChangeScene(SceneName);
     }
 }

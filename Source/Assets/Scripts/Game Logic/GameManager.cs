@@ -12,7 +12,9 @@ using System;
 public class GameManager : UnitySingletonPersistent<GameManager>
 {
     private SceneLoader sceneLoader;
-    private CrimeSceneManager crimeSceneManager;
+    private InterrogationManager interrogationManager;
+    private PlayerManager playerManager;
+    private Door door;
 
     public override void Awake()
     {
@@ -23,28 +25,6 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         {
             Debug.LogError("SceneLoader missing from scene");
         }
-
-        SceneManager.sceneLoaded += SceneLoadEvent;
-        SceneManager.sceneUnloaded += SceneUnloadEvent;
-    }
-
-    /// <summary>
-    /// Add any references ou want to find in the scene here since scenes will change throughout the game
-    /// </summary>
-    /// <param name="scene"></param>
-    /// <param name="mode"></param>
-    private void SceneLoadEvent(Scene scene, LoadSceneMode mode)
-    {
-
-    }
-
-    /// <summary>
-    /// Good idea to unreference anything set in the SceneLoadEvent
-    /// </summary>
-    /// <param name="scene"></param>
-    private void SceneUnloadEvent(Scene scene)
-    {
-
     }
 
     private void Start()
@@ -71,28 +51,38 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator IntroSequence()
     {
-        bool talking = false;
+        Debug.Log("[SCENE] Intro sequence");
 
-        // Subscribe to events
+        playerManager = FindObjectOfType<PlayerManager>();
+        playerManager.CurrentState = PlayerManager.PlayerStates.Wait;
+
+        //yield return new WaitForSeconds(1f);
+        //sceneLoader.FadeIn();
+
+        bool talking = false;
 
         while (talking)
         {
-
-            // Unsubscribe from events
             yield return null;
         }
 
-        yield return new WaitForSeconds(1f);
-
-        sceneLoader.FadeOut();
+        //sceneLoader.FadeOut();
     }
 
     private IEnumerator AlleywayCrimeSequence()
     {
-        bool collectedAllEvidence = false;
+        Debug.Log("[SCENE] Alleyway 1 sequence");
 
-        // Subscribe to events
+        FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
+
+        door = FindObjectOfType<Door>();
+        door.IsUnlocked = false;
+        sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+
+        #region Wait for Evidence Collection
+        bool collectedAllEvidence = false;
         Action onCollectAllEvidence = delegate () { collectedAllEvidence = true; };
+
         CrimeSceneManager.OnAllEvidenceFound += onCollectAllEvidence;
 
         while (!collectedAllEvidence)
@@ -100,18 +90,78 @@ public class GameManager : UnitySingletonPersistent<GameManager>
             yield return null;
         }
 
-        // Unsubscribe from events
         CrimeSceneManager.OnAllEvidenceFound -= onCollectAllEvidence;
+        #endregion
 
-        FindObjectOfType<Door>().SceneName = "Interrogation Room";
-        FindObjectOfType<Door>().IsUnlocked = true;
+        #region Unlock Door
+        door.SceneName = "Interrogation Room";
+        door.IsUnlocked = true;
+        #endregion
 
-        Debug.Log("Door unlocked! Interrogate Upton.");
+        #region Wait for Leaving Scene
+        bool hasLeftScene = false;
+        Action<string> onLeftScene = delegate (string scene) { hasLeftScene = true;  };
+
+        SceneLoader.OnSceneLoaded += onLeftScene;
+
+        while (!hasLeftScene)
+        {
+            yield return null;
+        }
+
+        SceneLoader.OnSceneLoaded -= onLeftScene;
+        #endregion
     }
 
     private IEnumerator InterrogationUptonSequence()
     {
-        yield return null;
+        Debug.Log("[SCENE] Upton interrogation sequence");
+
+        door = FindObjectOfType<Door>();
+        door.IsUnlocked = false;
+        sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+
+        interrogationManager = FindObjectOfType<InterrogationManager>();
+        interrogationManager.SetCurrentSuspect(DataManager.Instance.GetSuspectDataFromKey("Upton O'Goode"));
+
+        #region Wait for Confession
+        bool hasConfessed = false;
+        Action<Suspect> onConfessed = delegate (Suspect suspect) 
+        { 
+            if (suspect.Data.Name.Equals("Upton O'Goode"))
+            {
+                hasConfessed = true;
+            }
+        };
+
+        Suspect.OnConfess += onConfessed;
+
+        while (!hasConfessed)
+        {
+            yield return null;
+        }
+
+        Suspect.OnConfess -= onConfessed;
+        #endregion
+
+        #region Unlock Door
+        door.SceneName = "Garage";
+        door.IsUnlocked = true;
+        #endregion
+
+        #region Wait for Leaving Scene
+        bool hasLeftScene = false;
+        Action<string> onLeftScene = delegate (string scene) { hasLeftScene = true; };
+
+        SceneLoader.OnSceneLoaded += onLeftScene;
+
+        while (!hasLeftScene)
+        {
+            yield return null;
+        }
+
+        SceneLoader.OnSceneLoaded -= onLeftScene;
+        #endregion
     }
 
     private IEnumerator PreGarageSequence()

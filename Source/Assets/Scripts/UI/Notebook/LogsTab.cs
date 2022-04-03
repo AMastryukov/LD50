@@ -17,7 +17,7 @@ public class LogsTab : NotebookTab
     public void InstantiateLog(string logData)
     {
         GameObject logObject = Instantiate(logPrefab, scrollViewContent.transform);
-        logObject.GetComponent<LogObject>().InitializeLog(logData);
+        logObject.GetComponent<LogNotebookEntry>().InitializeLog(logData);
     }
     
 }

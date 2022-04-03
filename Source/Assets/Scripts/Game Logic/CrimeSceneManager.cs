@@ -61,5 +61,7 @@ public class CrimeSceneManager : MonoBehaviour
         }
 
         OnAllEvidenceFound?.Invoke();
+
+        Debug.Log("[DEBUG] All evidence added");
     }
 }

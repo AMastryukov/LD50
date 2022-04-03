@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08911f0b2cdad6f4aab5d684a2111dfd, type: 3}
   m_Name: Upton O'Goode
   m_EditorClassIdentifier: 
-  SuspectName: "Upton O\u2019Goode"
-  SuspectDescription: hoodlum gangster
-  SuspectDisplayImage: {fileID: 0}
-  SuspectsKeyEvidences: []
+  Name: Upton O'Goode
+  Description: 
+  Sprite: {fileID: 0}
+  KeyEvidence: []

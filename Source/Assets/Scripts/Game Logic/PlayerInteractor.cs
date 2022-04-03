@@ -35,7 +35,7 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
-        switch (manager.playerState)
+        switch (manager.CurrentState)
         {
             case PlayerManager.PlayerStates.Inspect:
                 interactionUI.enabled = false;
@@ -56,6 +56,7 @@ public class PlayerInteractor : MonoBehaviour
                     {
                         clickedInteractable = lookingAtInteractable;
                         clickedInteractable.OnInteract?.Invoke();
+                        clickedInteractable.Interact();
                             
                         if (clickedInteractable is Evidence)
                         {
@@ -68,7 +69,7 @@ public class PlayerInteractor : MonoBehaviour
             case PlayerManager.PlayerStates.Interrogate:
                 if (Input.GetMouseButtonDown(1))
                 {
-                    manager.playerState = PlayerManager.PlayerStates.Move;
+                    manager.CurrentState = PlayerManager.PlayerStates.Move;
                 }
                 break;
         }
@@ -77,7 +78,7 @@ public class PlayerInteractor : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (manager.playerState == PlayerManager.PlayerStates.Move) //Or pause or anything else
+        if (manager.CurrentState == PlayerManager.PlayerStates.Move) //Or pause or anything else
         {
             CastInteractionRay();
         }
@@ -117,7 +118,7 @@ public class PlayerInteractor : MonoBehaviour
         Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * 0.7f;
         evidence.StartInspect(inspectionPosition);
 
-        manager.playerState = PlayerManager.PlayerStates.Inspect;
+        manager.CurrentState = PlayerManager.PlayerStates.Inspect;
     }
 
     private void EndInspect()
@@ -129,7 +130,7 @@ public class PlayerInteractor : MonoBehaviour
         clickedInteractable.GetComponent<Evidence>().StopInspect();
         clickedInteractable = null;
 
-        manager.playerState = PlayerManager.PlayerStates.Move;
+        manager.CurrentState = PlayerManager.PlayerStates.Move;
     }
 
     private void RotateInspectedObject()

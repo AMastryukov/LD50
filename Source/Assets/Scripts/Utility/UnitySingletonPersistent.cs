@@ -14,7 +14,7 @@ namespace UtilityCode
             {
                 if (instance == null)
                 {
-                    Debug.LogError("Instance not found");
+                    Debug.LogError($"Instance of {typeof(T)} not found");
                 }
 
                 return instance;

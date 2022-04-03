@@ -7,6 +7,7 @@ using System;
 
 public class SceneLoader : MonoBehaviour
 {
+    public static Action<string> OnSceneLoaded;
     public static SceneLoader Instance { get; private set; }
 
     [SerializeField] private CanvasGroup canvasGroup;
@@ -23,9 +24,37 @@ public class SceneLoader : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += SceneLoadEvent;
+        SceneManager.sceneUnloaded += SceneUnloadEvent;
     }
 
-    public void FadeIn(Action onComplete)
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SceneLoadEvent;
+        SceneManager.sceneUnloaded -= SceneUnloadEvent;
+    }
+
+    /// <summary>
+    /// Add any references ou want to find in the scene here since scenes will change throughout the game
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="mode"></param>
+    private void SceneLoadEvent(Scene scene, LoadSceneMode mode)
+    {
+        OnSceneLoaded?.Invoke(scene.name);
+    }
+
+    /// <summary>
+    /// Good idea to unreference anything set in the SceneLoadEvent
+    /// </summary>
+    /// <param name="scene"></param>
+    private void SceneUnloadEvent(Scene scene)
+    {
+
+    }
+
+    public void FadeOut(Action onComplete = null)
     {
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
@@ -34,18 +63,20 @@ public class SceneLoader : MonoBehaviour
             .SetEase(Ease.OutCirc)
             .OnComplete(() =>
             {
-                onComplete.Invoke();
+                onComplete?.Invoke();
             });
     }
 
-    public void FadeOut()
+    public void FadeIn(Action onComplete = null)
     {
-        canvasGroup.DOFade(0f, 3f)
+        canvasGroup.DOFade(0f, 2f)
                 .SetEase(Ease.InCirc)
                 .OnComplete(() =>
                 {
                     canvasGroup.interactable = false;
                     canvasGroup.blocksRaycasts = false;
+
+                    onComplete?.Invoke();
                 });
     }
 
@@ -58,7 +89,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != sceneName)
         {
-            FadeIn(delegate () { SceneManager.LoadScene(sceneName); });
+            FadeOut(delegate () { SceneManager.LoadScene(sceneName); });
         }
     }
 }

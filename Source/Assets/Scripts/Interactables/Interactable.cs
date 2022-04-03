@@ -9,7 +9,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public virtual void Interact()
     {
-        Debug.Log("Interacted");
+
     }
 
     public virtual string GetName()

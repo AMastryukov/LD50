@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 7987735162032290665}
   - component: {fileID: 8540193712995482287}
   m_Layer: 5
-  m_Name: PersonnelObject
+  m_Name: Suspect Notebook Entry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

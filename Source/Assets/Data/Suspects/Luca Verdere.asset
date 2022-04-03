@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08911f0b2cdad6f4aab5d684a2111dfd, type: 3}
   m_Name: Luca Verdere
   m_EditorClassIdentifier: 
-  SuspectName: 
-  SuspectDescription: 
-  SuspectDisplayImage: {fileID: 0}
-  SuspectsKeyEvidences: []
+  Name: Luca Verdere
+  Description: 
+  Sprite: {fileID: 0}
+  KeyEvidence: []
