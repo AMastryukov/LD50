@@ -52,15 +52,24 @@ public class PlayerInteractor : MonoBehaviour
             case PlayerManager.PlayerStates.Move:
                 if (lookingAtInteractable != null)
                 {
+                    
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        clickedInteractable = lookingAtInteractable;
-                        clickedInteractable.OnInteract?.Invoke();
+                        
+                            
+                            clickedInteractable = lookingAtInteractable;
+                            
+                            clickedInteractable.OnInteract?.Invoke();
+                            
+                            Debug.Log(clickedInteractable);
+                            
+                            if (clickedInteractable is Evidence)
+                            {
+                                StartInspect((Evidence)clickedInteractable);
+                            }
+                        
+                        
 
-                        if (clickedInteractable is Evidence)
-                        {
-                            StartInspect((Evidence)clickedInteractable);
-                        }
                     }
                 }
                 break;
@@ -95,7 +104,6 @@ public class PlayerInteractor : MonoBehaviour
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactionDistance, interactableLayerMask))
         {
             lookingAtInteractable = hit.collider.GetComponent<Interactable>();
-
             if (lookingAtInteractable != null)
             {
                 interactionText.text = lookingAtInteractable.GetName();
