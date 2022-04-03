@@ -7,7 +7,7 @@ public class Evidence : Interactable
 {
     [Header("Evidence")] 
     
-    [SerializeField] private EvidenceData evidenceData;
+    [SerializeField] public readonly EvidenceData evidenceData;
 
     private new string name;
     private string description;

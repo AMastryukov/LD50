@@ -17,5 +17,6 @@ public enum EvidenceKey
 {
     BOOK,
     KEYS,
-    LIGHTER
+    LIGHTER,
+    EMPTY_CAN
 }

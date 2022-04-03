@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameSceneManager;
 
 public class PlayerInteractor : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class PlayerInteractor : MonoBehaviour
     private Interactable currentlyInspected;
     private Interactable interactable;
     private PlayerManager manager;
+
+    public event EvidenceFoundEventHandler FoundEvidence;
 
 
     private void Awake()
@@ -105,7 +108,14 @@ public class PlayerInteractor : MonoBehaviour
             crosshair.enabled = false;
 
             Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * inspectionDistance;
-            currentlyInspected.GetComponent<Evidence>().StartInspect(inspectionPosition);
+            Evidence evidence = currentlyInspected.GetComponent<Evidence>();
+            evidence.StartInspect(inspectionPosition);
+            if(evidence.evidenceData != null)
+            {
+                FoundEvidence.Invoke(evidence.evidenceData.EvidenceKey);
+            }
+            
+
 
             manager.playerState = PlayerManager.PlayerStates.Inspect;
         }
