@@ -1979,7 +1979,7 @@ GameObject:
   - component: {fileID: 2020053517}
   m_Layer: 0
   m_Name: InteroggationCamera
-  m_TagString: Untagged
+  m_TagString: benchCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2193,7 +2193,7 @@ PrefabInstance:
     - target: {fileID: 8081010646184591549, guid: e9f37688080a12149926ecc76ea71ffd, type: 3}
       propertyPath: interrogationCamera
       value: 
-      objectReference: {fileID: 2020053517}
+      objectReference: {fileID: 0}
     - target: {fileID: 8081010647731154216, guid: e9f37688080a12149926ecc76ea71ffd, type: 3}
       propertyPath: m_RootOrder
       value: 8

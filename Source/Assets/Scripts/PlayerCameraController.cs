@@ -8,7 +8,7 @@ public class PlayerCameraController : MonoBehaviour
     
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Transform fpsOrigin;
-    [SerializeField] private CinemachineVirtualCamera interrogationCamera;
+    private CinemachineVirtualCamera interrogationCamera;
     private CinemachineVirtualCamera currentVirtualCamera;
     
     // Adjustable Settings
@@ -27,26 +27,36 @@ public class PlayerCameraController : MonoBehaviour
 
     private PlayerManager manager;
 
+    
     private void Awake()
     {
-        
-        
         manager = FindObjectOfType<PlayerManager>();
     }
 
     private void Start()
     {
+
+        //Interrogation Camera
+        if (GameObject.FindGameObjectWithTag("benchCam") != null)
+            interrogationCamera = GameObject.FindGameObjectWithTag("benchCam").GetComponent<CinemachineVirtualCamera>();
+        else
+            Debug.LogWarning("InterrogationCamera was not found, add 'benchCam' tag for intterrogation camera");
         
+        
+        //Player camera
         currentVirtualCamera = gameObject.GetComponent<CinemachineVirtualCamera>();
         if(currentVirtualCamera != null)
             Debug.LogWarning("No virtual camera found for player");
+        
+        currentVirtualCamera.m_Lens.FieldOfView = cameraFOV;
+        
         
         // Disable and lock the cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        currentVirtualCamera.m_Lens.FieldOfView = cameraFOV;
-
+        
+        //Camera rotation initialization
         xCameraRotation = currentVirtualCamera.transform.rotation.eulerAngles.x;
         yCameraRotation = currentVirtualCamera.transform.rotation.eulerAngles.y;
     }
@@ -56,7 +66,6 @@ public class PlayerCameraController : MonoBehaviour
         // If the game is paused, don't do anything
         if (Time.timeScale == 0f || manager.playerState == PlayerManager.PlayerStates.Inspect) { return; }
             MoveCamera();
-
     }
 
 
@@ -65,10 +74,17 @@ public class PlayerCameraController : MonoBehaviour
         
         if (manager.playerState == PlayerManager.PlayerStates.Interrogate)
         {
-            interrogationCamera.Priority = 11;
-            currentVirtualCamera = interrogationCamera;
-            targetCameraPosition = interrogationCamera.transform.position;
-            
+            if (interrogationCamera != null)
+            {
+                interrogationCamera.Priority = 11;
+                currentVirtualCamera = interrogationCamera;
+                targetCameraPosition = interrogationCamera.transform.position;
+            }
+            else
+            {
+                Debug.LogWarning("No interrogation camera was found while trying to interrogate");
+                manager.playerState = PlayerManager.PlayerStates.Move;
+            }
         }
         else if(manager.playerState == PlayerManager.PlayerStates.Move)
         {
@@ -76,8 +92,8 @@ public class PlayerCameraController : MonoBehaviour
             xCameraRotation -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity;
             yCameraRotation += Input.GetAxisRaw("Mouse X") * yMouseSensitivity;
 
-            //interrogationCamera.Priority = 9;
-            Debug.LogError("I disabled this because it crashes when the interrogation camera is not present. For example when you open a crime scene or make a prefab from this player");
+            if(interrogationCamera != null)
+                interrogationCamera.Priority = 9;
 
             currentVirtualCamera = gameObject.GetComponent<CinemachineVirtualCamera>();
             
