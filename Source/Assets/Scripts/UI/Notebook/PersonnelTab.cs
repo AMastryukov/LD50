@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class PersonnelTab : NotebookTab
 {
-    public List<PersonnelData> Personnel { get; private set; }
+    public List<PersonnelData> personnelList { get; private set; }
+
+    [SerializeField] private GameObject personnelPrefab;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Add(PersonnelData personnel)
     {
-        Personnel.Add(personnel);
-        // TODO: Mahad update canvas
+        personnelList.Add(personnel);
+        foreach (var personnelData in personnelList )
+        {
+            if (personnelData.EvidenceKey == personnel.EvidenceKey)
+            {
+                return;
+            }
+        }
+        personnelList.Add(personnel);
+        GameObject personnelObject = Instantiate(personnelPrefab, content.gameObject.transform);
+        personnelObject.GetComponent<PersonnelObject>().InitializeEvidence(personnel);
     }
 }
