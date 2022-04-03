@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class InterrogationManager : MonoBehaviour
 {
-    PlayerManager PM;
-    Suspect Sus;
-    InterrogationBench Bench;
+    [SerializeField] PlayerManager PM;
+    [SerializeField] Suspect Sus;
+    [SerializeField] InterrogationBench Bench;
+
+    bool Suspect;
 
 
     // Start is called before the first frame update
@@ -14,20 +16,29 @@ public class InterrogationManager : MonoBehaviour
     {
         if (PM == null) Debug.LogError("PlayerManager is missing");
         if (Sus == null) Debug.LogError("Suspect is missing");
-    }
+        if (Bench == null) Debug.LogError("InterrogationBench is missing");
 
-    // Update is called once per frame
-    void Update()
-    {
         
+        // Bench.SitDown += StartInterrogation;
+        // Bench.GetUp += StopInterrogation;
+
     }
 
-    public IEnumerator InterrogationRoutine()
+    public void StartInterrogation() {
+        // PM.PresentEvidence += PresentEvidence;
+    }
+
+    public void StopInterrogation()
     {
+        // Unsub from the present evidence
+        // PM.PresentEvidence -= PresentEvidence;
+    }
 
+    public void PresentEvidence() {
+        // Disable Player
+    }
 
-
-
-        yield return null;
+    public void SuspectDoneSpeaking() {
+        // Enable Player
     }
 }
