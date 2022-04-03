@@ -8,6 +8,7 @@ using DG.Tweening;
 public class NotebookTab : MonoBehaviour
 {
     [SerializeField] protected CanvasGroup content;
+    [SerializeField] protected GameObject scrollViewContent;
     private const float ScaleFactor = 1.1f;
     private readonly Vector3 originalScale = new Vector3(1f,1f,1f);
     private Button button;
