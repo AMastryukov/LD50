@@ -5,28 +5,23 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public enum Tabs { 
+public enum Tabs 
+{ 
     LOG,
     EVIDENCE,
-    PERSONNEL
+    SUSPECTS
 }
 
 public class Notebook : MonoBehaviour
 {
+    [SerializeField] private LogsTab logsTab;
+    [SerializeField] private EvidenceTab evidenceTab;
+    [SerializeField] private SuspectTab suspectTab;
+
     private CanvasGroup canvasGroup;
     private bool isOpen = false;
     private List<NotebookTab> tabs;
     private DataManager dataManager;
-
-    
-    [SerializeField]
-    private LogsTab logsTab;
-    
-    [SerializeField]
-    private EvidenceTab evidenceTab;
-
-    [SerializeField]
-    private SuspectTab suspectTab;
 
     #region EventAssignement
 
@@ -65,7 +60,7 @@ public class Notebook : MonoBehaviour
             ToggleCanvas();
         }
     }
-
+    
     private void OnDestroy()
     {
         UnAssignDelegates();
@@ -125,7 +120,6 @@ public class Notebook : MonoBehaviour
     {
         UnHighlightAllTabs();
         tabs[n].Highlight();
-        Debug.Log("ButtonPressed");
     }
 
     private void UnHighlightAllTabs()
