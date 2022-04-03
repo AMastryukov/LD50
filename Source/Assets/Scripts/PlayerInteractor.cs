@@ -13,19 +13,17 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private float interactionDistance = 2.5f;
     [SerializeField] private LayerMask interactableLayerMask;
     [SerializeField] private Transform cameraTransform;
+    
     [Space]
+    [Header("UI")]
     [SerializeField] private Canvas interactionUI;
     [SerializeField] private Image crosshair;
     [SerializeField] private TextMeshProUGUI interactionText;
-
-
-
+    
     [Space]
     [Header("Inspection")]
     public float inspectionDistance = 1f;
-    // public bool isInspecting = false;
-
-
+    
     private Vector2 inspectionObjectRotation = Vector2.zero;
     private Interactable currentlyInspected;
     private Interactable interactable;
