@@ -75,8 +75,10 @@ public class PlayerCameraController : MonoBehaviour
             
             xCameraRotation -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity;
             yCameraRotation += Input.GetAxisRaw("Mouse X") * yMouseSensitivity;
-            
-            interrogationCamera.Priority = 9;
+
+            //interrogationCamera.Priority = 9;
+            Debug.LogError("I disabled this because it crashes when the interrogation camera is not present. For example when you open a crime scene or make a prefab from this player");
+
             currentVirtualCamera = gameObject.GetComponent<CinemachineVirtualCamera>();
             
             //Clamp

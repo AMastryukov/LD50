@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UtilityCode;
 
 /// <summary>
 /// An instance of this class is meant to exist independant of what level is loaded
 /// 
 /// The manager will grab the necessary referenced on sceneLoaded.
 /// </summary>
-public class GameManager : MonoBehaviour
+public class GameManager : UnitySingletonPersistent<GameManager>
 {
     private SceneLoader SL;
     private Door Door;
+    private CrimeSceneManager Manager;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
+
         DontDestroyOnLoad(this);
 
         SL = FindObjectOfType<SceneLoader>();
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
     private void SceneLoadEvent(Scene scene, LoadSceneMode mode)
     {
         this.Door = FindObjectOfType<Door>();
+
 
         if (!this.Door)
         {
@@ -87,7 +92,7 @@ public class GameManager : MonoBehaviour
         while (evidenceFound.Count < 3)
         {
             yield return CrimeScene1();
-            yield return Interrogation1();
+            yield return Interrogation1(evidenceFound);
         }
 
         yield return null;
@@ -95,6 +100,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CrimeScene1()
     {
+        // Wait for scene to load
         yield return SL.ChangeScene("CrimeScene1");
 
         Debug.Log("Loaded CrimeScene1");
@@ -108,6 +114,7 @@ public class GameManager : MonoBehaviour
 
         Door.Leave += () => leaveScene = true;
 
+
         while (!leaveScene)
         {
             yield return null;
@@ -116,7 +123,7 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator Interrogation1()
+    private IEnumerator Interrogation1(HashSet<EvidenceKey> evidenceFound)
     {
         yield return SL.ChangeScene("Interrogation1");
         Debug.Log("Interrogation1");
