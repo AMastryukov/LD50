@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Cigar
   m_EditorClassIdentifier: 
-  name: Cigar
-  description: Just a cigar, looks expensive
+  EvidenceKey: 0
+  EvidenceName: 
+  Description: 
+  DisplayImage: {fileID: 0}

@@ -5,13 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    public static SceneLoader Instance { get; private set; }    
     
     [SerializeField] private Animator transition;
     private float transitionTime = 1f;
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>
@@ -24,8 +33,8 @@ public class SceneLoader : MonoBehaviour
         if (SceneManager.GetActiveScene().name != sceneName)
         {
             // TODO: Eelis can you also make it fade back in?
-            //transition.SetTrigger("Start");
-
+            transition.SetTrigger("Start");
+            
             yield return new WaitForSeconds(transitionTime);
 
             yield return WaitForLoadScene(sceneName);
@@ -52,5 +61,6 @@ public class SceneLoader : MonoBehaviour
         {
             yield return null;
         }
+        transition.SetTrigger("End");
     }
 }
