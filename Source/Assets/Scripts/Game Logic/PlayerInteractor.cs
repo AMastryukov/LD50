@@ -21,7 +21,7 @@ public class PlayerInteractor : MonoBehaviour
 
     [Space]
     [Header("Inspection")]
-    [SerializeField] private Transform inspectionTransform;
+    //[SerializeField] private Transform inspectionTransform;
     
     private Vector2 inspectionObjectRotation = Vector2.zero;
     private Interactable clickedInteractable;
@@ -115,8 +115,9 @@ public class PlayerInteractor : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         crosshair.enabled = false;
-
-        evidence.StartInspect(inspectionTransform.GetComponentInParent<Transform>().position);
+        Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * 0.7f;
+        Debug.Log(inspectionPosition);
+        evidence.StartInspect(inspectionPosition);
 
         manager.playerState = PlayerManager.PlayerStates.Inspect;
     }

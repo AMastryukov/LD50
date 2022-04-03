@@ -4,40 +4,20 @@ using UnityEngine;
 
 public class LogsTab : NotebookTab
 {
-    public List<string> Logs { get; private set; }
-
     [SerializeField] private GameObject logPrefab;
-    // Start is called before the first frame update
-    
-    void Start()
-    {
-        
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        Logs=new List<string>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void Add(string log)
     {
-        foreach (var logText in Logs )
-        {
-            if (logText == log)
-            {
-                return;
-            }
-        }
-        Logs.Add(log); 
+        if (dataManager.CheckIfLogAlreadyExists(log))
+            return;
+        dataManager.LogsListInNotebook.Add(log);
+        InstantiateLog(log);
+    }
+
+    public void InstantiateLog(string logData)
+    {
         GameObject logObject = Instantiate(logPrefab, scrollViewContent.transform);
-        logObject.GetComponent<LogObject>().InitializeLog(log);
+        logObject.GetComponent<LogObject>().InitializeLog(logData);
     }
     
 }

@@ -5,26 +5,27 @@ using UnityEngine;
 
 public class SuspectTab : NotebookTab
 {
-    public List<SuspectData> Suspects { get; private set; }
-
     [SerializeField] private GameObject prefab;
 
-    public void Add(SuspectData suspectData)
+    public void Add(string suspectName)
     {
-        Suspects.Add(suspectData);
+        if(dataManager.CheckIfSuspectAlreadyExists(suspectName))
+            return;
 
-        // Ignore existing suspects
-        foreach (var existingData in Suspects)
+        dataManager.suspectListInNotebook.Add(suspectName);
+        SuspectData suspectData = dataManager.GetSuspectDataFromKey(suspectName);
+        InstantiateSuspect(suspectData);
+    }
+    
+    public void InstantiateSuspect(SuspectData suspect)
+    {
+        if (suspect == null)
         {
-            if (existingData == suspectData)
-            {
-                return;
-            }
+            Debug.LogError("Data not found");
+            return;
         }
 
-        Suspects.Add(suspectData);
-
-        GameObject personnelObject = Instantiate(prefab, content.gameObject.transform);
-        personnelObject.GetComponent<SuspectNotebookEntry>().Initialize(suspectData);
+        GameObject evidenceObject = Instantiate(prefab, content.gameObject.transform);
+        evidenceObject.GetComponent<SuspectNotebookEntry>().Initialize(suspect);
     }
 }

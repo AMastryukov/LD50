@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,24 @@ public class Notebook : MonoBehaviour
     private CanvasGroup canvasGroup;
     private bool isOpen = false;
     private List<NotebookTab> tabs;
+    private DataManager dataManager;
+
+    #region EventAssignement
+
+    private void AssignDelegates()
+    {
+        GameEventSystem.Instance.OnEvidenceInspected += AddEvidence;
+    }
+
+    private void UnAssignDelegates()
+    {
+        if(GameEventSystem.Quitting)
+            GameEventSystem.Instance.OnEvidenceInspected -= AddEvidence;
+    }
+
+    #endregion
+
+    #region UnityEventFunctions
 
     private void Awake()
     {
@@ -27,6 +46,13 @@ public class Notebook : MonoBehaviour
         tabs = new List<NotebookTab> {logsTab, evidenceTab, suspectTab};
     }
 
+    private void Start()
+    {
+        dataManager = DataManager.Instance;
+        AssignDelegates();
+        Initialize();
+    }
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -34,7 +60,37 @@ public class Notebook : MonoBehaviour
             ToggleCanvas();
         }
     }
+    
+    private void OnDestroy()
+    {
+        UnAssignDelegates();
+    }
+    
 
+    #endregion
+
+    private void Initialize()
+    {
+        foreach (var log in dataManager.LogsListInNotebook)
+        {
+            logsTab.InstantiateLog(log);
+        }
+
+        foreach (var evidenceKey in dataManager.evidenceListInNotebook)
+        {
+            EvidenceData data = dataManager.GetEvidenceDataFromKey(evidenceKey);
+            evidenceTab.InstantiateEvidence(data);
+        }
+
+        foreach (var suspectName in dataManager.suspectListInNotebook)
+        {
+            SuspectData data = dataManager.GetSuspectDataFromKey(suspectName);
+            suspectTab.InstantiateSuspect(data);
+        }
+    }
+
+    // Update is called once per frame
+   
     private void ToggleCanvas()
     {
         if (isOpen)
@@ -74,14 +130,14 @@ public class Notebook : MonoBehaviour
         }
     }
 
-    public void AddEvidence(EvidenceData evidence)
+    public void AddEvidence(string name)
     {
-        evidenceTab.Add(evidence);
+        evidenceTab.Add(name);
     }
 
-    public void AddSuspect(SuspectData suspectData)
+    public void AddSuspect(string suspectName)
     {
-        suspectTab.Add(suspectData);
+        suspectTab.Add(suspectName);
     }
 
     public void AddLog(string log)
