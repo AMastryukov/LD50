@@ -10,8 +10,8 @@ using UtilityCode;
 /// </summary>
 public class GameManager : UnitySingletonPersistent<GameManager>
 {
-    private SceneLoader SL;
-    private GameSceneManager Manager;
+    private SceneLoader sceneLoader;
+    private CrimeSceneManager gameSceneManager;
 
     public override void Awake()
     {
@@ -19,8 +19,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         DontDestroyOnLoad(this);
 
-        SL = FindObjectOfType<SceneLoader>();
-        if (SL == null)
+        sceneLoader = FindObjectOfType<SceneLoader>();
+        if (sceneLoader == null)
         {
             Debug.LogError("Scene loader missing from scene");
         }
@@ -37,15 +37,12 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     /// <param name="mode"></param>
     private void SceneLoadEvent(Scene scene, LoadSceneMode mode)
     {
-        
-        this.Manager = FindObjectOfType<GameSceneManager>();
+        gameSceneManager = FindObjectOfType<CrimeSceneManager>();
 
-        if (this.Manager == null)
+        if (gameSceneManager == null)
         {
             Debug.LogWarning("This scene is missing a GameSceneManager");
         }
-        
-
     }
 
     /// <summary>
