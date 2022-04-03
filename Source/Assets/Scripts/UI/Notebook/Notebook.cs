@@ -26,7 +26,7 @@ public class Notebook : MonoBehaviour
     private EvidenceTab evidenceTab;
 
     [SerializeField]
-    private PersonnelTab personnelTab;
+    private SuspectTab suspectTab;
 
 
 
@@ -34,7 +34,7 @@ public class Notebook : MonoBehaviour
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        tabs = new List<NotebookTab> {logsTab, evidenceTab, personnelTab};
+        tabs = new List<NotebookTab> {logsTab, evidenceTab, suspectTab};
     }
 
     private void Start()
@@ -110,9 +110,9 @@ public class Notebook : MonoBehaviour
         evidenceTab.Add(key);
     }
 
-    public void AddPersonnel(PersonnelData personnel)
+    public void AddSuspect(SuspectData suspectData)
     {
-        personnelTab.Add(personnel);
+        suspectTab.Add(suspectData);
     }
 
     public void AddLog(string log)

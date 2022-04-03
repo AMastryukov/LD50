@@ -5,13 +5,7 @@ using Random = UnityEngine.Random;
 
 public class Interactable : MonoBehaviour, IInteractable
 { 
-    public UnityEvent onInteract;
-    [HideInInspector] public int id;
-
-   private void Start()
-    {
-        id = Random.Range(0, 999999);
-    }
+    public UnityEvent OnInteract;
 
     public virtual void Interact()
     {
