@@ -473,6 +473,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   id: 0
+  evidenceData: {fileID: 0}
 --- !u!65 &548318719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1570,6 +1571,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   id: 0
+  evidenceData: {fileID: 0}
 --- !u!65 &1497216452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2062,6 +2064,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.00023901546
       objectReference: {fileID: 0}
+    - target: {fileID: 891986301363169249, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891986301363169249, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090019187240928497, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090019187240928497, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090019187240928497, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1518441016580859341, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2281,6 +2303,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   id: 0
+  evidenceData: {fileID: 0}
 --- !u!65 &919132149177040619
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2419,6 +2442,10 @@ PrefabInstance:
     - target: {fileID: 8081010646184591549, guid: e9f37688080a12149926ecc76ea71ffd, type: 3}
       propertyPath: interrogationCamera
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081010647320647585, guid: e9f37688080a12149926ecc76ea71ffd, type: 3}
+      propertyPath: m_UpdateMethod
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8081010647731154216, guid: e9f37688080a12149926ecc76ea71ffd, type: 3}
       propertyPath: m_RootOrder

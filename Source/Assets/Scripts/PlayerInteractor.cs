@@ -40,6 +40,8 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
+        Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * inspectionDistance;
+        Debug.Log(inspectionPosition);
         if (manager.playerState == PlayerManager.PlayerStates.Inspect)
         {
             interactionUI.enabled = false;
@@ -69,6 +71,10 @@ public class PlayerInteractor : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * inspectionDistance;
+        Debug.Log(inspectionPosition + "Hello");
+
+        //Debug.Log(inspectionPosition);
         if (manager.playerState == PlayerManager.PlayerStates.Move) //Or pause or anything else
         {
             Interactor();
@@ -112,6 +118,7 @@ public class PlayerInteractor : MonoBehaviour
 
             Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * inspectionDistance;
             Evidence evidence = currentlyInspected.GetComponent<Evidence>();
+            
             evidence.StartInspect(inspectionPosition);
             if(evidence.evidenceData != null)
             {

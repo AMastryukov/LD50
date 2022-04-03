@@ -46,7 +46,7 @@ public class Evidence : Interactable
     public void StartInspect(Vector3 pos)
     {
         transform.DOMove(pos, 0.5f);
-        Debug.Log(pos);
+        //Debug.Log(pos);
         //transform.position = pos;
     }
 
