@@ -12,10 +12,12 @@ public class NotebookTab : MonoBehaviour
     private const float ScaleFactor = 1.1f;
     private readonly Vector3 originalScale = new Vector3(1f,1f,1f);
     private Button button;
+    protected DataManager dataManager;
 
     protected virtual void Awake()
     {
         button = GetComponent<Button>();
+        dataManager = DataManager.Instance;
     }
 
     public void Highlight()
