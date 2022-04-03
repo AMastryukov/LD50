@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerManager;
 
 public class InterrogationManager : MonoBehaviour
 {
     [SerializeField] PlayerManager PM;
-    //[SerializeField] EvidenceNotebookEntry EO;
+    [SerializeField] EvidenceNotebookEntry EO;
     [SerializeField] Suspect Sus;
     [SerializeField] InterrogationBench Bench;
 
@@ -17,22 +18,22 @@ public class InterrogationManager : MonoBehaviour
         if (Sus == null) Debug.LogError("Suspect is missing");
         if (Bench == null) Debug.LogError("InterrogationBench is missing");
 
-        
-        // Bench.SitDown += StartInterrogation;
-        // Bench.GetUp += StopInterrogation;
+        PlayerManager.PlayerStateChanged += PlayerStateChanged;
 
     }
 
-    public void StartInterrogation() {
-        Debug.Log("You are now interrogating the suspect");
-        // PM.PresentEvidence += PresentEvidence;
-    }
-
-    public void StopInterrogation()
+    public void PlayerStateChanged(PlayerStates state)
     {
-        Debug.Log("You have stopped interrogating the suspect");
-        // Unsub from the present evidence
-        // PM.PresentEvidence -= PresentEvidence;
+        if (state == PlayerStates.Interrogate)
+        {
+            print("Interrogating");
+            // PM.PresentEvidence += PresentEvidence;
+        }
+        else
+        {
+            print("Stopped Interrogating");
+            // PM.PresentEvidence -= PresentEvidence;
+        }
     }
 
     public void PresentEvidence() {
