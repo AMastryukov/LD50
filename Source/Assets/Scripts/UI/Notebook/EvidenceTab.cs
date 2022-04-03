@@ -12,7 +12,7 @@ public class EvidenceTab : NotebookTab
     {
         foreach (var evidenceData in EvidenceList )
         {
-            if (evidenceData.EvidenceKey == evidence.EvidenceKey)
+            if (evidenceData.KeyEvidence == evidence.KeyEvidence)
             {
                 return;
             }
