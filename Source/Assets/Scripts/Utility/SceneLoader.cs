@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using System;
 
 public class SceneLoader : MonoBehaviour
 {
-    public static SceneLoader Instance { get; private set; }    
-    
-    [SerializeField] private Animator transition;
-    private float transitionTime = 1f;
+    public static SceneLoader Instance { get; private set; }
+
+    [SerializeField] private CanvasGroup canvasGroup;
 
     private void Awake()
     {
@@ -20,7 +21,32 @@ public class SceneLoader : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void FadeIn(Action onComplete)
+    {
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+
+        canvasGroup.DOFade(1f, 0.5f)
+            .SetEase(Ease.OutCirc)
+            .OnComplete(() =>
+            {
+                onComplete.Invoke();
+            });
+    }
+
+    public void FadeOut()
+    {
+        canvasGroup.DOFade(0f, 3f)
+                .SetEase(Ease.InCirc)
+                .OnComplete(() =>
+                {
+                    canvasGroup.interactable = false;
+                    canvasGroup.blocksRaycasts = false;
+                });
     }
 
     /// <summary>
@@ -28,39 +54,11 @@ public class SceneLoader : MonoBehaviour
     /// </summary>
     /// <param name="sceneName"></param>
     /// <returns></returns>
-    public IEnumerator ChangeScene(string sceneName)
+    public void ChangeScene(string sceneName)
     {
         if (SceneManager.GetActiveScene().name != sceneName)
         {
-            // TODO: Eelis can you also make it fade back in?
-            transition.SetTrigger("Start");
-            
-            yield return new WaitForSeconds(transitionTime);
-
-            yield return WaitForLoadScene(sceneName);
+            FadeIn(delegate () { SceneManager.LoadScene(sceneName); });
         }
-
-        yield return null;
-    }
-
-    /// <summary>
-    /// Use this to wait till the scene has been loaded
-    /// </summary>
-    /// <param name="sceneName"></param>
-    /// <returns></returns>
-    private IEnumerator WaitForLoadScene(string sceneName)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-        if (asyncLoad == null)
-        {
-            Debug.LogError("asyncLoad is null");
-        }
-
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        transition.SetTrigger("End");
     }
 }

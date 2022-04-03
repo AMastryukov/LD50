@@ -116,7 +116,6 @@ public class PlayerInteractor : MonoBehaviour
         Cursor.visible = true;
         crosshair.enabled = false;
         Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * 0.7f;
-        Debug.Log(inspectionPosition);
         evidence.StartInspect(inspectionPosition);
 
         manager.playerState = PlayerManager.PlayerStates.Inspect;

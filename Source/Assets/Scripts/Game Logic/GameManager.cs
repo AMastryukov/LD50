@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UtilityCode;
+using System;
 
 /// <summary>
 /// An instance of this class is meant to exist independant of what level is loaded
@@ -11,23 +12,20 @@ using UtilityCode;
 public class GameManager : UnitySingletonPersistent<GameManager>
 {
     private SceneLoader sceneLoader;
-    private CrimeSceneManager gameSceneManager;
+    private CrimeSceneManager crimeSceneManager;
 
     public override void Awake()
     {
         base.Awake();
 
-        DontDestroyOnLoad(this);
-
         sceneLoader = FindObjectOfType<SceneLoader>();
         if (sceneLoader == null)
         {
-            Debug.LogError("Scene loader missing from scene");
+            Debug.LogError("SceneLoader missing from scene");
         }
 
         SceneManager.sceneLoaded += SceneLoadEvent;
         SceneManager.sceneUnloaded += SceneUnloadEvent;
-
     }
 
     /// <summary>
@@ -37,12 +35,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     /// <param name="mode"></param>
     private void SceneLoadEvent(Scene scene, LoadSceneMode mode)
     {
-        gameSceneManager = FindObjectOfType<CrimeSceneManager>();
 
-        if (gameSceneManager == null)
-        {
-            Debug.LogWarning("This scene is missing a GameSceneManager");
-        }
     }
 
     /// <summary>
@@ -56,35 +49,117 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private void Start()
     {
-        StartCoroutine(GameSequence());
+        StartCoroutine(GameLoop());
     }
 
-    private IEnumerator GameSequence()
+    private IEnumerator GameLoop()
     {
-        yield return null;
+        yield return IntroSequence();
+        yield return AlleywayCrimeSequence();
+        yield return InterrogationUptonSequence();
+        yield return PreGarageSequence();
+        yield return GarageSequence();
+        yield return InterrogationLucaSequence();
+        yield return PreApartmentSequence();
+        yield return ApartmentSearchSequence();
+        yield return AlleywayBennySequence();
+        yield return ApartmentFinalSequence();
+        yield return GameEndSequence();
+        yield return CreditsSequence();
+        yield return PostCreditSequence();
     }
 
     private IEnumerator IntroSequence()
     {
-        yield return null;
+        bool talking = false;
+
+        // Subscribe to events
+
+        while (talking)
+        {
+
+            // Unsubscribe from events
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        sceneLoader.FadeOut();
     }
 
-    private IEnumerator Sequence1()
+    private IEnumerator AlleywayCrimeSequence()
+    {
+        bool collectedAllEvidence = false;
+
+        // Subscribe to events
+        Action onCollectAllEvidence = delegate () { collectedAllEvidence = true; };
+        CrimeSceneManager.OnAllEvidenceFound += onCollectAllEvidence;
+
+        while (!collectedAllEvidence)
+        {
+            yield return null;
+        }
+
+        // Unsubscribe from events
+        CrimeSceneManager.OnAllEvidenceFound -= onCollectAllEvidence;
+
+        FindObjectOfType<Door>().SceneName = "Interrogation Room";
+        FindObjectOfType<Door>().IsUnlocked = true;
+
+        Debug.Log("Door unlocked! Interrogate Upton.");
+    }
+
+    private IEnumerator InterrogationUptonSequence()
     {
         yield return null;
     }
 
-    private IEnumerator CrimeScene1()
+    private IEnumerator PreGarageSequence()
     {
         yield return null;
     }
 
-    private IEnumerator Interrogation1()
+    private IEnumerator GarageSequence()
     {
         yield return null;
     }
 
-    private IEnumerator GameWinSequence()
+    private IEnumerator InterrogationLucaSequence()
+    {
+        yield return null;
+    }
+
+    private IEnumerator PreApartmentSequence()
+    {
+        yield return null;
+    }
+
+    private IEnumerator ApartmentSearchSequence()
+    {
+        yield return null;
+    }
+
+    private IEnumerator AlleywayBennySequence()
+    {
+        yield return null;
+    }
+
+    private IEnumerator ApartmentFinalSequence()
+    {
+        yield return null;
+    }
+
+    private IEnumerator GameEndSequence()
+    {
+        yield return null;
+    }
+
+    private IEnumerator CreditsSequence()
+    {
+        yield return null;
+    }
+
+    private IEnumerator PostCreditSequence()
     {
         yield return null;
     }
