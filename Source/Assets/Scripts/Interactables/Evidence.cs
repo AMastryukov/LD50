@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 public class Evidence : Interactable
 {
-    [Header("Evidence")] 
-    
-    //TODO not showing in editor ???
-    [SerializeField] public readonly EvidenceData evidenceData;
+    [Header("Evidence")]
+    public EvidenceData evidenceData;
 
     private new string name;
     private string description;
@@ -46,15 +45,16 @@ public class Evidence : Interactable
     
     public void StartInspect(Vector3 pos)
     {
+        transform.DOMove(pos, 0.5f);
         Debug.Log(pos);
-        transform.position = pos;
+        //transform.position = pos;
     }
 
     
     public void StopInspect()
     {
-        transform.position = originalPosition;
-        transform.rotation = originalRotation;
+        transform.DOMove(originalPosition, 0.5f);
+        transform.DORotate(originalRotation.eulerAngles, 0.5f);
     }
 
     

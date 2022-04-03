@@ -715,6 +715,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   id: 0
+  evidenceData: {fileID: 11400000, guid: 29c7c7476d903d34f991d87387c21531, type: 2}
 --- !u!65 &548318719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2217,7 +2218,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 653350911}
   fpsOrigin: {fileID: 132195240}
-  interrogationCamera: {fileID: 0}
   cameraFOV: 70
   cameraLerpSpeed: 0.5
   xMouseSensitivity: 1
@@ -2375,6 +2375,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   id: 0
+  evidenceData: {fileID: 0}
 --- !u!65 &1497216452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2925,7 +2926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020053515}
-  m_LocalRotation: {x: 0.010008854, y: 1e-45, z: -0, w: 0.99994993}
+  m_LocalRotation: {x: 0.010008854, y: -1e-45, z: -0, w: 0.99994993}
   m_LocalPosition: {x: 0, y: 2.24, z: -0.183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2989,6 +2990,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   id: 0
+  evidenceData: {fileID: 0}
 --- !u!65 &919132149177040619
 BoxCollider:
   m_ObjectHideFlags: 0
