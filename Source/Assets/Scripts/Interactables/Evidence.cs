@@ -31,6 +31,7 @@ public class Evidence : Interactable
     public override void Interact()
     {
         OnInspect?.Invoke(this);
+        GameEventSystem.Instance.OnEvidenceInspected?.Invoke(evidenceData.Name);
     }
 
     

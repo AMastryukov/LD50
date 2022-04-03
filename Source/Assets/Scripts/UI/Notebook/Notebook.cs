@@ -28,9 +28,23 @@ public class Notebook : MonoBehaviour
     [SerializeField]
     private SuspectTab suspectTab;
 
+    #region EventAssignement
 
+    private void AssignDelegates()
+    {
+        GameEventSystem.Instance.OnEvidenceInspected += AddEvidence;
+    }
 
-    // Start is called before the first frame update
+    private void UnAssignDelegates()
+    {
+        if(GameEventSystem.Quitting)
+            GameEventSystem.Instance.OnEvidenceInspected -= AddEvidence;
+    }
+
+    #endregion
+
+    #region UnityEventFunctions
+
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -40,8 +54,25 @@ public class Notebook : MonoBehaviour
     private void Start()
     {
         dataManager = DataManager.Instance;
+        AssignDelegates();
         Initialize();
     }
+    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ToggleCanvas();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        UnAssignDelegates();
+    }
+    
+
+    #endregion
 
     private void Initialize()
     {
@@ -64,13 +95,7 @@ public class Notebook : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ToggleCanvas();
-        }
-    }
+   
     private void ToggleCanvas()
     {
         if (isOpen)
