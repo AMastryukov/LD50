@@ -15,7 +15,6 @@ public class SuspectNotebookEntry : MonoBehaviour
     public void Initialize(SuspectData data)
     {
         suspectData = data;
-
         suspectName.text = data.name;
         suspectDescription.text = data.Description;
         suspectImage.sprite = data.Sprite;

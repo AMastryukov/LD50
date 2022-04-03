@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class EvidenceTab : NotebookTab
 {
-    public List<EvidenceData> EvidenceList { get; private set; }
-
     [SerializeField] private GameObject evidencePrefab;
     
-    public void Add(EvidenceData evidence)
+    public void Add(string name)
     {
-        foreach (var evidenceData in EvidenceList )
-        {
-            if (evidenceData == evidence)
-            {
-                return;
-            }
-        }
+        if(dataManager.CheckIfEvidenceAlreadyExists(name))
+            return;
+        
+        dataManager.evidenceListInNotebook.Add(name);
+        EvidenceData data = dataManager.GetEvidenceDataFromKey(name);
+        InstantiateEvidence(data);
+    }
 
-        EvidenceList.Add(evidence);
+    public void InstantiateEvidence(EvidenceData evidence)
+    {
+        if (evidence == null)
+        {
+            Debug.LogError("Data not found");
+            return;
+        }
         GameObject evidenceObject = Instantiate(evidencePrefab, content.gameObject.transform);
         evidenceObject.GetComponent<EvidenceObject>().InitializeEvidence(evidence);
     }
