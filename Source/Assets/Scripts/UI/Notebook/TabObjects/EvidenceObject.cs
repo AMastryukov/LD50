@@ -10,11 +10,10 @@ public class EvidenceObject : MonoBehaviour
     [SerializeField] private TextMeshProUGUI evidenceDescription;
     [SerializeField] private Image evidenceImage;
     
-    
     public void InitializeEvidence(EvidenceData data)
     {
         evidenceName.text = data.name;
         evidenceDescription.text = data.Description;
-        evidenceImage.sprite = data.DisplayImage;
+        evidenceImage.sprite = data.Sprite;
     }
 }
