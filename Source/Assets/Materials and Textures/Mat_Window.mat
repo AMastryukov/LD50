@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_Window
-  m_Shader: {fileID: -6465566751694194690, guid: 8d3d10d280e46a843ab3e2f6b73b245b, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 768f99a6b98a5db49a0fb1df716e30a2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -39,6 +39,9 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - Vector1_0ab58e47fd8e4c3a853f8b4cf1717a4a: 0.573
+    - Vector1_6fc615d95f364b9fb6a07cb4959b7fb5: 0.86
+    - Vector1_7f429d54d5634385aac254f43b330bfa: 0.602
     m_Colors: []
   m_BuildTextureStacks: []
