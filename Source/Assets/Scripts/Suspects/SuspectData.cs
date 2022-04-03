@@ -19,6 +19,7 @@ public class Suspect
 {
     public static Action<Suspect, EvidenceData> OnKeyEvidenceShown;
     public static Action<Suspect> OnGenericEvidenceShown;
+    public static Action<Suspect> OnConfess;
 
     public SuspectData Data;
 
@@ -39,13 +40,18 @@ public class Suspect
         }
     }
 
-    public void BringEvidence(EvidenceData evidenceData)
+    public void AskAboutEvidence(EvidenceData evidenceData)
     {
         if (Data.KeyEvidence.Contains(evidenceData))
         {
             // Remove from the remaining key evidence list
             RemainingKeyEvidence.Remove(evidenceData.Name);
             OnKeyEvidenceShown?.Invoke(this, evidenceData);
+
+            if (RemainingKeyEvidence.Count == 0)
+            {
+                OnConfess?.Invoke(this);
+            }
         }
         else
         {

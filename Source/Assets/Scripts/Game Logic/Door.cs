@@ -2,16 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Door : MonoBehaviour
+public class Door : Interactable
 {
-    public delegate void OpenDoorEventHandler();
+    public static Action OnDoorOpened;
 
-    public event OpenDoorEventHandler DoorOpened;
+    public string SceneName;
+    public bool IsUnlocked = false;
 
-    public void OnDoorInteract()
+    public void SetExitSceneName(string sceneName)
     {
-        DoorOpened?.Invoke();
+        SceneName = sceneName;
     }
-    
+
+    public override void Interact()
+    {
+        if (SceneName.Equals("")) { Debug.LogError("This door is not bound to any scene"); }
+        
+        if (IsUnlocked)
+        {
+            SceneManager.LoadScene(SceneName);
+        }
+    }
 }

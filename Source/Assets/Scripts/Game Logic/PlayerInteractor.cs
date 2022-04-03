@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static GameSceneManager;
+using static CrimeSceneManager;
 
 public class PlayerInteractor : MonoBehaviour
 {

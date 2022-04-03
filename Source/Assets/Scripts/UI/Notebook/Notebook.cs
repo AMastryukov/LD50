@@ -4,38 +4,29 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public enum Tabs { 
+public enum Tabs 
+{ 
     LOG,
     EVIDENCE,
-    PERSONNEL
+    SUSPECTS
 }
 
 public class Notebook : MonoBehaviour
 {
+    [SerializeField] private LogsTab logsTab;
+    [SerializeField] private EvidenceTab evidenceTab;
+    [SerializeField] private SuspectTab suspectTab;
+
     private CanvasGroup canvasGroup;
     private bool isOpen = false;
     private List<NotebookTab> tabs;
 
-    
-    [SerializeField]
-    private LogsTab logsTab;
-    
-    [SerializeField]
-    private EvidenceTab evidenceTab;
-
-    [SerializeField]
-    private SuspectTab suspectTab;
-
-
-
-    // Start is called before the first frame update
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         tabs = new List<NotebookTab> {logsTab, evidenceTab, suspectTab};
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -43,6 +34,7 @@ public class Notebook : MonoBehaviour
             ToggleCanvas();
         }
     }
+
     private void ToggleCanvas()
     {
         if (isOpen)
@@ -72,7 +64,6 @@ public class Notebook : MonoBehaviour
     {
         UnHighlightAllTabs();
         tabs[n].Highlight();
-        Debug.Log("ButtonPressed");
     }
 
     private void UnHighlightAllTabs()
