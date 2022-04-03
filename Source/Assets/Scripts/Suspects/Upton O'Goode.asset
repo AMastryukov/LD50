@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08911f0b2cdad6f4aab5d684a2111dfd, type: 3}
+  m_Name: Upton O'Goode
+  m_EditorClassIdentifier: 
+  SuspectName: "Upton O\u2019Goode"
+  SuspectDescription: hoodlum gangster
+  SuspectDisplayImage: {fileID: 0}
+  SuspectsKeyEvidences: []
