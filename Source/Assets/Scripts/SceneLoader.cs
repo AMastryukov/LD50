@@ -21,11 +21,15 @@ public class SceneLoader : MonoBehaviour
     /// <returns></returns>
     public IEnumerator ChangeScene(string sceneName)
     {
-        //transition.SetTrigger("Start");
+        if (SceneManager.GetActiveScene().name != sceneName)
+        {
+            // TODO: Eelis can you also make it fade back in?
+            //transition.SetTrigger("Start");
 
-        yield return new WaitForSeconds(transitionTime);
+            yield return new WaitForSeconds(transitionTime);
 
-        yield return WaitForLoadScene(sceneName);
+            yield return WaitForLoadScene(sceneName);
+        }
 
         yield return null;
     }
