@@ -7,7 +7,6 @@ using UtilityCode;
 public class GameEventSystem : UnitySingletonPersistent<GameEventSystem>
 {
     public Action OnTimerStart {get; set;}
-    public Action<int> OnEvidenceInspected {get; set;}
-    
+    public Action<string> OnEvidenceInspected {get; set;}
     public Action OnTimerEnd {get; set;}
 }

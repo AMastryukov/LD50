@@ -4,18 +4,9 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "EvidenceData", menuName = "ScriptableObjects/CreateEvidenceData", order = 1)]
-public class EvidenceData : ScriptableObject {
-
-    public EvidenceKey EvidenceKey;
-    public string EvidenceName;
-    public string Description;
-    public Sprite DisplayImage;
-    //AudioClip pickupSound?
-}
-
-public enum EvidenceKey
+public class EvidenceData : ScriptableObject
 {
-    BOOK,
-    KEYS,
-    LIGHTER
+    public string Name;
+    public string Description;
+    public Sprite Sprite;
 }
