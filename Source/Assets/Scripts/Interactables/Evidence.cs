@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 public class Evidence : Interactable
@@ -37,14 +38,14 @@ public class Evidence : Interactable
     
     public void StartInspect(Vector3 pos)
     {
-        transform.position = pos;
+        transform.DOMove(pos, 1f);
     }
 
     
     public void StopInspect()
     {
-        transform.position = originalPosition;
-        transform.rotation = originalRotation;
+        transform.DOMove(originalPosition, 1f);
+        transform.DORotate(originalRotation.eulerAngles, 1f);
     }
 
     
