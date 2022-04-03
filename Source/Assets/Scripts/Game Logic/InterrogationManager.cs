@@ -5,10 +5,9 @@ using UnityEngine;
 public class InterrogationManager : MonoBehaviour
 {
     [SerializeField] PlayerManager PM;
+    //[SerializeField] EvidenceNotebookEntry EO;
     [SerializeField] Suspect Sus;
     [SerializeField] InterrogationBench Bench;
-
-    bool Suspect;
 
 
     // Start is called before the first frame update
@@ -25,11 +24,13 @@ public class InterrogationManager : MonoBehaviour
     }
 
     public void StartInterrogation() {
+        Debug.Log("You are now interrogating the suspect");
         // PM.PresentEvidence += PresentEvidence;
     }
 
     public void StopInterrogation()
     {
+        Debug.Log("You have stopped interrogating the suspect");
         // Unsub from the present evidence
         // PM.PresentEvidence -= PresentEvidence;
     }
