@@ -7,12 +7,11 @@ public class Door : MonoBehaviour
 {
     public delegate void OpenDoorEventHandler();
 
-    public event OpenDoorEventHandler Leave;
+    public event OpenDoorEventHandler DoorOpened;
 
     public void OnDoorInteract()
     {
-        Leave?.Invoke();
-        
+        DoorOpened?.Invoke();
     }
     
 }
