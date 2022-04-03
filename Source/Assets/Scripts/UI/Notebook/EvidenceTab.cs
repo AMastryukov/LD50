@@ -6,19 +6,23 @@ public class EvidenceTab : NotebookTab
 {
     [SerializeField] private GameObject evidencePrefab;
     
-    public void Add(EvidenceKey key)
+    public void Add(string name)
     {
-        if(dataManager.CheckIfEvidenceAlreadyExists(key))
+        if(dataManager.CheckIfEvidenceAlreadyExists(name))
             return;
-        dataManager.evidenceListInNotebook.Add(key);
-        EvidenceData data = dataManager.GetEvidenceDataFromKey(key);
+        
+        dataManager.evidenceListInNotebook.Add(name);
+        EvidenceData data = dataManager.GetEvidenceDataFromKey(name);
         InstantiateEvidence(data);
     }
 
     public void InstantiateEvidence(EvidenceData evidence)
     {
         if (evidence == null)
+        {
+            Debug.LogError("Data not found");
             return;
+        }
         GameObject evidenceObject = Instantiate(evidencePrefab, content.gameObject.transform);
         evidenceObject.GetComponent<EvidenceObject>().InitializeEvidence(evidence);
     }

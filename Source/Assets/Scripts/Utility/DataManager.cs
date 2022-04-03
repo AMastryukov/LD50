@@ -6,17 +6,12 @@ using UtilityCode;
 public class DataManager : UnitySingletonPersistent<DataManager>
 {
     public List<string> LogsListInNotebook { get; private set; }
-    public List<EvidenceKey> evidenceListInNotebook{ get; private set; }
-    public List<PersonnelData> personnelListInNotebook { get; private set; }
+    public List<string> evidenceListInNotebook{ get; private set; }
+    public List<string> suspectListInNotebook { get; private set; }
     
     
-    [SerializeField] private SuspectScriptableObject[] suspectData;
+    [SerializeField] private SuspectData[] suspectData;
     [SerializeField] private EvidenceData[] evidenceData;
-   // [SerializeField] private VoiceLineData[] voiceLines;
-
-    //public SuspectScriptableObject GetSuspectData(string name);
-    //public SuspectScriptableObject GetEvidenceData(string evidenceID);
-    //public SuspectScriptableObject GetVoiceLineData(string voicelineID);
 
     public bool CheckIfLogAlreadyExists(string log)
     {
@@ -31,11 +26,11 @@ public class DataManager : UnitySingletonPersistent<DataManager>
         return false;
     }
 
-    public bool CheckIfEvidenceAlreadyExists(EvidenceKey key)
+    public bool CheckIfEvidenceAlreadyExists(string name)
     {
-        foreach (var evidenceData in evidenceListInNotebook)
+        foreach (var evidenceName in evidenceListInNotebook)
         {
-            if (evidenceData == key)
+            if (evidenceName == name)
             {
                 return true;
             }
@@ -43,11 +38,11 @@ public class DataManager : UnitySingletonPersistent<DataManager>
         return false;
     }
     
-    public bool CheckIfPersonnelAlreadyExists(EvidenceKey key)
+    public bool CheckIfSuspectAlreadyExists(string name)
     {
-        foreach (var evidenceData in personnelListInNotebook)
+        foreach (var suspectName in suspectListInNotebook)
         {
-            if (evidenceData.EvidenceKey == key)
+            if (suspectName == name)
             {
                 return true;
             }
@@ -55,13 +50,26 @@ public class DataManager : UnitySingletonPersistent<DataManager>
         return false;
     }
 
-    public EvidenceData GetEvidenceDataFromKey(EvidenceKey key)
+    public EvidenceData GetEvidenceDataFromKey(string name)
     {
         foreach (var evidence in evidenceData)
         {
-            if (evidence.KeyEvidence == key)
+            if (evidence.name == name)
             {
                 return evidence;
+            }
+        }
+
+        return null;
+    }
+
+    public SuspectData GetSuspectDataFromKey(string name)
+    {
+        foreach (var suspect in suspectData)
+        {
+            if (suspect.name == name)
+            {
+                return suspect;
             }
         }
 

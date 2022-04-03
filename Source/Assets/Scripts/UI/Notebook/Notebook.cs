@@ -55,6 +55,12 @@ public class Notebook : MonoBehaviour
             EvidenceData data = dataManager.GetEvidenceDataFromKey(evidenceKey);
             evidenceTab.InstantiateEvidence(data);
         }
+
+        foreach (var suspectName in dataManager.suspectListInNotebook)
+        {
+            SuspectData data = dataManager.GetSuspectDataFromKey(suspectName);
+            suspectTab.InstantiateSuspect(data);
+        }
     }
 
     // Update is called once per frame
@@ -105,14 +111,14 @@ public class Notebook : MonoBehaviour
         }
     }
 
-    public void AddEvidence(EvidenceKey key)
+    public void AddEvidence(string name)
     {
-        evidenceTab.Add(key);
+        evidenceTab.Add(name);
     }
 
-    public void AddSuspect(SuspectData suspectData)
+    public void AddSuspect(string suspectName)
     {
-        suspectTab.Add(suspectData);
+        suspectTab.Add(suspectName);
     }
 
     public void AddLog(string log)

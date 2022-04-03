@@ -457,22 +457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34766c217378c7749bf987c46098375c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
+  OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 548318718}
-        m_TargetAssemblyTypeName: Evidence, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  id: 0
+      m_Calls: []
+  evidenceData: {fileID: 0}
 --- !u!65 &548318719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1240,22 +1228,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a83f2bf1d6341708d0b35cc2612e9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
+  OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 854044969}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  id: 0
+      m_Calls: []
 --- !u!54 &854044970
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1554,22 +1529,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34766c217378c7749bf987c46098375c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
+  OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1497216451}
-        m_TargetAssemblyTypeName: Evidence, Assembly-CSharp
-        m_MethodName: Interact
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  id: 0
+      m_Calls: []
+  evidenceData: {fileID: 0}
 --- !u!65 &1497216452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1821,22 +1784,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a83f2bf1d6341708d0b35cc2612e9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
+  OnInteract:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1682670485}
-        m_TargetAssemblyTypeName: InterrogationBench, Assembly-CSharp
-        m_MethodName: OnBenchInteract
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  id: 0
+      m_Calls: []
 --- !u!65 &1682670482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2062,6 +2012,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.00023901546
       objectReference: {fileID: 0}
+    - target: {fileID: 891986301363169249, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 891986301363169249, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090019187240928497, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090019187240928497, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1090019187240928497, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1518441016580859341, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2090,6 +2060,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6730603313322458192, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 7987735162032290664, guid: 44134c293cc23944798196f1b1168e2a, type: 3}
     - target: {fileID: 6730603313322458193, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2277,10 +2251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34766c217378c7749bf987c46098375c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onInteract:
+  OnInteract:
     m_PersistentCalls:
       m_Calls: []
-  id: 0
+  evidenceData: {fileID: 0}
 --- !u!65 &919132149177040619
 BoxCollider:
   m_ObjectHideFlags: 0
