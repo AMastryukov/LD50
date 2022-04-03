@@ -5,34 +5,24 @@ using UnityEngine;
 using UnityEngine.Events;
 public class Evidence : Interactable
 {
-    [Header("Evidence")] 
-    
-    //TODO not showing in editor ???
-    [SerializeField] public readonly EvidenceData evidenceData;
+    public static Action<Evidence> OnInspect;
 
-    private new string name;
-    private string description;
+    [Header("Evidence")] 
+    [SerializeField] public EvidenceData evidenceData;
     
     private Vector3 originalPosition;
     private Quaternion originalRotation;
-    private PlayerInteractor interactor;
     
-    //description, sound, other effects...
     private void Awake()
     {
-        interactor = FindObjectOfType<PlayerInteractor>();
+        if (evidenceData == null)
+        {
+            Debug.LogError($"Evidence Data is null for {gameObject.name}");
+        }
     }
 
     private void Start()
     {
-        if (evidenceData != null)
-        {
-            name = evidenceData.EvidenceName;
-            description = evidenceData.Description;
-        }else
-            Debug.LogWarning("EvidenceData not found");
-        
-        
         originalPosition = transform.position;
         originalRotation = transform.rotation;
     }
@@ -40,13 +30,12 @@ public class Evidence : Interactable
     
     public override void Interact()
     {
-        interactor.StartInspect(id);
+        OnInspect?.Invoke(this);
     }
 
     
     public void StartInspect(Vector3 pos)
     {
-        Debug.Log(pos);
         transform.position = pos;
     }
 
@@ -60,12 +49,12 @@ public class Evidence : Interactable
     
     public override string GetName()
     {
-        return name;
+        return evidenceData.Name;
     }
 
     
     public string GetDescription()
     {
-        return description;
+        return evidenceData.Description;
     }
 }

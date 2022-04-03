@@ -24,7 +24,7 @@ public class Notebook : MonoBehaviour
     private EvidenceTab evidenceTab;
 
     [SerializeField]
-    private PersonnelTab personnelTab;
+    private SuspectTab suspectTab;
 
 
 
@@ -32,7 +32,7 @@ public class Notebook : MonoBehaviour
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        tabs = new List<NotebookTab> {logsTab, evidenceTab, personnelTab};
+        tabs = new List<NotebookTab> {logsTab, evidenceTab, suspectTab};
     }
 
     // Update is called once per frame
@@ -88,9 +88,9 @@ public class Notebook : MonoBehaviour
         evidenceTab.Add(evidence);
     }
 
-    public void AddPersonnel(PersonnelData personnel)
+    public void AddSuspect(SuspectData suspectData)
     {
-        personnelTab.Add(personnel);
+        suspectTab.Add(suspectData);
     }
 
     public void AddLog(string log)
