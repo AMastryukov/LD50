@@ -7,7 +7,8 @@ public class Evidence : Interactable
 {
     [Header("Evidence")] 
     
-    [SerializeField] private EvidenceData evidenceData;
+    //TODO not showing in editor ???
+    [SerializeField] public readonly EvidenceData evidenceData;
 
     private new string name;
     private string description;
@@ -28,7 +29,9 @@ public class Evidence : Interactable
         {
             name = evidenceData.EvidenceName;
             description = evidenceData.Description;
-        }
+        }else
+            Debug.LogWarning("EvidenceData not found");
+        
         
         originalPosition = transform.position;
         originalRotation = transform.rotation;

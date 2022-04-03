@@ -2,13 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class PlayerCameraController : MonoBehaviour
 {
+    
     [SerializeField] private CharacterController characterController;
-    [SerializeField] private Transform cameraTransform;
     [SerializeField] private Transform fpsOrigin;
-
+    private CinemachineVirtualCamera interrogationCamera;
+    private CinemachineVirtualCamera currentVirtualCamera;
+    
     // Adjustable Settings
     [Header("General Camera Settings")]
     [SerializeField] private  float cameraFOV = 90f;
@@ -25,6 +27,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private PlayerManager manager;
 
+    
     private void Awake()
     {
         manager = FindObjectOfType<PlayerManager>();
@@ -32,41 +35,84 @@ public class PlayerCameraController : MonoBehaviour
 
     private void Start()
     {
+
+        //Interrogation Camera
+        if (GameObject.FindGameObjectWithTag("benchCam") != null)
+            interrogationCamera = GameObject.FindGameObjectWithTag("benchCam").GetComponent<CinemachineVirtualCamera>();
+        else
+            Debug.LogWarning("InterrogationCamera was not found, add 'benchCam' tag for intterrogation camera");
+        
+        
+        //Player camera
+        currentVirtualCamera = gameObject.GetComponent<CinemachineVirtualCamera>();
+        if(currentVirtualCamera != null)
+            Debug.LogWarning("No virtual camera found for player");
+        
+        currentVirtualCamera.m_Lens.FieldOfView = cameraFOV;
+        
+        
         // Disable and lock the cursor
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        cameraTransform.GetComponent<Camera>().fieldOfView = cameraFOV;
-
-        xCameraRotation = cameraTransform.rotation.eulerAngles.x;
-        yCameraRotation = cameraTransform.rotation.eulerAngles.y;
+        
+        //Camera rotation initialization
+        xCameraRotation = currentVirtualCamera.transform.rotation.eulerAngles.x;
+        yCameraRotation = currentVirtualCamera.transform.rotation.eulerAngles.y;
     }
 
     private void Update()
     {
         // If the game is paused, don't do anything
         if (Time.timeScale == 0f || manager.playerState == PlayerManager.PlayerStates.Inspect) { return; }
+            MoveCamera();
+    }
 
-        xCameraRotation -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity;
-        yCameraRotation += Input.GetAxisRaw("Mouse X") * yMouseSensitivity;
 
-        // Clamp rotation
-        if (xCameraRotation < -90f)
+    private void MoveCamera()
+    {
+        
+        if (manager.playerState == PlayerManager.PlayerStates.Interrogate)
         {
-            xCameraRotation = -90f;
+            if (interrogationCamera != null)
+            {
+                interrogationCamera.Priority = 11;
+                currentVirtualCamera = interrogationCamera;
+                targetCameraPosition = interrogationCamera.transform.position;
+            }
+            else
+            {
+                Debug.LogWarning("No interrogation camera was found while trying to interrogate");
+                manager.playerState = PlayerManager.PlayerStates.Move;
+            }
         }
-        else if (xCameraRotation > 90f)
+        else if(manager.playerState == PlayerManager.PlayerStates.Move)
         {
-            xCameraRotation = 90f;
+            
+            xCameraRotation -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity;
+            yCameraRotation += Input.GetAxisRaw("Mouse X") * yMouseSensitivity;
+
+            if(interrogationCamera != null)
+                interrogationCamera.Priority = 9;
+
+            currentVirtualCamera = gameObject.GetComponent<CinemachineVirtualCamera>();
+            
+            //Clamp
+            if (xCameraRotation < -90f)
+            {
+                xCameraRotation = -90f;
+            }
+            else if (xCameraRotation > 90f)
+            {
+                xCameraRotation = 90f;
+            }
+            
+            characterController.transform.rotation = Quaternion.Euler(0f, yCameraRotation, 0f);
+            currentVirtualCamera.transform.rotation = Quaternion.Euler(xCameraRotation, yCameraRotation, 0f);
+            
+            targetCameraPosition = fpsOrigin.transform.position;
+            // Smoothly lerp camera on the y-axis
+            currentVirtualCamera.transform.position = Vector3.Lerp(currentVirtualCamera.transform.position, targetCameraPosition, cameraLerpSpeed * Time.deltaTime);
         }
-
-        // Set camera and character controller rotation
-        characterController.transform.rotation = Quaternion.Euler(0f, yCameraRotation, 0f);
-        cameraTransform.rotation = Quaternion.Euler(xCameraRotation, yCameraRotation, 0f);
-
-        targetCameraPosition = fpsOrigin.transform.position;
-
-        // Smoothly lerp camera on the y-axis
-        cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetCameraPosition, cameraLerpSpeed * Time.deltaTime);
     }
 }

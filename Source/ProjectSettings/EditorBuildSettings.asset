@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Notebook2.unity
     guid: 8e702186d45d90a499143afe14bf69ae
+  - enabled: 1
+    path: Assets/Scenes/GameLoopTest/CrimeScene1.unity
+    guid: c3e016dc92afe8744ad429d247731d65
+  - enabled: 1
+    path: Assets/Scenes/GameLoopTest/Interrogation1.unity
+    guid: 783c8ae1cd50f4d4996584354e70bd43
   m_configObjects: {}
