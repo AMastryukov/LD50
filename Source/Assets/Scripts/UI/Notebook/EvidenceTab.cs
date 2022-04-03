@@ -12,11 +12,12 @@ public class EvidenceTab : NotebookTab
     {
         foreach (var evidenceData in EvidenceList )
         {
-            if (evidenceData.KeyEvidence == evidence.KeyEvidence)
+            if (evidenceData == evidence)
             {
                 return;
             }
         }
+
         EvidenceList.Add(evidence);
         GameObject evidenceObject = Instantiate(evidencePrefab, content.gameObject.transform);
         evidenceObject.GetComponent<EvidenceObject>().InitializeEvidence(evidence);
