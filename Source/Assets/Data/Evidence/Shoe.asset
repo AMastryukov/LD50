@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Shoe
   m_EditorClassIdentifier: 
   Name: Shoe
-  Description: This smells awful. You could kill somebody with this smell.
+  Description: You could kill somebody with the smell.
   Sprite: {fileID: 0}

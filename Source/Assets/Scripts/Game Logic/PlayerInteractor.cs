@@ -83,16 +83,10 @@ public class PlayerInteractor : MonoBehaviour
                 break;
 
             case PlayerManager.PlayerStates.Move:
+                crosshair.enabled = true;
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    if (flashlight.isActiveAndEnabled)
-                    {
-                        flashlight.enabled = false;
-                    }
-                    else
-                    {
-                        flashlight.enabled = true;
-                    }
+                    flashlight.enabled = !flashlight.enabled;
                 }
                 if (lookingAtInteractable != null)
                 {
@@ -111,6 +105,8 @@ public class PlayerInteractor : MonoBehaviour
                 break;
 
             case PlayerManager.PlayerStates.Interrogate:
+                interactionUI.enabled = false;
+                crosshair.enabled = false;
                 if (Input.GetMouseButtonDown(1))
                 {
                     manager.CurrentState = PlayerManager.PlayerStates.Move;
@@ -269,7 +265,7 @@ public class PlayerInteractor : MonoBehaviour
     private void ResetNotificationnUI()
     {
         notificationUI.alpha = 0;
-        notificationMessage.text = String.Empty;
+        notificationMessage.text = string.Empty;
     }
     
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Book
   m_EditorClassIdentifier: 
   Name: Book
-  Description: These things have a lot of words. Too many for me.
+  Description: Has a lot of words. Too many for me.
   Sprite: {fileID: 0}

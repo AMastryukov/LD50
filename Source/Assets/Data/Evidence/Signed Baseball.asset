@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Signed Baseball
   m_EditorClassIdentifier: 
-  Name: Signed baseball
-  Description: Old baseball signed by unkown player.
+  Name: Signed Baseball
+  Description: Old baseball signed by unknown player.
   Sprite: {fileID: 0}
