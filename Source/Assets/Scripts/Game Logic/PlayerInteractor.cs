@@ -38,7 +38,9 @@ public class PlayerInteractor : MonoBehaviour
     private void Awake()
     {
         manager = FindObjectOfType<PlayerManager>();
-        //inspectionUI = 0f;
+
+        ResetInspectionUI();
+        ResetInteractionUI();
     }
 
     private void Update()
@@ -130,7 +132,6 @@ public class PlayerInteractor : MonoBehaviour
 
         if (clickedInteractable.gameObject.transform.childCount > 0)
         {
-
             foreach (Transform child in clickedInteractable.gameObject.transform)
             {
                 oldchildlayers.Add(child.gameObject.layer);
@@ -209,5 +210,15 @@ public class PlayerInteractor : MonoBehaviour
             });
         crosshair.enabled = true;
     }
-    
+
+    private void ResetInteractionUI()
+    {
+        interactionUI.enabled = false;
+    }
+
+    private void ResetInspectionUI()
+    {
+        inpsectionDescriptionText.text = "";
+        inpsectionNameText.text = "";
+    }
 }
