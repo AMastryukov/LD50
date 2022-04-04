@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UtilityCode;
+using Random = UnityEngine.Random;
 
 public class AudioManager : UnitySingletonPersistent<AudioManager>
 {
@@ -23,9 +26,10 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     [SerializeField] private AudioClip[] NotebookPageFlipSFX;
 
     [Header("Music")]
-    [SerializeField] private AudioClip AlleywayTheme; 
-    [SerializeField] private AudioClip VictimApartmentTheme;
-    [SerializeField] private AudioClip InterrogationRoomTheme;
+    [SerializeField] private AudioClip alleywayTheme; 
+    [SerializeField] private AudioClip victimApartmentTheme;
+    [SerializeField] private AudioClip interrogationRoomTheme;
+    [SerializeField] private AudioClip chopShopTheme;
     
     private List<AudioSource> musicSources;
     private List<AudioSource> sfxSources;
@@ -126,8 +130,61 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         }
     }
 
-    public void PlayMusic(AudioClip music)
+    public void PlayMusicDirectly(AudioClip music)
     {
-        
+        StopAllMusic();
+        foreach (AudioSource source in musicSources)
+        {
+            if (!source.isPlaying)
+            {
+                source.clip = music;
+                source.Play();
+                return;
+            }
+        }
+    }
+
+    public void StopAllMusic()
+    {
+        foreach (AudioSource source in musicSources)
+        {
+            if (source.isPlaying)
+            {
+                source.Stop();
+            }
+        }
+    }
+    
+    public void FadeInMusic(AudioClip music,float fadeTime = 1f)
+    {
+        AudioSource fadeInSource = null;
+        foreach (AudioSource source in musicSources)
+        {
+            if (source.isPlaying)
+            {
+                DOTween.To(() => source.volume, x => source.volume = x, 0, fadeTime).onComplete = () =>
+                {
+                    source.Stop();
+                };
+            }
+            else
+            {
+                fadeInSource = source;
+            }
+        }
+
+        if (fadeInSource != null)
+        {
+            fadeInSource.clip = music;
+            fadeInSource.volume = 0;
+            fadeInSource.Play();
+            DOTween.To(() => fadeInSource.volume, x => fadeInSource.volume = x, 1f, fadeTime);
+        }
+        else
+        {
+            Debug.Log("[DEBUG] No free AudioSource to perform a fade in....Using direct play");
+            PlayMusicDirectly(music);
+        }
+       
     }
 }
