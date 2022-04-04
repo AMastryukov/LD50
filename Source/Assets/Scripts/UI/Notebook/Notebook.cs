@@ -75,16 +75,14 @@ public class Notebook : MonoBehaviour
             logsTab.InstantiateLog(log);
         }
 
-        foreach (var evidenceKey in dataManager.NotebookEvidence)
+        foreach (EvidenceData evidence in dataManager.NotebookEvidence)
         {
-            EvidenceData data = dataManager.GetEvidenceDataFromKey(evidenceKey);
-            evidenceTab.InstantiateEvidence(data);
+            evidenceTab.InstantiateEvidence(evidence);
         }
 
-        foreach (var suspectName in dataManager.NotebookSuspects)
+        foreach (SuspectData suspect in dataManager.NotebookSuspects)
         {
-            SuspectData data = dataManager.GetSuspectDataFromKey(suspectName);
-            suspectTab.InstantiateSuspect(data);
+            suspectTab.InstantiateSuspect(suspect);
         }
     }
 
@@ -131,17 +129,17 @@ public class Notebook : MonoBehaviour
 
     private void OnEvidenceInspected(Evidence evidence)
     {
-        AddEvidence(evidence.evidenceData.Name);
+        AddEvidence(evidence.evidenceData);
     }
 
-    public void AddEvidence(string name)
+    public void AddEvidence(EvidenceData evidence)
     {
-        evidenceTab.Add(name);
+        evidenceTab.Add(evidence);
     }
 
-    public void AddSuspect(string suspectName)
+    public void AddSuspect(SuspectData suspect)
     {
-        suspectTab.Add(suspectName);
+        suspectTab.Add(suspect);
     }
 
     public void AddLog(string log)
