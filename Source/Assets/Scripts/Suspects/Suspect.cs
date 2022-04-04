@@ -16,7 +16,7 @@ public class Suspect : MonoBehaviour
     /// Every time the player brings up the matching key evidence, we remove a string from the list.
     /// When the list is empty, the suspect confesses
     /// </summary>
-    private List<string> RemainingKeyEvidence;
+    [HideInInspector] public List<string> RemainingKeyEvidence { get; private set; }
 
 
     public void Start()
