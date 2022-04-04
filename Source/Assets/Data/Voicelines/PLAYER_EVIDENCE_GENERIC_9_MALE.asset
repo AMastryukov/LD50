@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
   m_Name: PLAYER_EVIDENCE_GENERIC_9_MALE
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 0}
+  AudioClip: {fileID: 8300000, guid: e3254a4d5e312e84d949c7859362974e, type: 3}
   CharacterName: You
   Subtitle: 'Does this ring a bell?
 
