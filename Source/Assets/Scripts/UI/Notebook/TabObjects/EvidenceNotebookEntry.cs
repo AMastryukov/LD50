@@ -9,24 +9,18 @@ public class EvidenceNotebookEntry : MonoBehaviour
 {
     public static Action<EvidenceData> OnEvidenceSelectedInNotebook;
 
-    [SerializeField] private TextMeshProUGUI evidenceName;
-    [SerializeField] private TextMeshProUGUI evidenceDescription;
-    [SerializeField] private Image evidenceImage;
+    [SerializeField] private TextMeshProUGUI text;
 
     private EvidenceData evidenceData;
     
     public void InitializeEvidence(EvidenceData data)
     {
         evidenceData = data;
-
-        evidenceName.text = data.name;
-        evidenceDescription.text = data.Description;
-        evidenceImage.sprite = data.Sprite;
+        text.text = $"<b>{data.Name}</b>\n{data.Description}";
     }
 
     public void EvidenceClicked()
     {
-        print(evidenceData.Name + " Evidence Clicked");
         OnEvidenceSelectedInNotebook?.Invoke(evidenceData);
     }
 }

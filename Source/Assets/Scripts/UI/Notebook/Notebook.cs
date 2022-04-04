@@ -151,4 +151,9 @@ public class Notebook : MonoBehaviour
     {
         logsTab.Add(log);
     }
+
+    public void ClearEvidence()
+    {
+        
+    }
 }

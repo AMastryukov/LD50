@@ -24,7 +24,7 @@ public class SuspectTab : NotebookTab
             return;
         }
 
-        GameObject evidenceObject = Instantiate(prefab, content.gameObject.transform);
+        GameObject evidenceObject = Instantiate(prefab, scrollViewContent.transform);
         evidenceObject.GetComponent<SuspectNotebookEntry>().Initialize(suspect);
     }
 }
