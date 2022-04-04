@@ -26,4 +26,13 @@ public class PlayerVoice : MonoBehaviour
         yield return new WaitForSeconds(audioSource.clip.length);
         yield return new WaitForSeconds(0.5f);
     }
+
+    public IEnumerator PlayAudio(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+
+        yield return new WaitForSeconds(audioSource.clip.length);
+        yield return new WaitForSeconds(0.5f);
+    }
 }

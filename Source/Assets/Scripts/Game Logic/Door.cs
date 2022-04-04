@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Door : Interactable
 {
+    public static Action OnDoorOpened;
+
     public string SceneName;
     public bool IsUnlocked = false;
 
@@ -32,6 +34,8 @@ public class Door : Interactable
             Debug.Log("Door is locked");
             return;
         }
+
+        OnDoorOpened?.Invoke();
 
         Debug.Log("Door has been opened, you are dead");
 
