@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using static PlayerManager;
 
 public class InterrogationManager : MonoBehaviour
@@ -12,6 +13,9 @@ public class InterrogationManager : MonoBehaviour
 
     private bool IsInterrogating;
 
+    [SerializeField] private Canvas progressUI;
+    [SerializeField] private Slider progressSlider;
+
     private void Awake()
     {
         if (Suspects == null || Suspects.Count < 3) 
@@ -20,6 +24,8 @@ public class InterrogationManager : MonoBehaviour
         }
 
         OnPlayerStateChanged += CheckInterrogating;
+
+        progressSlider.value = 0;
     }
 
     private void CheckInterrogating(PlayerStates state)
@@ -46,7 +52,7 @@ public class InterrogationManager : MonoBehaviour
     private void PresentEvidenceToSuspect(EvidenceData evidenceData)
     {
         print("Evidence Being presented to suspect");
-
+        progressSlider.value = (float) currentSuspect.RemainingKeyEvidence.Count / (float) currentSuspect.Data.KeyEvidence.Count;
         StartCoroutine(Interrogate(evidenceData));
     }
 
