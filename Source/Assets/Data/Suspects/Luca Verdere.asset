@@ -13,24 +13,25 @@ MonoBehaviour:
   m_Name: Luca Verdere
   m_EditorClassIdentifier: 
   Name: Luca Verdere
-  Description: 'Has street-level criminal connections.
+  Description: '- Has street-level criminal connections.
 
-    Ties to high-level organized
-    crime.
+    - Ties to high-level
+    organized crime.
 
-    Runs a chop shop garage, possible money laundering operation.
+    - Runs a chop shop garage, possible money laundering operation.
 
-    Morbidly
-    obese.
+    -
+    Morbidly obese.
 
-    Known for having a sweet tooth.
+    - Known for having a sweet tooth.
 
-    Spends a lot of time sleeping.
+    - Spends a lot of
+    time sleeping.
 
-    Enjoys
-    flashy jewelery.
+    - Enjoys flashy jewelery.
 
-    Avid smoker of fine Cuban cigars.'
+    - Avid smoker of fine Cuban
+    cigars.'
   Sprite: {fileID: 0}
   KeyEvidence:
   - {fileID: 11400000, guid: 7e97412d55cd11146910fd4587f39312, type: 2}

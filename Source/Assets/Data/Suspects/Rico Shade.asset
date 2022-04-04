@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08911f0b2cdad6f4aab5d684a2111dfd, type: 3}
+  m_Name: Rico Shade
+  m_EditorClassIdentifier: 
+  Name: Rico Shade
+  Description: "- Ties to organized crime\r\n- Suspected of running a gambling ring\n-
+    Likely knew the perpetrators\r\n- Severely beaten, then shot dead\r"
+  Sprite: {fileID: 0}
+  KeyEvidence: []
+  KeyEvidenceVoicelines: []
+  GenericEvidenceVoicelines: []
+  IntroductionVoiceline: {fileID: 0}
+  ConfessionVoiceline: {fileID: 0}

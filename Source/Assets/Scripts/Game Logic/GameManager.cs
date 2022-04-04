@@ -88,14 +88,15 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     {
         Debug.Log("[SCENE] Intro sequence");
 
-        // TODO: Clear Notebook.Evidence
+        DataManager.Instance.NotebookEvidence.Clear();
+        FindObjectOfType<Notebook>().AddSuspect(DataManager.Instance.GetSuspectDataFromKey("Rico Shade"));
 
         yield return new WaitForSeconds(2f);
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
         //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
         //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_INTRO_CRIMESCENE"));
-       // yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("PLAYER_CHIEF_PHONE_INTRO_RESPONSE"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("PLAYER_CHIEF_PHONE_INTRO_RESPONSE"));
         //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
 
         yield return null;
@@ -129,6 +130,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
         yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_DETAIN_UPTON"));
         yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+
+        FindObjectOfType<Notebook>().AddSuspect(DataManager.Instance.GetSuspectDataFromKey("Upton O'Goode"));
 
         #region Unlock Door
         door.SceneName = "Interrogation Room";
@@ -251,6 +254,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
         yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_DETAIN_LUCA"));
         yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+
+        FindObjectOfType<Notebook>().AddSuspect(DataManager.Instance.GetSuspectDataFromKey("Luca Verdere"));
 
         #region Unlock Door
         door.SceneName = "Interrogation Room";
@@ -426,6 +431,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         Suspect.OnConfess -= onConfessed;
         #endregion
+
+        FindObjectOfType<Notebook>().AddSuspect(DataManager.Instance.GetSuspectDataFromKey("Benny Factor"));
 
         #region Unlock Door
         door.SceneName = "Apartment 2";

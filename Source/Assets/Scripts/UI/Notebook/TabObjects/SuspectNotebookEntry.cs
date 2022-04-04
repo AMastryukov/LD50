@@ -6,17 +6,13 @@ using UnityEngine.UI;
 
 public class SuspectNotebookEntry : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI suspectName;
-    [SerializeField] private TextMeshProUGUI suspectDescription;
-    [SerializeField] private Image suspectImage;
+    [SerializeField] private TextMeshProUGUI text;
 
     private SuspectData suspectData;
     
     public void Initialize(SuspectData data)
     {
         suspectData = data;
-        suspectName.text = data.name;
-        suspectDescription.text = data.Description;
-        suspectImage.sprite = data.Sprite;
+        text.text = $"<b>{data.Name}</b>\n{data.Description}";
     }
 }
