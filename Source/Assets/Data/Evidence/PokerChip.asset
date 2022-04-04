@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Poker Chip
   Description: $500 each.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 92db9f5680f2da7468a97bbf100939e9, type: 3}

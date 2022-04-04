@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Brick of Cocaine
   Description: Heavy. There is a note taped onto it. The note reads "Upton O'Goode,
     32 Dumm Drive, New York". Someone's in trouble.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: f3a6be1f5f3c00b43ad7b3e9b692d4e2, type: 3}

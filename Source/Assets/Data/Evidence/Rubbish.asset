@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Paper Rubbish
   Description: The writing is indiscernible.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 4e3c623ee17dfce4e94c5ca448e7b18a, type: 3}

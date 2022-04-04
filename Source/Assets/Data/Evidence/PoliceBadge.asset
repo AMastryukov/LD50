@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Police Badge
   Description: An NYPD badge. Someone's got some explaining to do.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 04d727ab6a3ac474797068ec587ca47e, type: 3}

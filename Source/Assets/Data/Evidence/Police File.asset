@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Police File
   Description: A police file... with my name in it? Looks like someone wants a piece
     of me.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 52f1deb04f9027943a0bf115a6d8d236, type: 3}

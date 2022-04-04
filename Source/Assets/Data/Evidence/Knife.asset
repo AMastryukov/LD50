@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Kitchen Knife
   Description: Very sharp. Be careful when handling.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 6eed44514c306874eb17d47e3382fa33, type: 3}

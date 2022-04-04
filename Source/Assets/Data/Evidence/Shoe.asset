@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Shoe
   Description: You could kill somebody with the smell.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 81bf9576d83f94443976e24b7fd3e9dc, type: 3}

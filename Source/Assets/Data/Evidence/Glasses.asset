@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Glasses
   Description: You know, the things you put on your face to see better.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 0095f08b06caf1a4e8d295875fc733ff, type: 3}
