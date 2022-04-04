@@ -11,9 +11,8 @@ public class EvidenceTab : NotebookTab
         if(dataManager.CheckIfEvidenceAlreadyExists(evidence))
             return;
             
-        dataManager.NotebookEvidence.Add(name);
-        EvidenceData data = dataManager.GetEvidenceDataFromKey(name);
-        InstantiateEvidence(data);
+        dataManager.NotebookEvidence.Add(evidence);
+        InstantiateEvidence(evidence);
     }
 
     public void InstantiateEvidence(EvidenceData evidence)
@@ -26,7 +25,7 @@ public class EvidenceTab : NotebookTab
         
         AudioManager.Instance.OnNoteBookScribble();
         PlayerInteractor.OnEvidenceFoundNotification?.Invoke(GameConstants.HudConstants.EvidenceNotification);
-        GameObject evidenceObject = Instantiate(evidencePrefab, content.gameObject.transform);
+        GameObject evidenceObject = Instantiate(evidencePrefab, scrollViewContent.transform);
         evidenceObject.GetComponent<EvidenceNotebookEntry>().InitializeEvidence(evidence);
     }
 }

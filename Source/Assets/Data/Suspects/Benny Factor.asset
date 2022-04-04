@@ -20,7 +20,10 @@ MonoBehaviour:
 
     Sharp dresser.'
   Sprite: {fileID: 0}
-  KeyEvidence: []
+  KeyEvidence:
+  - {fileID: 11400000, guid: 82e936c43d3a53d4d802a4b76801aa27, type: 2}
+  - {fileID: 11400000, guid: 3ced10e7ca7690f44848882ba57c66cf, type: 2}
+  - {fileID: 11400000, guid: 32dd4c752d1f1d446b1d347ee3833177, type: 2}
   KeyEvidenceVoicelines:
   - {fileID: 11400000, guid: d6d2095818a080a479d204cb45f00896, type: 2}
   - {fileID: 11400000, guid: eb72083da80a6ea4da3be845de8fab32, type: 2}

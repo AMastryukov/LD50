@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AudioClip: {fileID: 8300000, guid: 78b4532fb3581874a98a676623715705, type: 3}
   CharacterName: Chief Hugh Jassel
-  Subtitle: "Be careful, detective. These guys are dangerous, and the last thing
+  Subtitle: "Tread lightly, detective. These guys are dangerous, and the last thing
     we need right now is a gang war out on the streets. It\u2019s best to let the
     special unit handle this case. I\u2019ll go make some calls. \r"
