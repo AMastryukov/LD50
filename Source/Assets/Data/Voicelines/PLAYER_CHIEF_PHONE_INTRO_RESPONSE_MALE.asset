@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
   m_Name: PLAYER_CHIEF_PHONE_INTRO_RESPONSE_MALE
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 8300000, guid: 7cefa0c316d9b3c4b88143029cb6eeef, type: 3}
+  AudioClip: {fileID: 8300000, guid: 0132ff4c38bc52547838d248b89f266c, type: 3}
   CharacterName: You
   Subtitle: "I\u2019m on it.\r"

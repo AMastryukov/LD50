@@ -34,6 +34,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameLoop()
     {
+        yield return ChooseVoiceSequence();
         yield return IntroSequence();
         yield return AlleywayCrimeSequence();
         yield return InterrogationUptonSequence();
@@ -49,12 +50,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return PostCreditSequence();
     }
 
-    private IEnumerator IntroSequence()
+    private IEnumerator ChooseVoiceSequence()
     {
-        Debug.Log("[SCENE] Intro sequence");
-
-        // TODO: Clear Notebook.Evidence
-
         FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
 
         #region Lock Door
@@ -62,7 +59,42 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         door.IsUnlocked = false;
         #endregion
 
-        // TODO: yield voice lines here
+        yield return new WaitForSeconds(1f);
+
+        FindObjectOfType<VoiceSelectionMenu>().Show();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        #region Wait for Voice Selection
+        bool playerChoseVoice = false;
+        Action onPlayerChoseVoice = delegate () { playerChoseVoice = true; };
+
+        VoiceSelectionMenu.OnVoiceSelected += onPlayerChoseVoice;
+
+        while (!playerChoseVoice)
+        {
+            yield return null;
+        }
+
+        VoiceSelectionMenu.OnVoiceSelected -= onPlayerChoseVoice;
+        #endregion
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private IEnumerator IntroSequence()
+    {
+        Debug.Log("[SCENE] Intro sequence");
+
+        // TODO: Clear Notebook.Evidence
+
+        yield return new WaitForSeconds(2f);
+
+        var playerVoice = FindObjectOfType<PlayerVoice>();
+        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_INTRO_CRIMESCENE"));
+        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("PLAYER_CHIEF_PHONE_INTRO_RESPONSE"));
 
         yield return null;
     }

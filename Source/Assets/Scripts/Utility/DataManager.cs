@@ -82,13 +82,21 @@ public class DataManager : UnitySingletonPersistent<DataManager>
 
     public VoiceLineData GetVoiceLineDataFromKey(string key)
     {
+        // Add MALE or FEMALE to the player voiceline key at the end
+        if (key.StartsWith("PLAYER_"))
+        {
+            key += PlayerPrefs.GetString("PlayerVoice", "MALE").Equals("MALE") ? "_MALE" : "_FEMALE";
+        }
+
         foreach (var voiceLine in voiceLineData)
         {
-            if (voiceLine.name == name)
+            if (voiceLine.name == key)
             {
                 return voiceLine;
             }
         }
+
+        Debug.LogError($"[DataManager] Could not find voiceline with key {key}");
 
         return null;
     }
@@ -97,7 +105,7 @@ public class DataManager : UnitySingletonPersistent<DataManager>
     {
         VoiceLineData[] voiceLines;
 
-        if (PlayerPrefs.GetString("PlayerSex", "MALE").Equals("MALE"))
+        if (PlayerPrefs.GetString("PlayerVoice", "MALE").Equals("MALE"))
         {
             voiceLines = genericPlayerEvidencePromptsMale;
         }

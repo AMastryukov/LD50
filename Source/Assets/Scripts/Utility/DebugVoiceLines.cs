@@ -19,11 +19,11 @@ public class DebugVoiceLines : MonoBehaviour
 
     public void SetPlayerMale()
     {
-        PlayerPrefs.SetString("PlayerSex", "MALE");
+        PlayerPrefs.SetString("PlayerVoice", "MALE");
     }
 
     public void SetPlayerFemale()
     {
-        PlayerPrefs.SetString("PlayerSex", "FEMALE");
+        PlayerPrefs.SetString("PlayerVoice", "FEMALE");
     }
 }

@@ -7,11 +7,23 @@ using UnityEngine;
 /// </summary>
 public class PlayerVoice : MonoBehaviour
 {
+    private VoicelineSubtitles voicelineSubtitles;
     private AudioSource audioSource;
 
-    public void PlayAudio(VoiceLineData voicelineData)
+    private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
+        voicelineSubtitles = FindObjectOfType<VoicelineSubtitles>();
+    }
+
+    public IEnumerator PlayAudio(VoiceLineData voicelineData)
+    {
+        StartCoroutine(voicelineSubtitles.ShowSubtitle(voicelineData));
+
         audioSource.clip = voicelineData.AudioClip;
         audioSource.Play();
+
+        yield return new WaitForSeconds(audioSource.clip.length);
+        yield return new WaitForSeconds(0.5f);
     }
 }
