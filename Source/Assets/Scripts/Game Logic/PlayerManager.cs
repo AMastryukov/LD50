@@ -15,5 +15,20 @@ public class PlayerManager : MonoBehaviour
         Wait
     }
 
-    public PlayerStates CurrentState = PlayerStates.Move;
+    public PlayerStates _currentState = PlayerStates.Move;
+
+
+    public PlayerStates CurrentState
+    {
+        get
+        {
+            return _currentState;
+        }
+
+        set
+        {
+            _currentState = value;
+            OnPlayerStateChanged?.Invoke(value);
+        }
+    }
 }

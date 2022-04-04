@@ -7,5 +7,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerVoice : MonoBehaviour
 {
+    private AudioSource audioSource;
 
+    public void PlayAudio(VoiceLineData voicelineData)
+    {
+        audioSource.clip = voicelineData.AudioClip;
+        audioSource.Play();
+    }
 }
