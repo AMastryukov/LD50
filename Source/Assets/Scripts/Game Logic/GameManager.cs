@@ -34,16 +34,16 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameLoop()
     {
-        //yield return ChooseVoiceSequence();
-        //yield return IntroSequence();
-        //yield return AlleywayCrimeSequence();
-        //yield return InterrogationUptonSequence();
-        //yield return PreGarageSequence();
-        //yield return GarageSequence();
-        //yield return InterrogationLucaSequence();
-        //yield return PreApartmentSequence();
-        //yield return ApartmentSearchSequence();
-       // yield return AlleywayBennySequence();
+        yield return ChooseVoiceSequence();
+        yield return IntroSequence();
+        yield return AlleywayCrimeSequence();
+        yield return InterrogationUptonSequence();
+        yield return PreGarageSequence();
+        yield return GarageSequence();
+        yield return InterrogationLucaSequence();
+        yield return PreApartmentSequence();
+        yield return ApartmentSearchSequence();
+        yield return AlleywayBennySequence();
         yield return ApartmentFinalSequence();
         yield return GameEndSequence();
         yield return CreditsSequence();
@@ -93,10 +93,10 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return new WaitForSeconds(2f);
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_INTRO_CRIMESCENE"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("PLAYER_CHIEF_PHONE_INTRO_RESPONSE"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_INTRO_CRIMESCENE"));
+       // yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("PLAYER_CHIEF_PHONE_INTRO_RESPONSE"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
 
         yield return null;
     }

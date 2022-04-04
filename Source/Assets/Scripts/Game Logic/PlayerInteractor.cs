@@ -11,6 +11,8 @@ using UnityEngine.Rendering;
 
 public class PlayerInteractor : MonoBehaviour
 {
+    public static Action<string> OnEvidenceFoundNotification;
+
     [Header("Interaction")]
     [SerializeField] private float interactionDistance = 2.5f;
     [SerializeField] private LayerMask interactableLayerMask;
@@ -46,8 +48,6 @@ public class PlayerInteractor : MonoBehaviour
     private PlayerManager manager;
     private int oldlayer;
     private List<int> oldchildlayers = new List<int>();
-
-    public static Action<string> OnEvidenceFoundNotification;
 
     private void Awake()
     {

@@ -28,7 +28,10 @@ MonoBehaviour:
 
     Drives a red sedan.'
   Sprite: {fileID: 0}
-  KeyEvidence: []
+  KeyEvidence:
+  - {fileID: 11400000, guid: fa9568d48029eb74bbd2315c1ad6f23f, type: 2}
+  - {fileID: 11400000, guid: c43709164f44059408588acc60b5662e, type: 2}
+  - {fileID: 11400000, guid: 82c0694dc3c351548b1d9a740940d4c6, type: 2}
   KeyEvidenceVoicelines:
   - {fileID: 11400000, guid: 13e1e0129bee0574fb9e8db41db4788c, type: 2}
   - {fileID: 11400000, guid: 93a49ba7d2125dd498268bcefb7bdf1b, type: 2}
