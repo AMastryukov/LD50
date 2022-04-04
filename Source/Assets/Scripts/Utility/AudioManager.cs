@@ -5,8 +5,9 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UtilityCode;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : UnitySingletonPersistent<AudioManager>
 {
     private static string musicVolumeKey = "MusicVolume";
     private static string sfxVolumeKey = "SFXVolume";
@@ -15,8 +16,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Slider sfxVolumeSlider;
 
     [SerializeField] private AudioSource voiceSource;
+    [SerializeField] private AudioSource sfxSource;
     [SerializeField] private SubtitleAudio[] voiceLines;
     [SerializeField] private TextMeshProUGUI subtitleBox;
+
+    [SerializeField] private AudioClip[] NotebookScribbleSFX;
+    [SerializeField] private AudioClip[] NotebookPageFlipSFX;
 
     private List<AudioSource> musicSources;
     private List<AudioSource> sfxSources;
@@ -24,9 +29,10 @@ public class AudioManager : MonoBehaviour
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
 
-    private void Awake()
+    public override void Awake()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        base.Awake();
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -55,6 +61,18 @@ public class AudioManager : MonoBehaviour
 
         SetMusicVolume(musicVolume);
         SetSFXVolume(sfxVolume);
+    }
+
+    public void OnNoteBookPageFlip()
+    {
+        AudioClip clipToPlay = NotebookPageFlipSFX[Random.Range(0, NotebookPageFlipSFX.Length)];
+        sfxSource.PlayOneShot(clipToPlay);
+    }
+    
+    public void OnNoteBookScribble()
+    {
+        AudioClip clipToPlay = NotebookScribbleSFX[Random.Range(0, NotebookScribbleSFX.Length)];
+        sfxSource.PlayOneShot(clipToPlay);
     }
 
     public void SetMusicVolume(float volume)

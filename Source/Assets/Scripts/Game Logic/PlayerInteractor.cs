@@ -23,6 +23,9 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private CanvasGroup inspectionUI;
     [SerializeField] private TextMeshProUGUI inpsectionNameText;
     [SerializeField] private TextMeshProUGUI inpsectionDescriptionText;
+    [SerializeField] private CanvasGroup notificationUI;
+    [SerializeField] private TextMeshProUGUI notificationMessage;
+
 
     [Space]
     [Header("Post Processing")]
@@ -44,12 +47,15 @@ public class PlayerInteractor : MonoBehaviour
     private int oldlayer;
     private List<int> oldchildlayers = new List<int>();
 
+    public static Action<string> OnEvidenceFoundNotification;
+
     private void Awake()
     {
         manager = FindObjectOfType<PlayerManager>();
-
+        OnEvidenceFoundNotification += OnNotificationUI;
         ResetInspectionUI();
         ResetInteractionUI();
+        ResetNotificationnUI();
     }
 
     private void Update()
@@ -95,7 +101,7 @@ public class PlayerInteractor : MonoBehaviour
                         clickedInteractable = lookingAtInteractable;
                         clickedInteractable.OnInteract?.Invoke();
                         clickedInteractable.Interact();
-
+                        
                         if (clickedInteractable is Evidence)
                         {
                             StartInspect((Evidence)clickedInteractable);
@@ -225,6 +231,15 @@ public class PlayerInteractor : MonoBehaviour
         inpsectionDescriptionText.text = evidence.evidenceData.Description;
         inpsectionNameText.text = evidence.evidenceData.Name;
     }
+
+    private void OnNotificationUI(string text)
+    {
+        notificationMessage.text = text;
+        notificationUI.DOFade(1f, 1f).onComplete = () =>
+        {
+            notificationUI.DOFade(0, 3f).onComplete = ResetNotificationnUI;
+        };
+    }
     
     private void OnInspectionUIEnd()
     {
@@ -250,4 +265,11 @@ public class PlayerInteractor : MonoBehaviour
         inpsectionDescriptionText.text = "";
         inpsectionNameText.text = "";
     }
+    
+    private void ResetNotificationnUI()
+    {
+        notificationUI.alpha = 0;
+        notificationMessage.text = String.Empty;
+    }
+    
 }

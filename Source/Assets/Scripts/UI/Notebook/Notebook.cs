@@ -117,6 +117,7 @@ public class Notebook : MonoBehaviour
     {
         UnHighlightAllTabs();
         tabs[n].Highlight();
+        AudioManager.Instance.OnNoteBookPageFlip();
     }
 
     private void UnHighlightAllTabs()
