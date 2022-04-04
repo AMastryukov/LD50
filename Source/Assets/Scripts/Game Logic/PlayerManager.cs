@@ -14,9 +14,4 @@ public class PlayerManager : MonoBehaviour
     }
     
     public PlayerStates CurrentState = PlayerStates.Move;
-    
-    private void Start()
-    {
-        CurrentState = PlayerStates.Wait;
-    }
 }

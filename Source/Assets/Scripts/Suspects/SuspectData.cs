@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 [CreateAssetMenu(fileName = "SuspectData", menuName = "ScriptableObjects/SuspectData", order = 2)]
 public class SuspectData : ScriptableObject
 {
@@ -12,6 +10,12 @@ public class SuspectData : ScriptableObject
     public string Description;
     public Sprite Sprite;
     public List<EvidenceData> KeyEvidence;
+
+    [Header("Voicelines")]
+    public List<AudioClip> KeyEvidenceVoicelines;
+    public List<AudioClip> GenericEvidenceVoicelines;
+    public AudioClip IntroductionVoiceline;
+    public AudioClip ConfessionVoiceline;
 }
 
 [Serializable]
