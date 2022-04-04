@@ -1,8 +1,11 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+using static PlayerManager;
 
 /// <summary>
 /// Non-persistant game scene manager that fires events telling the persistent game manager to change state
@@ -13,6 +16,8 @@ public class CrimeSceneManager : MonoBehaviour
 
     private List<EvidenceData> evidenceData;
     private Notebook notebook;
+    [SerializeField] private Canvas progressUI;
+    [SerializeField] private Slider progressSlider;
 
     void Awake()
     {
@@ -32,6 +37,10 @@ public class CrimeSceneManager : MonoBehaviour
         notebook = FindObjectOfType<Notebook>();
 
         Evidence.OnInspect += EvidenceFound;
+        PlayerManager.OnPlayerStateChanged += UpdateCanvas;
+
+
+        progressSlider.value = 0;
     }
 
     private void OnDestroy()
@@ -41,6 +50,7 @@ public class CrimeSceneManager : MonoBehaviour
 
     private void EvidenceFound(Evidence evidence)
     {
+        progressSlider.value = (float) DataManager.Instance.NotebookEvidence.Count / (float) evidenceData.Count;
         StartCoroutine(CheckForAllEvidenceFound());
     }
 
@@ -70,5 +80,10 @@ public class CrimeSceneManager : MonoBehaviour
         OnAllEvidenceFound?.Invoke();
 
         Debug.Log("[DEBUG] All evidence added");
+    }
+
+    private void UpdateCanvas(PlayerStates state)
+    {
+        // progressUI.enabled = state == PlayerStates.Move;
     }
 }
