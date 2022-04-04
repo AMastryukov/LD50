@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
@@ -8,7 +9,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float walkSpeed = 3f;
 
     [Header("Footsteps")]
-    [SerializeField] private AudioClip footStepSound;
+    [SerializeField] private List<AudioClip> footStepSounds;
     [SerializeField] private float footStepFrequency = 0.5f;
     private float footStepTimer;
 
@@ -63,7 +64,9 @@ public class PlayerMovementController : MonoBehaviour
                 if (footStepTimer <= 0)
                 {
                     footStepTimer = footStepFrequency;
-                    audioSource.PlayOneShot(footStepSound);
+
+                    audioSource.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
+                    audioSource.PlayOneShot(footStepSounds[UnityEngine.Random.Range(0, footStepSounds.Count)]);
                 }
             }
         }

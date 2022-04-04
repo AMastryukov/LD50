@@ -25,7 +25,7 @@ public class EvidenceTab : NotebookTab
         
         AudioManager.Instance.OnNoteBookScribble();
         PlayerInteractor.OnEvidenceFoundNotification?.Invoke(GameConstants.HudConstants.EvidenceNotification);
-        GameObject evidenceObject = Instantiate(evidencePrefab, content.gameObject.transform);
+        GameObject evidenceObject = Instantiate(evidencePrefab, scrollViewContent.transform);
         evidenceObject.GetComponent<EvidenceNotebookEntry>().InitializeEvidence(evidence);
     }
 }

@@ -159,3 +159,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d530fbaad868adf4ba20194ac1bdc31b, type: 2}
   - {fileID: 11400000, guid: b8b9af9c3cfab40459c0305dad4a79bd, type: 2}
   - {fileID: 11400000, guid: 4232f9a167a27aa4eaff7604ecb5dfff, type: 2}
+  soundEffects:
+  - {fileID: 8300000, guid: 9b86e4c23db8e504b9183a162abfa1c1, type: 3}
+  - {fileID: 8300000, guid: b3dcd1144cc317f44960c36c30e8257e, type: 3}
