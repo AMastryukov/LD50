@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
   m_Name: CHIEF_PHONE_PRE_GARAGE_WARNING
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 8300000, guid: 239238eb66bee10459e018b45f0c1c3c, type: 3}
+  AudioClip: {fileID: 8300000, guid: 78b4532fb3581874a98a676623715705, type: 3}
   CharacterName: Chief Hugh Jassel
   Subtitle: "Be careful, detective. These guys are dangerous, and the last thing
     we need right now is a gang war out on the streets. It\u2019s best to let the

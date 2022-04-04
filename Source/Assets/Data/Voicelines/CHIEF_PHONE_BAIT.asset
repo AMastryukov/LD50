@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
   m_Name: CHIEF_PHONE_BAIT
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 8300000, guid: 73b3085de4cd4e84286895807363ef97, type: 3}
+  AudioClip: {fileID: 8300000, guid: ba33029b66c2a684886a48f97f77db7b, type: 3}
   CharacterName: Chief Hugh Jassel
   Subtitle: "Detective, special unit has made a breakthrough in the case with your
     help, and it\u2019s big. Return to the station. We have a reason to celebrate.

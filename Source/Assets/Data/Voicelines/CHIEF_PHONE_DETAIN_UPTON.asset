@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
   m_Name: CHIEF_PHONE_DETAIN_UPTON
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 8300000, guid: 85c21eaebb86df94695351cb0571c8eb, type: 3}
+  AudioClip: {fileID: 8300000, guid: 26c985cd869ce4e408f4fe1d671e42e1, type: 3}
   CharacterName: Chief Hugh Jassel
   Subtitle: "One of our guys picked up a local hoodlum matching the description of
     the guy seen leaving the scene in a red sedan, some kid named Upton O\u2019Goode.

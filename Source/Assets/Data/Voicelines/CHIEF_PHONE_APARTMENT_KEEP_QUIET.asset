@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
   m_Name: CHIEF_PHONE_APARTMENT_KEEP_QUIET
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 8300000, guid: 97a82404effef844291f582022e09abd, type: 3}
+  AudioClip: {fileID: 8300000, guid: 6c2100b91fafa9d42833f9b7adb63b17, type: 3}
   CharacterName: Chief Hugh Jassel
   Subtitle: "Detective, special unit just called in. They\u2019re going to be taking
     over the case. In the meantime, it\u2019s in your best interest to keep quiet. "

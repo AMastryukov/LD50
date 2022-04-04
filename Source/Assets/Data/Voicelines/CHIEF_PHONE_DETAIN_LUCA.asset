@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
   m_Name: CHIEF_PHONE_DETAIN_LUCA
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 8300000, guid: 146e87e1181938c4fa4c338ce1541934, type: 3}
+  AudioClip: {fileID: 8300000, guid: 6cbfd0c5dc2b829409ba1a7fce3cc13e, type: 3}
   CharacterName: Chief Hugh Jassel
   Subtitle: "Detective, we have Luca Verdere in custody. When you\u2019re done at
     the scene, come back and have a chat with him. \r"
