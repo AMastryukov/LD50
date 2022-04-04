@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Can
   m_EditorClassIdentifier: 
   Name: Can
-  Description: Full of liquid. I am thirsty.
+  Description: A can of fizzy pop.
   Sprite: {fileID: 0}

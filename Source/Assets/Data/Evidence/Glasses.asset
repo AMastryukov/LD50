@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Glasses
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
+  Name: Glasses
+  Description: You know, the things you put on your face to see better.
   Sprite: {fileID: 0}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class DataManager : UnitySingletonPersistent<DataManager>
 
     [SerializeField] private SuspectData[] suspectData;
     [SerializeField] private EvidenceData[] evidenceData;
+    [SerializeField] private VoiceLineData[] voiceLineData;
+    [SerializeField] private VoiceLineData[] genericPlayerEvidencePromptsMale;
+    [SerializeField] private VoiceLineData[] genericPlayerEvidencePromptsFemale;
 
     public bool CheckIfLogAlreadyExists(string log)
     {
@@ -74,5 +78,34 @@ public class DataManager : UnitySingletonPersistent<DataManager>
         }
 
         return null;
+    }
+
+    public VoiceLineData GetVoiceLineDataFromKey(string key)
+    {
+        foreach (var voiceLine in voiceLineData)
+        {
+            if (voiceLine.name == name)
+            {
+                return voiceLine;
+            }
+        }
+
+        return null;
+    }
+
+    public VoiceLineData GetRandomGenericPlayerEvidenceVoiceline()
+    {
+        VoiceLineData[] voiceLines;
+
+        if (PlayerPrefs.GetString("PlayerSex", "MALE").Equals("MALE"))
+        {
+            voiceLines = genericPlayerEvidencePromptsMale;
+        }
+        else
+        {
+            voiceLines = genericPlayerEvidencePromptsFemale;
+        }
+
+        return voiceLines[UnityEngine.Random.Range(0, voiceLines.Length)];
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Brick of Cocaine
   m_EditorClassIdentifier: 
-  Name: Brick of cocaine
-  Description: This amount could kill a whole village.
+  Name: Brick of Cocaine
+  Description: A heavy brick of cocaine with a note taped onto it. The note reads
+    "Upton O'Goode, 32 Dumm Drive, New York". Someone's in trouble.
   Sprite: {fileID: 0}
