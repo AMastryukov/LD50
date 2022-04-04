@@ -17,7 +17,7 @@ public class NotebookTab : MonoBehaviour
     protected virtual void Awake()
     {
         button = GetComponent<Button>();
-        dataManager = DataManager.Instance;
+        dataManager = FindObjectOfType<DataManager>();
     }
 
     public void Highlight()
