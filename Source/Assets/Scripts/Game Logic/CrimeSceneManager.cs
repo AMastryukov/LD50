@@ -41,6 +41,8 @@ public class CrimeSceneManager : MonoBehaviour
 
     private void EvidenceFound(Evidence evidence)
     {
+        // TODO: Add evidence to Notebook
+
         CheckForAllEvidenceFound();
     }
 
@@ -48,7 +50,7 @@ public class CrimeSceneManager : MonoBehaviour
     {
         // Check the player's notebook
         // for each evidence in evidenceData:
-        // if (!Notebook.CollectedEvidence.Contains(evidence)) { return; }
+        // if (!DataManager.Instance.NotebookEvidence.Contains(evidence.Name)) { return; }
         // OnAllEvidenceFound?.Invoke();
     }
 

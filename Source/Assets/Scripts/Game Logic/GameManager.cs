@@ -53,31 +53,27 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     {
         Debug.Log("[SCENE] Intro sequence");
 
-        playerManager = FindObjectOfType<PlayerManager>();
-        playerManager.CurrentState = PlayerManager.PlayerStates.Wait;
+        // TODO: Clear Notebook.Evidence
 
-        //yield return new WaitForSeconds(1f);
-        //sceneLoader.FadeIn();
+        FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
 
-        bool talking = false;
+        #region Lock Door
+        door = FindObjectOfType<Door>();
+        door.IsUnlocked = false;
+        #endregion
 
-        while (talking)
-        {
-            yield return null;
-        }
+        // TODO: yield voice lines here
 
-        //sceneLoader.FadeOut();
+        yield return null;
     }
 
     private IEnumerator AlleywayCrimeSequence()
     {
         Debug.Log("[SCENE] Alleyway 1 sequence");
 
-        FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
-
-        door = FindObjectOfType<Door>();
-        door.IsUnlocked = false;
+        #region Lock Door & Fade In
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        #endregion
 
         #region Wait for Evidence Collection
         bool collectedAllEvidence = false;
@@ -117,12 +113,14 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     {
         Debug.Log("[SCENE] Upton interrogation sequence");
 
+        interrogationManager = FindObjectOfType<InterrogationManager>();
+        interrogationManager.SetCurrentSuspect(DataManager.Instance.GetSuspectDataFromKey("Upton O'Goode"));
+
+        #region Lock Door & Fade In
         door = FindObjectOfType<Door>();
         door.IsUnlocked = false;
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
-
-        interrogationManager = FindObjectOfType<InterrogationManager>();
-        interrogationManager.SetCurrentSuspect(DataManager.Instance.GetSuspectDataFromKey("Upton O'Goode"));
+        #endregion
 
         #region Wait for Confession
         bool hasConfessed = false;
@@ -166,51 +164,280 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator PreGarageSequence()
     {
+        Debug.Log("[SCENE] Pre Garage sequence");
+
+        // TODO: Clear Notebook.Evidence
+
+        FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
+
+        #region Lock Door 
+        door = FindObjectOfType<Door>();
+        door.IsUnlocked = false;
+        #endregion
+
+        // TODO: yield voice lines here
+
         yield return null;
     }
 
     private IEnumerator GarageSequence()
     {
-        yield return null;
+        Debug.Log("[SCENE] Garage sequence");
+
+        sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+
+        #region Wait for Evidence Collection
+        bool collectedAllEvidence = false;
+        Action onCollectAllEvidence = delegate () { collectedAllEvidence = true; };
+
+        CrimeSceneManager.OnAllEvidenceFound += onCollectAllEvidence;
+
+        while (!collectedAllEvidence)
+        {
+            yield return null;
+        }
+
+        CrimeSceneManager.OnAllEvidenceFound -= onCollectAllEvidence;
+        #endregion
+
+        #region Unlock Door
+        door.SceneName = "Interrogation Room";
+        door.IsUnlocked = true;
+        #endregion
+
+        #region Wait for Leaving Scene
+        bool hasLeftScene = false;
+        Action<string> onLeftScene = delegate (string scene) { hasLeftScene = true; };
+
+        SceneLoader.OnSceneLoaded += onLeftScene;
+
+        while (!hasLeftScene)
+        {
+            yield return null;
+        }
+
+        SceneLoader.OnSceneLoaded -= onLeftScene;
+        #endregion
     }
 
     private IEnumerator InterrogationLucaSequence()
     {
-        yield return null;
+        Debug.Log("[SCENE] Luca interrogation sequence");
+
+        interrogationManager = FindObjectOfType<InterrogationManager>();
+        interrogationManager.SetCurrentSuspect(DataManager.Instance.GetSuspectDataFromKey("Luca Verdere"));
+
+        #region Lock Door & Fade In
+        door = FindObjectOfType<Door>();
+        door.IsUnlocked = false;
+        sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        #endregion
+
+        #region Wait for Confession
+        bool hasConfessed = false;
+        Action<Suspect> onConfessed = delegate (Suspect suspect)
+        {
+            if (suspect.Data.Name.Equals("Luca Verdere"))
+            {
+                hasConfessed = true;
+            }
+        };
+
+        Suspect.OnConfess += onConfessed;
+
+        while (!hasConfessed)
+        {
+            yield return null;
+        }
+
+        Suspect.OnConfess -= onConfessed;
+        #endregion
+
+        #region Unlock Door
+        door.SceneName = "Apartment 1";
+        door.IsUnlocked = true;
+        #endregion
+
+        #region Wait for Leaving Scene
+        bool hasLeftScene = false;
+        Action<string> onLeftScene = delegate (string scene) { hasLeftScene = true; };
+
+        SceneLoader.OnSceneLoaded += onLeftScene;
+
+        while (!hasLeftScene)
+        {
+            yield return null;
+        }
+
+        SceneLoader.OnSceneLoaded -= onLeftScene;
+        #endregion
     }
 
     private IEnumerator PreApartmentSequence()
     {
+        Debug.Log("[SCENE] Pre Apartment sequence");
+
+        // TODO: Clear Notebook.Evidence
+
+        FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
+
+        #region Lock Door 
+        door = FindObjectOfType<Door>();
+        door.IsUnlocked = false;
+        #endregion
+
+        // TODO: yield voice lines here
+
         yield return null;
     }
 
     private IEnumerator ApartmentSearchSequence()
     {
-        yield return null;
+        Debug.Log("[SCENE] Apartment 1 sequence");
+
+        sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+
+        #region Wait for Evidence Collection
+        bool collectedAllEvidence = false;
+        Action onCollectAllEvidence = delegate () { collectedAllEvidence = true; };
+
+        CrimeSceneManager.OnAllEvidenceFound += onCollectAllEvidence;
+
+        while (!collectedAllEvidence)
+        {
+            yield return null;
+        }
+
+        CrimeSceneManager.OnAllEvidenceFound -= onCollectAllEvidence;
+        #endregion
+
+        #region Unlock Door
+        door.SceneName = "Alleyway 2";
+        door.IsUnlocked = true;
+        #endregion
+
+        #region Wait for Leaving Scene
+        bool hasLeftScene = false;
+        Action<string> onLeftScene = delegate (string scene) { hasLeftScene = true; };
+
+        SceneLoader.OnSceneLoaded += onLeftScene;
+
+        while (!hasLeftScene)
+        {
+            yield return null;
+        }
+
+        SceneLoader.OnSceneLoaded -= onLeftScene;
+        #endregion
     }
 
     private IEnumerator AlleywayBennySequence()
     {
-        yield return null;
+        Debug.Log("[SCENE] Benny interrogation sequence");
+
+        interrogationManager = FindObjectOfType<InterrogationManager>();
+        interrogationManager.SetCurrentSuspect(DataManager.Instance.GetSuspectDataFromKey("Benny Factor"));
+
+        #region Lock Door & Fade In
+        door = FindObjectOfType<Door>();
+        door.IsUnlocked = false;
+        sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        #endregion
+
+        #region Wait for Confession
+        bool hasConfessed = false;
+        Action<Suspect> onConfessed = delegate (Suspect suspect)
+        {
+            if (suspect.Data.Name.Equals("Benny Factor"))
+            {
+                hasConfessed = true;
+            }
+        };
+
+        Suspect.OnConfess += onConfessed;
+
+        while (!hasConfessed)
+        {
+            yield return null;
+        }
+
+        Suspect.OnConfess -= onConfessed;
+        #endregion
+
+        #region Unlock Door
+        door.SceneName = "Apartment 2";
+        door.IsUnlocked = true;
+        #endregion
+
+        #region Wait for Leaving Scene
+        bool hasLeftScene = false;
+        Action<string> onLeftScene = delegate (string scene) { hasLeftScene = true; };
+
+        SceneLoader.OnSceneLoaded += onLeftScene;
+
+        while (!hasLeftScene)
+        {
+            yield return null;
+        }
+
+        SceneLoader.OnSceneLoaded -= onLeftScene;
+        #endregion
     }
 
     private IEnumerator ApartmentFinalSequence()
     {
-        yield return null;
+        // TODO: Clear Notebook.Evidence
+
+        sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+
+        #region Wait for Photo Inspection
+        bool hasInspectedPhoto = false;
+        Action<Evidence> onInspected = delegate (Evidence evidence)
+        {
+            if (evidence.evidenceData.Name.Equals("Photo of Benny, Luca, Rico and Badge"))
+            {
+                hasInspectedPhoto = true;
+            }
+        };
+
+        Evidence.OnInspect += onInspected;
+
+        while (!hasInspectedPhoto)
+        {
+            yield return null;
+        }
+
+        Evidence.OnInspect -= onInspected;
+        #endregion
+
+        #region Unlock Door
+        door.IsUnlocked = true;
+        #endregion
     }
 
     private IEnumerator GameEndSequence()
     {
+        // Animate the camera, etc.
+
         yield return null;
     }
 
     private IEnumerator CreditsSequence()
     {
+        // Yield credits
+
         yield return null;
     }
 
     private IEnumerator PostCreditSequence()
     {
+        // Position player in a specific way
+        // sceneLoader.FadeIn();
+
+        // wait 5 seconds
+
         yield return null;
+
+        sceneLoader.ChangeScene("MainMenu");
     }
 }

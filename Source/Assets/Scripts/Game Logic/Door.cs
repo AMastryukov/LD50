@@ -24,4 +24,17 @@ public class Door : Interactable
 
         SceneLoader.Instance.ChangeScene(SceneName);
     }
+
+    public void OpenDoorPhysically()
+    {
+        if (!IsUnlocked)
+        {
+            Debug.Log("Door is locked");
+            return;
+        }
+
+        Debug.Log("Door has been opened, you are dead");
+
+        // Animate the door opening here
+    }
 }

@@ -12,7 +12,7 @@ public class SuspectTab : NotebookTab
         if(dataManager.CheckIfSuspectAlreadyExists(suspectName))
             return;
 
-        dataManager.suspectListInNotebook.Add(suspectName);
+        dataManager.NotebookSuspects.Add(suspectName);
         SuspectData suspectData = dataManager.GetSuspectDataFromKey(suspectName);
         InstantiateSuspect(suspectData);
     }

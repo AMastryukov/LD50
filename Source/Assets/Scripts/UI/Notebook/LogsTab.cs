@@ -10,7 +10,7 @@ public class LogsTab : NotebookTab
     {
         if (dataManager.CheckIfLogAlreadyExists(log))
             return;
-        dataManager.LogsListInNotebook.Add(log);
+        dataManager.NotebookLog.Add(log);
         InstantiateLog(log);
     }
 

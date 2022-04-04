@@ -15,6 +15,18 @@ public class InterrogationManager : MonoBehaviour
             Debug.LogError("There is no suspect objects in the list!");
             return; 
         }
+
+        EvidenceNotebookEntry.OnEvidenceSelectedInNotebook += PresentEvidenceToSuspect;
+    }
+
+    private void OnDestroy()
+    {
+        EvidenceNotebookEntry.OnEvidenceSelectedInNotebook -= PresentEvidenceToSuspect;
+    }
+
+    private void PresentEvidenceToSuspect(EvidenceData evidenceData)
+    {
+        currentSuspect.AskAboutEvidence(evidenceData);
     }
 
     public void SetCurrentSuspect(SuspectData suspectData)
