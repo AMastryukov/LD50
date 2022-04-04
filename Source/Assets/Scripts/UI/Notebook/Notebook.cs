@@ -103,9 +103,10 @@ public class Notebook : MonoBehaviour
         }
         else
         {
-            if(FindObjectOfType<PlayerManager>().CurrentState == PlayerManager.PlayerStates.Wait)
+            if(FindObjectOfType<PlayerManager>().CurrentState == PlayerManager.PlayerStates.Wait || FindObjectOfType<PlayerManager>().CurrentState == PlayerManager.PlayerStates.Inspect)
                 return;
-            FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
+            if(FindObjectOfType<PlayerManager>().CurrentState!=PlayerManager.PlayerStates.Interrogate)
+                FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
             canvasGroup.alpha = 1f;
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
