@@ -6,10 +6,11 @@ public class EvidenceTab : NotebookTab
 {
     [SerializeField] private GameObject evidencePrefab;
     
-    public void Add(string name)
+    public void Add(EvidenceData evidence)
     {
-        if(dataManager.CheckIfEvidenceAlreadyExists(name))
+        if(dataManager.CheckIfEvidenceAlreadyExists(evidence))
             return;
+            
         dataManager.NotebookEvidence.Add(name);
         EvidenceData data = dataManager.GetEvidenceDataFromKey(name);
         InstantiateEvidence(data);
@@ -22,6 +23,7 @@ public class EvidenceTab : NotebookTab
             Debug.LogError("Data not found");
             return;
         }
+        
         AudioManager.Instance.OnNoteBookScribble();
         PlayerInteractor.OnEvidenceFoundNotification?.Invoke(GameConstants.HudConstants.EvidenceNotification);
         GameObject evidenceObject = Instantiate(evidencePrefab, content.gameObject.transform);

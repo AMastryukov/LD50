@@ -114,7 +114,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         Debug.Log("[SCENE] Upton interrogation sequence");
 
         interrogationManager = FindObjectOfType<InterrogationManager>();
-        interrogationManager.SetCurrentSuspect(DataManager.Instance.GetSuspectDataFromKey("Upton O'Goode"));
+
+        interrogationManager.SetCurrentSuspect("Upton O'Goode");
 
         #region Lock Door & Fade In
         door = FindObjectOfType<Door>();
@@ -225,7 +226,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         Debug.Log("[SCENE] Luca interrogation sequence");
 
         interrogationManager = FindObjectOfType<InterrogationManager>();
-        interrogationManager.SetCurrentSuspect(DataManager.Instance.GetSuspectDataFromKey("Luca Verdere"));
+        interrogationManager.SetCurrentSuspect("Luca Verdere");
 
         #region Lock Door & Fade In
         door = FindObjectOfType<Door>();
@@ -336,7 +337,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         Debug.Log("[SCENE] Benny interrogation sequence");
 
         interrogationManager = FindObjectOfType<InterrogationManager>();
-        interrogationManager.SetCurrentSuspect(DataManager.Instance.GetSuspectDataFromKey("Benny Factor"));
+        interrogationManager.SetCurrentSuspect("Benny Factor");
 
         #region Lock Door & Fade In
         door = FindObjectOfType<Door>();
