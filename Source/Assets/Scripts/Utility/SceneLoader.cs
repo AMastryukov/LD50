@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using System;
 
 public class SceneLoader : MonoBehaviour
 {
-    public static SceneLoader Instance { get; private set; }    
-    
-    [SerializeField] private Animator transition;
-    private float transitionTime = 1f;
+    public static Action<string> OnSceneLoaded;
+    public static SceneLoader Instance { get; private set; }
+
+    [SerializeField] private CanvasGroup canvasGroup;
 
     private void Awake()
     {
@@ -20,7 +22,62 @@ public class SceneLoader : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += SceneLoadEvent;
+        SceneManager.sceneUnloaded += SceneUnloadEvent;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SceneLoadEvent;
+        SceneManager.sceneUnloaded -= SceneUnloadEvent;
+    }
+
+    /// <summary>
+    /// Add any references ou want to find in the scene here since scenes will change throughout the game
+    /// </summary>
+    /// <param name="scene"></param>
+    /// <param name="mode"></param>
+    private void SceneLoadEvent(Scene scene, LoadSceneMode mode)
+    {
+        OnSceneLoaded?.Invoke(scene.name);
+    }
+
+    /// <summary>
+    /// Good idea to unreference anything set in the SceneLoadEvent
+    /// </summary>
+    /// <param name="scene"></param>
+    private void SceneUnloadEvent(Scene scene)
+    {
+
+    }
+
+    public void FadeOut(Action onComplete = null)
+    {
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+
+        canvasGroup.DOFade(1f, 0.5f)
+            .SetEase(Ease.OutCirc)
+            .OnComplete(() =>
+            {
+                onComplete?.Invoke();
+            });
+    }
+
+    public void FadeIn(Action onComplete = null)
+    {
+        canvasGroup.DOFade(0f, 2f)
+                .SetEase(Ease.InCirc)
+                .OnComplete(() =>
+                {
+                    canvasGroup.interactable = false;
+                    canvasGroup.blocksRaycasts = false;
+
+                    onComplete?.Invoke();
+                });
     }
 
     /// <summary>
@@ -28,39 +85,11 @@ public class SceneLoader : MonoBehaviour
     /// </summary>
     /// <param name="sceneName"></param>
     /// <returns></returns>
-    public IEnumerator ChangeScene(string sceneName)
+    public void ChangeScene(string sceneName)
     {
         if (SceneManager.GetActiveScene().name != sceneName)
         {
-            // TODO: Eelis can you also make it fade back in?
-            transition.SetTrigger("Start");
-            
-            yield return new WaitForSeconds(transitionTime);
-
-            yield return WaitForLoadScene(sceneName);
+            FadeOut(delegate () { SceneManager.LoadScene(sceneName); });
         }
-
-        yield return null;
-    }
-
-    /// <summary>
-    /// Use this to wait till the scene has been loaded
-    /// </summary>
-    /// <param name="sceneName"></param>
-    /// <returns></returns>
-    private IEnumerator WaitForLoadScene(string sceneName)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-        if (asyncLoad == null)
-        {
-            Debug.LogError("asyncLoad is null");
-        }
-
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-        transition.SetTrigger("End");
     }
 }

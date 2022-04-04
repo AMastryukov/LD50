@@ -70,18 +70,18 @@ public class Notebook : MonoBehaviour
 
     private void Initialize()
     {
-        foreach (var log in dataManager.LogsListInNotebook)
+        foreach (var log in dataManager.NotebookLog)
         {
             logsTab.InstantiateLog(log);
         }
 
-        foreach (var evidenceKey in dataManager.evidenceListInNotebook)
+        foreach (var evidenceKey in dataManager.NotebookEvidence)
         {
             EvidenceData data = dataManager.GetEvidenceDataFromKey(evidenceKey);
             evidenceTab.InstantiateEvidence(data);
         }
 
-        foreach (var suspectName in dataManager.suspectListInNotebook)
+        foreach (var suspectName in dataManager.NotebookSuspects)
         {
             SuspectData data = dataManager.GetSuspectDataFromKey(suspectName);
             suspectTab.InstantiateSuspect(data);

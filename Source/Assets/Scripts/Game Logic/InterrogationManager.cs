@@ -1,45 +1,78 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerManager;
 
 public class InterrogationManager : MonoBehaviour
 {
-    [SerializeField] PlayerManager PM;
-    //[SerializeField] EvidenceNotebookEntry EO;
-    [SerializeField] Suspect Sus;
-    [SerializeField] InterrogationBench Bench;
+    [SerializeField] private List<GameObject> suspectObjects;
 
+    private Suspect currentSuspect;
 
-    // Start is called before the first frame update
-    void Start()
+    private bool IsInterrogating;
+
+    private void Awake()
     {
-        if (PM == null) Debug.LogError("PlayerManager is missing");
-        if (Sus == null) Debug.LogError("Suspect is missing");
-        if (Bench == null) Debug.LogError("InterrogationBench is missing");
+        if (suspectObjects == null || suspectObjects.Capacity == 0) 
+        { 
+            Debug.LogError("There is no suspect objects in the list!");
+            return; 
+        }
 
+        OnPlayerStateChanged += CheckInterrogating;
+    }
+
+    private void CheckInterrogating(PlayerStates state)
+    {
+        if (IsInterrogating && state != PlayerStates.Interrogate)
+        {
+            print("Stop interrogating");
+            EvidenceNotebookEntry.OnEvidenceSelectedInNotebook -= PresentEvidenceToSuspect;
+            IsInterrogating = false;
+        }
+        else if (!IsInterrogating && state == PlayerStates.Interrogate)
+        {
+            print("Now Interrogating");
+            EvidenceNotebookEntry.OnEvidenceSelectedInNotebook += PresentEvidenceToSuspect;
+            IsInterrogating = true;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        OnPlayerStateChanged -= CheckInterrogating;
+    }
+
+    private void PresentEvidenceToSuspect(EvidenceData evidenceData)
+    {
+        print("Evidence Being presented to suspect");
+
+        StartCoroutine(Interrogate(evidenceData));
+    }
+
+    private IEnumerator Interrogate(EvidenceData evidenceData)
+    {
+        yield return currentSuspect.AskAboutEvidence(evidenceData);
         
-        // Bench.SitDown += StartInterrogation;
-        // Bench.GetUp += StopInterrogation;
-
     }
 
-    public void StartInterrogation() {
-        Debug.Log("You are now interrogating the suspect");
-        // PM.PresentEvidence += PresentEvidence;
-    }
-
-    public void StopInterrogation()
+    public void SetCurrentSuspect(SuspectData suspectData)
     {
-        Debug.Log("You have stopped interrogating the suspect");
-        // Unsub from the present evidence
-        // PM.PresentEvidence -= PresentEvidence;
+        currentSuspect = new Suspect(suspectData);
+
+        foreach (var suspectObject in suspectObjects)
+        {
+            // Match the game object by name
+            suspectObject.SetActive(suspectObject.name.Equals(currentSuspect.Data.Name));
+        }
     }
 
-    public void PresentEvidence() {
-        // Disable Player
-    }
+    public void DebugForceConfession()
+    {
+        if (currentSuspect == null) { Debug.LogError("There is no current suspect!"); return; }
 
-    public void SuspectDoneSpeaking() {
-        // Enable Player
+        Suspect.OnConfess?.Invoke(currentSuspect);
+
+        Debug.Log($"[DEBUG] Forced confession from {currentSuspect.Data.Name}");
     }
 }

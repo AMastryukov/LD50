@@ -5,18 +5,29 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    
+    public static Action<PlayerStates> OnPlayerStateChanged;
+
     public enum PlayerStates
     {
         Move,
         Inspect,
-        Interrogate
+        Interrogate,
+        Wait
     }
-    
-    public PlayerStates playerState = PlayerStates.Move;
-    
-    private void Start()
-    {
-        playerState = PlayerStates.Move;
+
+    public PlayerStates _currentState = PlayerStates.Move;
+
+
+    public PlayerStates CurrentState { 
+        get 
+        {
+            return _currentState;
+        } 
+        
+        set 
+        {
+            _currentState = value;
+            OnPlayerStateChanged?.Invoke(value);
+        } 
     }
 }

@@ -11,7 +11,7 @@ public class EvidenceTab : NotebookTab
         if(dataManager.CheckIfEvidenceAlreadyExists(name))
             return;
         
-        dataManager.evidenceListInNotebook.Add(name);
+        dataManager.NotebookEvidence.Add(name);
         EvidenceData data = dataManager.GetEvidenceDataFromKey(name);
         InstantiateEvidence(data);
     }

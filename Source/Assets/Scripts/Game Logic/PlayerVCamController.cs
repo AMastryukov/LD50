@@ -64,15 +64,21 @@ public class PlayerVCamController : MonoBehaviour
     private void Update()
     {
         // If the game is paused, don't do anything
-        if (Time.timeScale == 0f || manager.playerState == PlayerManager.PlayerStates.Inspect) { return; }
-            MoveCamera();
+        if (Time.timeScale == 0f ||
+            manager.CurrentState == PlayerManager.PlayerStates.Inspect || 
+            manager.CurrentState == PlayerManager.PlayerStates.Wait) 
+        { 
+            return; 
+        }
+
+        MoveCamera();
     }
 
 
     private void MoveCamera()
     {
         
-        if (manager.playerState == PlayerManager.PlayerStates.Interrogate)
+        if (manager.CurrentState == PlayerManager.PlayerStates.Interrogate)
         {
             if (interrogationCamera != null)
             {
@@ -83,10 +89,10 @@ public class PlayerVCamController : MonoBehaviour
             else
             {
                 Debug.LogWarning("No interrogation camera was found while trying to interrogate");
-                manager.playerState = PlayerManager.PlayerStates.Move;
+                manager.CurrentState = PlayerManager.PlayerStates.Move;
             }
         }
-        else if(manager.playerState == PlayerManager.PlayerStates.Move)
+        else if(manager.CurrentState == PlayerManager.PlayerStates.Move)
         {
             
             xCameraRotation -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity;

@@ -10,14 +10,14 @@ public class LogsTab : NotebookTab
     {
         if (dataManager.CheckIfLogAlreadyExists(log))
             return;
-        dataManager.LogsListInNotebook.Add(log);
+        dataManager.NotebookLog.Add(log);
         InstantiateLog(log);
     }
 
     public void InstantiateLog(string logData)
     {
         GameObject logObject = Instantiate(logPrefab, scrollViewContent.transform);
-        logObject.GetComponent<LogObject>().InitializeLog(logData);
+        logObject.GetComponent<LogNotebookEntry>().InitializeLog(logData);
     }
     
 }
