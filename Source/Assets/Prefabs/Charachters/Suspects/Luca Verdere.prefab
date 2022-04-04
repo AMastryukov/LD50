@@ -1208,7 +1208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: fb2edba26028f5e40885319bef5038d1, type: 2}
-  RemainingKeyEvidence: []
 --- !u!1 &9048689032176913698
 GameObject:
   m_ObjectHideFlags: 0
