@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Brick of Cocaine
   m_EditorClassIdentifier: 
-  EvidenceKey: 0
-  EvidenceName: 
-  Description: 
-  DisplayImage: {fileID: 0}
+  Name: Brick of cocaine
+  Description: This amount could kill a whole village.
+  Sprite: {fileID: 0}
