@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Headphones
   Description: Phones you put on your head or something. Music probably comes out.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: e9af36873d1a1ac4f8b87d59f117ae80, type: 3}

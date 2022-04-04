@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Clipboard
   Description: For making and storing notes.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 8ebd73cb06f200b4e9b4a6f86d009822, type: 3}

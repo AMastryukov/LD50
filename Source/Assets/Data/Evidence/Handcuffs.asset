@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Handcuffs
   Description: Assistance to stop resistance.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 3a623c92e4911834d8885a8e3991a19c, type: 3}

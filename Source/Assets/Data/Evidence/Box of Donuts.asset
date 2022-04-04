@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Box of Donuts
   Description: Half-eaten. I kind of want to try some, but I must resist.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 595d06d79c09595478e306d4e25e2897, type: 3}

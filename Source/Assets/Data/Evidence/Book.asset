@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Book
   Description: Has a lot of words. Too many for me.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 35f40ea2cf25fac41b6cc37f5d323abf, type: 3}

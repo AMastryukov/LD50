@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Money
   Description: I wonder how many donuts I could buy with this.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 15034a77b80fee94e8d811027ba843db, type: 3}

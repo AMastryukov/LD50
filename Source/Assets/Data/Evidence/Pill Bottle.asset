@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Pill Bottle
   Description: Multivitamins with a kick. The label is peeled off. Probably a prescription.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 5d17dafa48badfd48944309319ea0e56, type: 3}
