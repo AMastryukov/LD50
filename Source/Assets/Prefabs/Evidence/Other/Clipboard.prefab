@@ -99,7 +99,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8285d9f5504a7a94189e4cb78e912860, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.076
+      value: -0.005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8285d9f5504a7a94189e4cb78e912860, type: 3}
       propertyPath: m_LocalPosition.z
@@ -143,7 +143,7 @@ PrefabInstance:
       objectReference: {fileID: -6113070964574201014, guid: 4d259caa99cc1754b9889949eb4d540a, type: 3}
     - target: {fileID: 919132149155446097, guid: 8285d9f5504a7a94189e4cb78e912860, type: 3}
       propertyPath: m_Name
-      value: Headphones
+      value: Clipborad
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8285d9f5504a7a94189e4cb78e912860, type: 3}
       propertyPath: m_Layer

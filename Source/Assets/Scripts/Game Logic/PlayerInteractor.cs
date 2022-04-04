@@ -12,6 +12,7 @@ using UnityEngine.Rendering;
 public class PlayerInteractor : MonoBehaviour
 {
     public static Action<string> OnEvidenceFoundNotification;
+    public static Action<bool> OnModifyDOF;
 
     [Header("Interaction")]
     [SerializeField] private float interactionDistance = 2.5f;
@@ -53,6 +54,7 @@ public class PlayerInteractor : MonoBehaviour
     {
         manager = FindObjectOfType<PlayerManager>();
         OnEvidenceFoundNotification += OnNotificationUI;
+        OnModifyDOF += EnableDOF;
         ResetInspectionUI();
         ResetInteractionUI();
         ResetNotificationnUI();
@@ -66,18 +68,11 @@ public class PlayerInteractor : MonoBehaviour
                 interactionUI.enabled = false;
                 crosshair.enabled = false;
                 RotateInspectedObject();
-                volume.profile.TryGet<DepthOfField>(out var depthoffield);
-                if(!depthoffield.active)
-                    DOTween.To(() => depthoffield.focusDistance.value, x => depthoffield.focusDistance.value = x, 0.1f, 1f);
-                depthoffield.active = true;
+                EnableDOF(true);
                 if (Input.GetMouseButtonDown(1))
                 {
                     EndInspect();
-                    DOTween.To(() => depthoffield.focusDistance.value, x => depthoffield.focusDistance.value = x, 2f,
-                        1f).onComplete = () =>
-                    {
-                        depthoffield.active = false;
-                    };
+                    EnableDOF(false);
                 }
 
                 break;
@@ -113,6 +108,31 @@ public class PlayerInteractor : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    private void EnableDOF(bool val)
+    {
+        volume.profile.TryGet<DepthOfField>(out var depthoffield);
+        if (val)
+        {
+            if(depthoffield.active)
+                return;
+            depthoffield.active = true;
+            DOTween.To(() => depthoffield.focusDistance.value, x => depthoffield.focusDistance.value = x, 0.1f, 0.5f).onComplete =
+                () =>
+                {
+                    depthoffield.active = true;
+                };
+        }
+        else
+        {
+            DOTween.To(() => depthoffield.focusDistance.value, x => depthoffield.focusDistance.value = x, 2f,
+                0.5f).onComplete = () =>
+            {
+                depthoffield.active = false;
+            };
+        }
+        
     }
 
 
