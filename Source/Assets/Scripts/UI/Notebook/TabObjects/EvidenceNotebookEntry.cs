@@ -26,6 +26,7 @@ public class EvidenceNotebookEntry : MonoBehaviour
 
     public void EvidenceClicked()
     {
+        print(evidenceData.Name + " Evidence Clicked");
         OnEvidenceSelectedInNotebook?.Invoke(evidenceData);
     }
 }

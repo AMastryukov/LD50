@@ -1593,7 +1593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 6730603314050674079}
   scrollViewContent: {fileID: 4732648960221546055}
-  personnelPrefab: {fileID: 7987735162032290664, guid: 44134c293cc23944798196f1b1168e2a, type: 3}
+  prefab: {fileID: 0}
 --- !u!1 &6730603313794731371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,8 +2158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 6730603313297185166}
-  scrollViewContent: {fileID: 0}
-  evidencePrefab: {fileID: 0}
+  scrollViewContent: {fileID: 7361572771548017654}
+  evidencePrefab: {fileID: 7987735162032290664, guid: 0f2255d50f5360d4c9b05612437d4126, type: 3}
 --- !u!1 &6730603313996820168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2651,7 +2651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logsTab: {fileID: 6730603313794731373}
   evidenceTab: {fileID: 6730603313919429687}
-  personnelTab: {fileID: 6730603313322458192}
+  suspectTab: {fileID: 6730603313322458192}
 --- !u!1 &6730603314443944498
 GameObject:
   m_ObjectHideFlags: 0
