@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -351,7 +351,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 01a89f7e7d54cba4f9c2df5eaac1126f, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 0724ead485727744fa84580047ccc7da, type: 2}
+      objectReference: {fileID: 2100000, guid: cee75eb3b3eab444ca57a6c0d7f584dc, type: 2}
     - target: {fileID: 919132149155446097, guid: 01a89f7e7d54cba4f9c2df5eaac1126f, type: 3}
       propertyPath: m_Name
       value: IntWallWindow
