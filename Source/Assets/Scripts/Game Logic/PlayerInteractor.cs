@@ -199,7 +199,7 @@ public class PlayerInteractor : MonoBehaviour
         crosshair.enabled = false;
         
         inpsectionDescriptionText.text = evidence.evidenceData.Description;
-        inpsectionNameText.text = evidence.evidenceData.name;
+        inpsectionNameText.text = evidence.evidenceData.Name;
     }
     
     private void OnInspectionUIEnd()

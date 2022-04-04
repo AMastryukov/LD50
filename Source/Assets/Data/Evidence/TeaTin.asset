@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
-  m_Name: Signed Baseball
+  m_Name: TeaTin
   m_EditorClassIdentifier: 
-  Name: Signed baseball
-  Description: Old baseball signed by unkown player.
+  Name: Tea tin
+  Description: Rusty tin for storing tea. Earl Gray maybe?
   Sprite: {fileID: 0}
