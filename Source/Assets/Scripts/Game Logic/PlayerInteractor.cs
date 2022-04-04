@@ -23,10 +23,22 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private CanvasGroup inspectionUI;
     [SerializeField] private TextMeshProUGUI inpsectionNameText;
     [SerializeField] private TextMeshProUGUI inpsectionDescriptionText;
+    [SerializeField] private CanvasGroup notificationUI;
+    [SerializeField] private TextMeshProUGUI notificationMessage;
+
 
     [Space]
     [Header("Post Processing")]
     [SerializeField] private Volume volume;
+
+    [Space]
+    [Header("Materials")]
+    [SerializeField] private Material main_mat;
+    [SerializeField] private Material emissive_mat;
+
+    [Space]
+    [Header("Flashlight")]
+    [SerializeField] private Light flashlight;
 
     private Vector2 inspectionObjectRotation = Vector2.zero;
     private Interactable clickedInteractable;
@@ -35,12 +47,15 @@ public class PlayerInteractor : MonoBehaviour
     private int oldlayer;
     private List<int> oldchildlayers = new List<int>();
 
+    public static Action<string> OnEvidenceFoundNotification;
+
     private void Awake()
     {
         manager = FindObjectOfType<PlayerManager>();
-
+        OnEvidenceFoundNotification += OnNotificationUI;
         ResetInspectionUI();
         ResetInteractionUI();
+        ResetNotificationnUI();
     }
 
     private void Update()
@@ -68,6 +83,17 @@ public class PlayerInteractor : MonoBehaviour
                 break;
 
             case PlayerManager.PlayerStates.Move:
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    if (flashlight.isActiveAndEnabled)
+                    {
+                        flashlight.enabled = false;
+                    }
+                    else
+                    {
+                        flashlight.enabled = true;
+                    }
+                }
                 if (lookingAtInteractable != null)
                 {
                     if (Input.GetKeyDown(KeyCode.E))
@@ -75,7 +101,7 @@ public class PlayerInteractor : MonoBehaviour
                         clickedInteractable = lookingAtInteractable;
                         clickedInteractable.OnInteract?.Invoke();
                         clickedInteractable.Interact();
-                            
+                        
                         if (clickedInteractable is Evidence)
                         {
                             StartInspect((Evidence)clickedInteractable);
@@ -141,12 +167,14 @@ public class PlayerInteractor : MonoBehaviour
             {
                 oldchildlayers.Add(child.gameObject.layer);
                 child.gameObject.layer = 7;
+                child.gameObject.GetComponent<Renderer>().material = emissive_mat;
             }
         }
         else
         {
             oldlayer = clickedInteractable.gameObject.layer;
             clickedInteractable.gameObject.layer = 7;
+            clickedInteractable.gameObject.GetComponent<Renderer>().material = emissive_mat;
         }
     }
 
@@ -161,12 +189,14 @@ public class PlayerInteractor : MonoBehaviour
             foreach (Transform child in clickedInteractable.gameObject.transform)
             {
                 child.gameObject.layer = oldchildlayers[i];
+                child.gameObject.GetComponent<Renderer>().material = main_mat;
                 i++;
             }
         }
         else
         {
             clickedInteractable.gameObject.layer = oldlayer;
+            clickedInteractable.gameObject.GetComponent<Renderer>().material = main_mat;
         }
 
         clickedInteractable.GetComponent<Evidence>().StopInspect();
@@ -199,7 +229,16 @@ public class PlayerInteractor : MonoBehaviour
         crosshair.enabled = false;
         
         inpsectionDescriptionText.text = evidence.evidenceData.Description;
-        inpsectionNameText.text = evidence.evidenceData.name;
+        inpsectionNameText.text = evidence.evidenceData.Name;
+    }
+
+    private void OnNotificationUI(string text)
+    {
+        notificationMessage.text = text;
+        notificationUI.DOFade(1f, 1f).onComplete = () =>
+        {
+            notificationUI.DOFade(0, 3f).onComplete = ResetNotificationnUI;
+        };
     }
     
     private void OnInspectionUIEnd()
@@ -226,4 +265,11 @@ public class PlayerInteractor : MonoBehaviour
         inpsectionDescriptionText.text = "";
         inpsectionNameText.text = "";
     }
+    
+    private void ResetNotificationnUI()
+    {
+        notificationUI.alpha = 0;
+        notificationMessage.text = String.Empty;
+    }
+    
 }

@@ -1593,7 +1593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 6730603314050674079}
   scrollViewContent: {fileID: 4732648960221546055}
-  prefab: {fileID: 0}
+  prefab: {fileID: 7987735162032290664, guid: 44134c293cc23944798196f1b1168e2a, type: 3}
 --- !u!1 &6730603313794731371
 GameObject:
   m_ObjectHideFlags: 0
