@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Tea Tin
   Description: A rusted tin for storing tea. Earl Gray maybe?
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 507b37f0b6c00c8479d95d6e4d716070, type: 3}

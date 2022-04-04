@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Wrench
   Description: My nuts and bolts could use a little tightening.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 905216e46b4c4384cb5b7c4648795cbc, type: 3}

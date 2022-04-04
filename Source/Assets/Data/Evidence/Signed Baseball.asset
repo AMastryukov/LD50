@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Signed Baseball
   Description: Old baseball signed by unknown player.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: f3cf6e88c753de1439ae2c94f68df6ba, type: 3}

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Ashtray
   Description: Lots of smoking has happened here.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: cde3d9352e6505e47b4ffe22797acbeb, type: 3}

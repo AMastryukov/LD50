@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Cup
   Description: A cuppy kind of cup.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 2c415dffb226bef4dbb4af0efd151d50, type: 3}

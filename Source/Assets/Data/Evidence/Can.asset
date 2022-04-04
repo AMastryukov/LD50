@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Can
   Description: A can of fizzy pop.
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: e24aea27188c92948a5616c9efd005c8, type: 3}
