@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static GameSceneManager;
+using static CrimeSceneManager;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class PlayerInteractor : MonoBehaviour
 {
@@ -17,45 +20,81 @@ public class PlayerInteractor : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Canvas interactionUI;
     [SerializeField] private Image crosshair;
-    [SerializeField] private TextMeshProUGUI interactionText;
+    [SerializeField] private CanvasGroup inspectionUI;
+    [SerializeField] private TextMeshProUGUI inpsectionNameText;
+    [SerializeField] private TextMeshProUGUI inpsectionDescriptionText;
 
     [Space]
-    [Header("Inspection")]
-    //[SerializeField] private Transform inspectionTransform;
-    
+    [Header("Post Processing")]
+    [SerializeField] private Volume volume;
+
+    [Space]
+    [Header("Materials")]
+    [SerializeField] private Material main_mat;
+    [SerializeField] private Material emissive_mat;
+
+    [Space]
+    [Header("Flashlight")]
+    [SerializeField] private Light flashlight;
+
     private Vector2 inspectionObjectRotation = Vector2.zero;
     private Interactable clickedInteractable;
     private Interactable lookingAtInteractable;
     private PlayerManager manager;
+    private int oldlayer;
+    private List<int> oldchildlayers = new List<int>();
 
     private void Awake()
     {
         manager = FindObjectOfType<PlayerManager>();
+
+        ResetInspectionUI();
+        ResetInteractionUI();
     }
 
     private void Update()
     {
-        switch (manager.playerState)
+        switch (manager.CurrentState)
         {
             case PlayerManager.PlayerStates.Inspect:
                 interactionUI.enabled = false;
                 crosshair.enabled = false;
                 RotateInspectedObject();
-
+                volume.profile.TryGet<DepthOfField>(out var depthoffield);
+                if(!depthoffield.active)
+                    DOTween.To(() => depthoffield.focusDistance.value, x => depthoffield.focusDistance.value = x, 0.1f, 1f);
+                depthoffield.active = true;
                 if (Input.GetMouseButtonDown(1))
                 {
                     EndInspect();
+                    DOTween.To(() => depthoffield.focusDistance.value, x => depthoffield.focusDistance.value = x, 2f,
+                        1f).onComplete = () =>
+                    {
+                        depthoffield.active = false;
+                    };
                 }
 
                 break;
 
             case PlayerManager.PlayerStates.Move:
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    if (flashlight.isActiveAndEnabled)
+                    {
+                        flashlight.enabled = false;
+                    }
+                    else
+                    {
+                        flashlight.enabled = true;
+                    }
+                }
                 if (lookingAtInteractable != null)
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         clickedInteractable = lookingAtInteractable;
                         clickedInteractable.OnInteract?.Invoke();
+                        clickedInteractable.Interact();
 
                         if (clickedInteractable is Evidence)
                         {
@@ -68,7 +107,7 @@ public class PlayerInteractor : MonoBehaviour
             case PlayerManager.PlayerStates.Interrogate:
                 if (Input.GetMouseButtonDown(1))
                 {
-                    manager.playerState = PlayerManager.PlayerStates.Move;
+                    manager.CurrentState = PlayerManager.PlayerStates.Move;
                 }
                 break;
         }
@@ -77,7 +116,7 @@ public class PlayerInteractor : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (manager.playerState == PlayerManager.PlayerStates.Move) //Or pause or anything else
+        if (manager.CurrentState == PlayerManager.PlayerStates.Move) //Or pause or anything else
         {
             CastInteractionRay();
         }
@@ -95,10 +134,8 @@ public class PlayerInteractor : MonoBehaviour
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactionDistance, interactableLayerMask))
         {
             lookingAtInteractable = hit.collider.GetComponent<Interactable>();
-
             if (lookingAtInteractable != null)
             {
-                interactionText.text = lookingAtInteractable.GetName();
                 showInteractToolTip = true;
             }
         }
@@ -112,26 +149,54 @@ public class PlayerInteractor : MonoBehaviour
 
     public void StartInspect(Evidence evidence)
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        crosshair.enabled = false;
-        Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * 0.7f;
-        Debug.Log(inspectionPosition);
+        OnInspectionUI(evidence);
+        
+        Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * 0.6f;
         evidence.StartInspect(inspectionPosition);
+        manager.CurrentState = PlayerManager.PlayerStates.Inspect;
 
-        manager.playerState = PlayerManager.PlayerStates.Inspect;
+        if (clickedInteractable.gameObject.transform.childCount > 0)
+        {
+            foreach (Transform child in clickedInteractable.gameObject.transform)
+            {
+                oldchildlayers.Add(child.gameObject.layer);
+                child.gameObject.layer = 7;
+                child.gameObject.GetComponent<Renderer>().material = emissive_mat;
+            }
+        }
+        else
+        {
+            oldlayer = clickedInteractable.gameObject.layer;
+            clickedInteractable.gameObject.layer = 7;
+            clickedInteractable.gameObject.GetComponent<Renderer>().material = emissive_mat;
+        }
     }
 
     private void EndInspect()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        crosshair.enabled = true;
+        OnInspectionUIEnd();
+
+        if (clickedInteractable.gameObject.transform.childCount > 0)
+        {
+            int i = 0;
+
+            foreach (Transform child in clickedInteractable.gameObject.transform)
+            {
+                child.gameObject.layer = oldchildlayers[i];
+                child.gameObject.GetComponent<Renderer>().material = main_mat;
+                i++;
+            }
+        }
+        else
+        {
+            clickedInteractable.gameObject.layer = oldlayer;
+            clickedInteractable.gameObject.GetComponent<Renderer>().material = main_mat;
+        }
 
         clickedInteractable.GetComponent<Evidence>().StopInspect();
         clickedInteractable = null;
 
-        manager.playerState = PlayerManager.PlayerStates.Move;
+        manager.CurrentState = PlayerManager.PlayerStates.Move;
     }
 
     private void RotateInspectedObject()
@@ -142,5 +207,47 @@ public class PlayerInteractor : MonoBehaviour
             inspectionObjectRotation.y += Input.GetAxisRaw("Mouse X") * -2f;
             clickedInteractable.transform.rotation = Quaternion.Euler(inspectionObjectRotation.x, inspectionObjectRotation.y, 0f);
         }
+    }
+
+    private void OnInspectionUI(Evidence evidence)
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        inspectionUI.DOFade(1f, 0.5f)
+            .SetEase(Ease.InCirc)
+            .OnComplete(() =>
+            {
+                inspectionUI.interactable = true;
+                inspectionUI.blocksRaycasts = true;
+            });
+        crosshair.enabled = false;
+        
+        inpsectionDescriptionText.text = evidence.evidenceData.Description;
+        inpsectionNameText.text = evidence.evidenceData.Name;
+    }
+    
+    private void OnInspectionUIEnd()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        inspectionUI.DOFade(0f, 0.5f)
+            .SetEase(Ease.InCirc)
+            .OnComplete(() =>
+            {
+                inspectionUI.interactable = false;
+                inspectionUI.blocksRaycasts = false;
+            });
+        crosshair.enabled = true;
+    }
+
+    private void ResetInteractionUI()
+    {
+        interactionUI.enabled = false;
+    }
+
+    private void ResetInspectionUI()
+    {
+        inpsectionDescriptionText.text = "";
+        inpsectionNameText.text = "";
     }
 }

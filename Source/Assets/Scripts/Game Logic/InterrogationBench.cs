@@ -15,7 +15,7 @@ public class InterrogationBench : MonoBehaviour
 
     public void OnBenchInteract()
     {
-        manager.playerState = PlayerManager.PlayerStates.Interrogate;
+        manager.CurrentState = PlayerManager.PlayerStates.Interrogate;
     }
     
 }

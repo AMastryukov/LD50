@@ -5,40 +5,34 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public enum Tabs { 
+public enum Tabs 
+{ 
     LOG,
     EVIDENCE,
-    PERSONNEL
+    SUSPECTS
 }
 
 public class Notebook : MonoBehaviour
 {
+    [SerializeField] private LogsTab logsTab;
+    [SerializeField] private EvidenceTab evidenceTab;
+    [SerializeField] private SuspectTab suspectTab;
+
     private CanvasGroup canvasGroup;
     private bool isOpen = false;
     private List<NotebookTab> tabs;
     private DataManager dataManager;
 
-    
-    [SerializeField]
-    private LogsTab logsTab;
-    
-    [SerializeField]
-    private EvidenceTab evidenceTab;
-
-    [SerializeField]
-    private SuspectTab suspectTab;
-
     #region EventAssignement
 
     private void AssignDelegates()
     {
-        GameEventSystem.Instance.OnEvidenceInspected += AddEvidence;
+        Evidence.OnInspect += OnEvidenceInspected;
     }
 
     private void UnAssignDelegates()
     {
-        if(GameEventSystem.Quitting)
-            GameEventSystem.Instance.OnEvidenceInspected -= AddEvidence;
+        Evidence.OnInspect -= OnEvidenceInspected;
     }
 
     #endregion
@@ -65,7 +59,7 @@ public class Notebook : MonoBehaviour
             ToggleCanvas();
         }
     }
-
+    
     private void OnDestroy()
     {
         UnAssignDelegates();
@@ -76,18 +70,18 @@ public class Notebook : MonoBehaviour
 
     private void Initialize()
     {
-        foreach (var log in dataManager.LogsListInNotebook)
+        foreach (var log in dataManager.NotebookLog)
         {
             logsTab.InstantiateLog(log);
         }
 
-        foreach (var evidenceKey in dataManager.evidenceListInNotebook)
+        foreach (var evidenceKey in dataManager.NotebookEvidence)
         {
             EvidenceData data = dataManager.GetEvidenceDataFromKey(evidenceKey);
             evidenceTab.InstantiateEvidence(data);
         }
 
-        foreach (var suspectName in dataManager.suspectListInNotebook)
+        foreach (var suspectName in dataManager.NotebookSuspects)
         {
             SuspectData data = dataManager.GetSuspectDataFromKey(suspectName);
             suspectTab.InstantiateSuspect(data);
@@ -125,7 +119,6 @@ public class Notebook : MonoBehaviour
     {
         UnHighlightAllTabs();
         tabs[n].Highlight();
-        Debug.Log("ButtonPressed");
     }
 
     private void UnHighlightAllTabs()
@@ -134,6 +127,11 @@ public class Notebook : MonoBehaviour
         {
             tab.UnHighlight();
         }
+    }
+
+    private void OnEvidenceInspected(Evidence evidence)
+    {
+        AddEvidence(evidence.evidenceData.Name);
     }
 
     public void AddEvidence(string name)

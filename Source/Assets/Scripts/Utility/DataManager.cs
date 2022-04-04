@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,17 +6,20 @@ using UtilityCode;
 
 public class DataManager : UnitySingletonPersistent<DataManager>
 {
-    public List<string> LogsListInNotebook { get; private set; }
-    public List<string> evidenceListInNotebook{ get; private set; }
-    public List<string> suspectListInNotebook { get; private set; }
-    
-    
+    public List<string> NotebookLog { get; private set; } = new List<string>();
+    public List<string> NotebookEvidence{ get; private set; } = new List<string>();
+    public List<string> NotebookSuspects { get; private set; } = new List<string>();
+
+
     [SerializeField] private SuspectData[] suspectData;
     [SerializeField] private EvidenceData[] evidenceData;
+    [SerializeField] private VoiceLineData[] voiceLineData;
+    [SerializeField] private VoiceLineData[] genericPlayerEvidencePromptsMale;
+    [SerializeField] private VoiceLineData[] genericPlayerEvidencePromptsFemale;
 
     public bool CheckIfLogAlreadyExists(string log)
     {
-        foreach (var logText in LogsListInNotebook)
+        foreach (var logText in NotebookLog)
         {
             if (logText == log)
             {
@@ -28,7 +32,7 @@ public class DataManager : UnitySingletonPersistent<DataManager>
 
     public bool CheckIfEvidenceAlreadyExists(string name)
     {
-        foreach (var evidenceName in evidenceListInNotebook)
+        foreach (var evidenceName in NotebookEvidence)
         {
             if (evidenceName == name)
             {
@@ -40,7 +44,7 @@ public class DataManager : UnitySingletonPersistent<DataManager>
     
     public bool CheckIfSuspectAlreadyExists(string name)
     {
-        foreach (var suspectName in suspectListInNotebook)
+        foreach (var suspectName in NotebookSuspects)
         {
             if (suspectName == name)
             {
@@ -74,5 +78,34 @@ public class DataManager : UnitySingletonPersistent<DataManager>
         }
 
         return null;
+    }
+
+    public VoiceLineData GetVoiceLineDataFromKey(string key)
+    {
+        foreach (var voiceLine in voiceLineData)
+        {
+            if (voiceLine.name == name)
+            {
+                return voiceLine;
+            }
+        }
+
+        return null;
+    }
+
+    public VoiceLineData GetRandomGenericPlayerEvidenceVoiceline()
+    {
+        VoiceLineData[] voiceLines;
+
+        if (PlayerPrefs.GetString("PlayerSex", "MALE").Equals("MALE"))
+        {
+            voiceLines = genericPlayerEvidencePromptsMale;
+        }
+        else
+        {
+            voiceLines = genericPlayerEvidencePromptsFemale;
+        }
+
+        return voiceLines[UnityEngine.Random.Range(0, voiceLines.Length)];
     }
 }

@@ -22,6 +22,12 @@ public class PlayerCameraController : MonoBehaviour
     private float yCameraRotation;
 
     private Vector3 targetCameraPosition;
+    private PlayerManager playerManager;
+
+    private void Awake()
+    {
+        playerManager = FindObjectOfType<PlayerManager>();
+    }
 
     private void Start()
     {
@@ -38,7 +44,12 @@ public class PlayerCameraController : MonoBehaviour
     private void Update()
     {
         // If the game is paused, don't do anything
-        if (Time.timeScale == 0f) { return; }
+        if (Time.timeScale == 0f || 
+            playerManager.CurrentState == PlayerManager.PlayerStates.Inspect || 
+            playerManager.CurrentState == PlayerManager.PlayerStates.Wait) 
+        { 
+            return; 
+        }
 
         xCameraRotation -= Input.GetAxisRaw("Mouse Y") * xMouseSensitivity;
         yCameraRotation += Input.GetAxisRaw("Mouse X") * yMouseSensitivity;
