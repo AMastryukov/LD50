@@ -15,4 +15,10 @@ MonoBehaviour:
   Name: Upton O'Goode
   Description: 
   Sprite: {fileID: 0}
-  KeyEvidence: []
+  KeyEvidence:
+  - {fileID: 11400000, guid: c8327ba0c2800fc4b8010dc4786d859a, type: 2}
+  - {fileID: 11400000, guid: fe6ca05c3a9c5ae4095a17ad79b61a57, type: 2}
+  GenericResponses:
+  - {fileID: 0}
+  - {fileID: 0}
+  Confession: {fileID: 0}

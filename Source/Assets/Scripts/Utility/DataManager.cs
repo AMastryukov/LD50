@@ -6,12 +6,8 @@ using UtilityCode;
 public class DataManager : UnitySingletonPersistent<DataManager>
 {
     public List<string> NotebookLog { get; private set; } = new List<string>();
-    public List<string> NotebookEvidence{ get; private set; } = new List<string>();
-    public List<string> NotebookSuspects { get; private set; } = new List<string>();
-
-
-    [SerializeField] private SuspectData[] suspectData;
-    [SerializeField] private EvidenceData[] evidenceData;
+    public List<EvidenceData> NotebookEvidence{ get; private set; } = new List<EvidenceData>();
+    public List<SuspectData> NotebookSuspects { get; private set; } = new List<SuspectData>();
 
     public bool CheckIfLogAlreadyExists(string log)
     {
@@ -26,11 +22,11 @@ public class DataManager : UnitySingletonPersistent<DataManager>
         return false;
     }
 
-    public bool CheckIfEvidenceAlreadyExists(string name)
+    public bool CheckIfEvidenceAlreadyExists(EvidenceData evidence)
     {
-        foreach (var evidenceName in NotebookEvidence)
+        foreach (var ev in NotebookEvidence)
         {
-            if (evidenceName == name)
+            if (evidence.Name == ev.Name)
             {
                 return true;
             }
@@ -38,41 +34,15 @@ public class DataManager : UnitySingletonPersistent<DataManager>
         return false;
     }
     
-    public bool CheckIfSuspectAlreadyExists(string name)
+    public bool CheckIfSuspectAlreadyExists(SuspectData suspect)
     {
-        foreach (var suspectName in NotebookSuspects)
+        foreach (var sus in NotebookSuspects)
         {
-            if (suspectName == name)
+            if (suspect.Name == sus.Name)
             {
                 return true;
             }
         }
         return false;
-    }
-
-    public EvidenceData GetEvidenceDataFromKey(string name)
-    {
-        foreach (var evidence in evidenceData)
-        {
-            if (evidence.name == name)
-            {
-                return evidence;
-            }
-        }
-
-        return null;
-    }
-
-    public SuspectData GetSuspectDataFromKey(string name)
-    {
-        foreach (var suspect in suspectData)
-        {
-            if (suspect.name == name)
-            {
-                return suspect;
-            }
-        }
-
-        return null;
     }
 }

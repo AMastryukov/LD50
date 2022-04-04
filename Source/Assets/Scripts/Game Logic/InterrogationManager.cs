@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static PlayerManager;
 
 public class InterrogationManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> suspectObjects;
+    [SerializeField] private List<Suspect> Suspects;
 
     private Suspect currentSuspect;
 
@@ -13,10 +14,9 @@ public class InterrogationManager : MonoBehaviour
 
     private void Awake()
     {
-        if (suspectObjects == null || suspectObjects.Capacity == 0) 
+        if (Suspects == null || Suspects.Count < 3) 
         { 
-            Debug.LogError("There is no suspect objects in the list!");
-            return; 
+            Debug.LogError("Missing Suspects");
         }
 
         OnPlayerStateChanged += CheckInterrogating;
@@ -32,7 +32,7 @@ public class InterrogationManager : MonoBehaviour
         }
         else if (!IsInterrogating && state == PlayerStates.Interrogate)
         {
-            print("Now Interrogating");
+            print("Now Interrogating " + currentSuspect.Data.Name);
             EvidenceNotebookEntry.OnEvidenceSelectedInNotebook += PresentEvidenceToSuspect;
             IsInterrogating = true;
         }
@@ -56,14 +56,16 @@ public class InterrogationManager : MonoBehaviour
         
     }
 
-    public void SetCurrentSuspect(SuspectData suspectData)
+    public void SetCurrentSuspect(string suspectName)
     {
-        currentSuspect = new Suspect(suspectData);
+        Suspect suspect = Suspects.FirstOrDefault(sussy => sussy.Data.Name == suspectName);
 
-        foreach (var suspectObject in suspectObjects)
+        currentSuspect = suspect;
+
+        foreach (var sus in Suspects)
         {
             // Match the game object by name
-            suspectObject.SetActive(suspectObject.name.Equals(currentSuspect.Data.Name));
+            sus.gameObject.SetActive(sus.Data.Name.Equals(currentSuspect.Data.Name));
         }
     }
 
