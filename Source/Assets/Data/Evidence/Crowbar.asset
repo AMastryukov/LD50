@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Crowbar
   m_EditorClassIdentifier: 
   Name: Crowbar
-  Description: Full metal crowbar, which is heavy as hell.
+  Description: Wake up and smell the ashes.
   Sprite: {fileID: 0}
