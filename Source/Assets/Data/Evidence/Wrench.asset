@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Wrench
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
+  Name: Wrench
+  Description: My nuts and bolts could use a little tightening.
   Sprite: {fileID: 0}

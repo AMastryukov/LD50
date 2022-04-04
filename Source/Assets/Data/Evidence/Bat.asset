@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: 
-  Name: Baseball bat
-  Description: Heavy-hitting baseball bat. Perfect for kneecap busting.
+  Name: Baseball Bat
+  Description: Heavy-hitting. Perfect for kneecap busting.
   Sprite: {fileID: 0}
