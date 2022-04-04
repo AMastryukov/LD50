@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   Name: Baseball bat
-  Description: Heavy hitting baseball bat.
+  Description: Heavy-hitting baseball bat. Perfect for kneecap busting.
   Sprite: {fileID: 0}

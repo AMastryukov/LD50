@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Money
   m_EditorClassIdentifier: 
   Name: Money
-  Description: Stack of cash. How many donuts I could buy with this I wonder.
+  Description: A stack of cash. I wonder how many donuts I could buy with this.
   Sprite: {fileID: 0}

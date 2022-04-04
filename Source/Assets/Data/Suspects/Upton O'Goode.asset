@@ -13,12 +13,31 @@ MonoBehaviour:
   m_Name: Upton O'Goode
   m_EditorClassIdentifier: 
   Name: Upton O'Goode
-  Description: 
+  Description: 'Arrested on multiple occasions and charged with petty theft, armed
+    robbery.
+
+    Spent 10 months in jail for possession of illegal narcotics.
+
+    Local
+    street dealer known to the NYPD.
+
+    Lanky build, blonde hair.
+
+    Avid fan
+    of baseball.
+
+    Drives a red sedan.'
   Sprite: {fileID: 0}
-  KeyEvidence:
-  - {fileID: 11400000, guid: c8327ba0c2800fc4b8010dc4786d859a, type: 2}
-  - {fileID: 11400000, guid: fe6ca05c3a9c5ae4095a17ad79b61a57, type: 2}
-  GenericResponses:
-  - {fileID: 0}
-  - {fileID: 0}
-  Confession: {fileID: 0}
+  KeyEvidence: []
+  KeyEvidenceVoicelines:
+  - {fileID: 11400000, guid: 13e1e0129bee0574fb9e8db41db4788c, type: 2}
+  - {fileID: 11400000, guid: 93a49ba7d2125dd498268bcefb7bdf1b, type: 2}
+  - {fileID: 11400000, guid: ff136c01d06b1304f99afc00f1059079, type: 2}
+  GenericEvidenceVoicelines:
+  - {fileID: 11400000, guid: 599b86f5bdc95cc4e89356c91d2eb8ce, type: 2}
+  - {fileID: 11400000, guid: e7078439831374041bd6b4d9ca5fcc23, type: 2}
+  - {fileID: 11400000, guid: 646e167a92b5c9f439ff225acb8861f9, type: 2}
+  - {fileID: 11400000, guid: dd85c6c4f2ec7464e840b3f066093c0a, type: 2}
+  - {fileID: 11400000, guid: 74d6d1c967e7ca047a9948d50ade0ad9, type: 2}
+  IntroductionVoiceline: {fileID: 11400000, guid: d14472bbbd98e3c4a824229bdd1c1f72, type: 2}
+  ConfessionVoiceline: {fileID: 11400000, guid: c68aed412064091489c06df6b58f3928, type: 2}

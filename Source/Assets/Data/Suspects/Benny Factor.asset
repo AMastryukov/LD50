@@ -13,10 +13,22 @@ MonoBehaviour:
   m_Name: Benny Factor
   m_EditorClassIdentifier: 
   Name: Benny Factor
-  Description: 
+  Description: 'No previous arrests, but known to be tied to high-level organized
+    crime.
+
+    Clean cut & slender.
+
+    Sharp dresser.'
   Sprite: {fileID: 0}
-  KeyEvidence:
-  - {fileID: 11400000, guid: fe6ca05c3a9c5ae4095a17ad79b61a57, type: 2}
-  - {fileID: 11400000, guid: c8327ba0c2800fc4b8010dc4786d859a, type: 2}
-  GenericResponses: []
-  Confession: {fileID: 0}
+  KeyEvidence: []
+  KeyEvidenceVoicelines:
+  - {fileID: 11400000, guid: d6d2095818a080a479d204cb45f00896, type: 2}
+  - {fileID: 11400000, guid: eb72083da80a6ea4da3be845de8fab32, type: 2}
+  - {fileID: 11400000, guid: 98a72cd9efcc34f41849eb20ff40723d, type: 2}
+  GenericEvidenceVoicelines:
+  - {fileID: 11400000, guid: 26ef0ebeb1bf083429a2acd26ae825ae, type: 2}
+  - {fileID: 11400000, guid: dcf662b036c0040409bb12e22732fc27, type: 2}
+  - {fileID: 11400000, guid: 02929180001742a4bb284ee87868f629, type: 2}
+  - {fileID: 11400000, guid: a7b2ecc400d6c0a4c858ff095b438ab0, type: 2}
+  IntroductionVoiceline: {fileID: 11400000, guid: 3d0c5aaca5e25a84da08483bcae0cda1, type: 2}
+  ConfessionVoiceline: {fileID: 11400000, guid: 9cd1b16e28bcf6942944db49a06bdc29, type: 2}
