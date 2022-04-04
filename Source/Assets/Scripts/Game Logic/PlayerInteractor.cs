@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +18,9 @@ public class PlayerInteractor : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Canvas interactionUI;
     [SerializeField] private Image crosshair;
-    [SerializeField] private TextMeshProUGUI interactionText;
+    [SerializeField] private CanvasGroup inspectionUI;
+    [SerializeField] private TextMeshProUGUI inpsectionNameText;
+    [SerializeField] private TextMeshProUGUI inpsectionDescriptionText;
 
     [Space]
     [Header("Inspection")]
@@ -31,6 +34,7 @@ public class PlayerInteractor : MonoBehaviour
     private void Awake()
     {
         manager = FindObjectOfType<PlayerManager>();
+        //inspectionUI = 0f;
     }
 
     private void Update()
@@ -98,7 +102,6 @@ public class PlayerInteractor : MonoBehaviour
             lookingAtInteractable = hit.collider.GetComponent<Interactable>();
             if (lookingAtInteractable != null)
             {
-                interactionText.text = lookingAtInteractable.GetName();
                 showInteractToolTip = true;
             }
         }
@@ -112,20 +115,16 @@ public class PlayerInteractor : MonoBehaviour
 
     public void StartInspect(Evidence evidence)
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        crosshair.enabled = false;
-        Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * 0.7f;
+        OnInspectionUI(evidence);
+        
+        Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * 0.6f;
         evidence.StartInspect(inspectionPosition);
-
         manager.CurrentState = PlayerManager.PlayerStates.Inspect;
     }
 
     private void EndInspect()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        crosshair.enabled = true;
+        OnInspectionUIEnd();
 
         clickedInteractable.GetComponent<Evidence>().StopInspect();
         clickedInteractable = null;
@@ -142,4 +141,36 @@ public class PlayerInteractor : MonoBehaviour
             clickedInteractable.transform.rotation = Quaternion.Euler(inspectionObjectRotation.x, inspectionObjectRotation.y, 0f);
         }
     }
+
+    private void OnInspectionUI(Evidence evidence)
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        inspectionUI.DOFade(1f, 0.5f)
+            .SetEase(Ease.InCirc)
+            .OnComplete(() =>
+            {
+                inspectionUI.interactable = true;
+                inspectionUI.blocksRaycasts = true;
+            });
+        crosshair.enabled = false;
+        
+        inpsectionDescriptionText.text = evidence.evidenceData.Description;
+        inpsectionNameText.text = evidence.evidenceData.name;
+    }
+    
+    private void OnInspectionUIEnd()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        inspectionUI.DOFade(0f, 0.5f)
+            .SetEase(Ease.InCirc)
+            .OnComplete(() =>
+            {
+                inspectionUI.interactable = false;
+                inspectionUI.blocksRaycasts = false;
+            });
+        crosshair.enabled = true;
+    }
+    
 }

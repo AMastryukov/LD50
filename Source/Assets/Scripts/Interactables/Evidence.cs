@@ -20,6 +20,7 @@ public class Evidence : Interactable
         {
             Debug.LogError($"Evidence Data is null for {gameObject.name}");
         }
+        
     }
 
     private void Start()
