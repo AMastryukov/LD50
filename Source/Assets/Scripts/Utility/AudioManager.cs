@@ -16,13 +16,17 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     [SerializeField] private Slider sfxVolumeSlider;
 
     [SerializeField] private AudioSource voiceSource;
-    [SerializeField] private AudioSource sfxSource;
     [SerializeField] private SubtitleAudio[] voiceLines;
     [SerializeField] private TextMeshProUGUI subtitleBox;
 
     [SerializeField] private AudioClip[] NotebookScribbleSFX;
     [SerializeField] private AudioClip[] NotebookPageFlipSFX;
 
+    [Header("Music")]
+    [SerializeField] private AudioClip AlleywayTheme; 
+    [SerializeField] private AudioClip VictimApartmentTheme;
+    [SerializeField] private AudioClip InterrogationRoomTheme;
+    
     private List<AudioSource> musicSources;
     private List<AudioSource> sfxSources;
 
@@ -32,7 +36,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     public override void Awake()
     {
         base.Awake();
-        //SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -45,11 +49,11 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
 
         foreach(var source in audioSources)
         {
-            if (source.CompareTag("MusicSource"))
+            if (source.CompareTag(GameConstants.TagConstants.MusicAudioSource))
             {
                 musicSources.Add(source);
             }
-            else if (source.CompareTag("SFXSource"))
+            else if (source.CompareTag(GameConstants.TagConstants.SFXAudioSource))
             {
                 sfxSources.Add(source);
             }
@@ -66,13 +70,13 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     public void OnNoteBookPageFlip()
     {
         AudioClip clipToPlay = NotebookPageFlipSFX[Random.Range(0, NotebookPageFlipSFX.Length)];
-        sfxSource.PlayOneShot(clipToPlay);
+        sfxSources[0]?.PlayOneShot(clipToPlay);
     }
     
     public void OnNoteBookScribble()
     {
         AudioClip clipToPlay = NotebookScribbleSFX[Random.Range(0, NotebookScribbleSFX.Length)];
-        sfxSource.PlayOneShot(clipToPlay);
+        sfxSources[0]?.PlayOneShot(clipToPlay);
     }
 
     public void SetMusicVolume(float volume)
@@ -85,7 +89,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
             source.volume = musicVolume;
         }
 
-        musicVolumeSlider.value = musicVolume;
+        //Uncomment Later
+       //musicVolumeSlider.value = musicVolume;
     }
 
     public void SetSFXVolume(float volume)
@@ -97,8 +102,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         {
             source.volume = sfxVolume;
         }
-
-        sfxVolumeSlider.value = sfxVolume;
+        //Uncomment Later
+        //sfxVolumeSlider.value = sfxVolume;
     }
 
     public IEnumerator WaitForVoiceline(int ID)
@@ -119,5 +124,10 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         {
             subtitleBox.text = "";
         }
+    }
+
+    public void PlayMusic(AudioClip music)
+    {
+        
     }
 }
