@@ -497,12 +497,12 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         #endregion
 
         #region Wait for Open Door
-        bool isPlayerDead = false;
-        Action onDoorOpened = delegate () { isPlayerDead = true; };
+        bool hasPlayedOpenedDoor = false;
+        Action onDoorOpened = delegate () { hasPlayedOpenedDoor = true; };
 
         Door.OnDoorOpened += onDoorOpened;
 
-        while (!isPlayerDead)
+        while (!hasPlayedOpenedDoor)
         {
             yield return null;
         }
