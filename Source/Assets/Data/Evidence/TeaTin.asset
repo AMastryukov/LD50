@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: TeaTin
   m_EditorClassIdentifier: 
-  Name: Tea tin
-  Description: Rusty tin for storing tea. Earl Gray maybe?
+  Name: Tea Tin
+  Description: A rusted tin for storing tea. Earl Gray maybe?
   Sprite: {fileID: 0}

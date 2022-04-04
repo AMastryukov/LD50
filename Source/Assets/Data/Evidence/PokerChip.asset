@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: PokerChip
   m_EditorClassIdentifier: 
-  Name: Poker chip
-  Description: Small little poker chip. So tiny.
+  Name: Poker Chip
+  Description: $500 each.
   Sprite: {fileID: 0}

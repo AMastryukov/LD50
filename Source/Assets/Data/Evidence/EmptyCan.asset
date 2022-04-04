@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: EmptyCan
   m_EditorClassIdentifier: 
-  Name: Empty can
-  Description: An empty can. A tasty drink was inside at some point.
+  Name: Empty Can
+  Description: I'll make someone else throw this in the garbage.
   Sprite: {fileID: 0}

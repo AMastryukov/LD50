@@ -92,6 +92,7 @@ public class Notebook : MonoBehaviour
     {
         if (isOpen)
         {
+            FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move;
             UnHighlightAllTabs();
             canvasGroup.alpha = 0f;
             canvasGroup.interactable = false;
@@ -102,6 +103,9 @@ public class Notebook : MonoBehaviour
         }
         else
         {
+            if(FindObjectOfType<PlayerManager>().CurrentState == PlayerManager.PlayerStates.Wait)
+                return;
+            FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
             canvasGroup.alpha = 1f;
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;

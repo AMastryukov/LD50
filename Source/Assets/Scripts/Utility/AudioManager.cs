@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UtilityCode;
+using Random = UnityEngine.Random;
 
 public class AudioManager : UnitySingletonPersistent<AudioManager>
 {
@@ -16,13 +19,18 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     [SerializeField] private Slider sfxVolumeSlider;
 
     [SerializeField] private AudioSource voiceSource;
-    [SerializeField] private AudioSource sfxSource;
     [SerializeField] private SubtitleAudio[] voiceLines;
     [SerializeField] private TextMeshProUGUI subtitleBox;
 
     [SerializeField] private AudioClip[] NotebookScribbleSFX;
     [SerializeField] private AudioClip[] NotebookPageFlipSFX;
 
+    [Header("Music")]
+    [SerializeField] private AudioClip alleywayTheme; 
+    [SerializeField] private AudioClip victimApartmentTheme;
+    [SerializeField] private AudioClip interrogationRoomTheme;
+    [SerializeField] private AudioClip chopShopTheme;
+    
     private List<AudioSource> musicSources;
     private List<AudioSource> sfxSources;
 
@@ -32,7 +40,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     public override void Awake()
     {
         base.Awake();
-        //SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -45,11 +53,11 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
 
         foreach(var source in audioSources)
         {
-            if (source.CompareTag("MusicSource"))
+            if (source.CompareTag(GameConstants.TagConstants.MusicAudioSource))
             {
                 musicSources.Add(source);
             }
-            else if (source.CompareTag("SFXSource"))
+            else if (source.CompareTag(GameConstants.TagConstants.SFXAudioSource))
             {
                 sfxSources.Add(source);
             }
@@ -66,13 +74,13 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     public void OnNoteBookPageFlip()
     {
         AudioClip clipToPlay = NotebookPageFlipSFX[Random.Range(0, NotebookPageFlipSFX.Length)];
-        sfxSource.PlayOneShot(clipToPlay);
+        sfxSources[0]?.PlayOneShot(clipToPlay);
     }
     
     public void OnNoteBookScribble()
     {
         AudioClip clipToPlay = NotebookScribbleSFX[Random.Range(0, NotebookScribbleSFX.Length)];
-        sfxSource.PlayOneShot(clipToPlay);
+        sfxSources[0]?.PlayOneShot(clipToPlay);
     }
 
     public void SetMusicVolume(float volume)
@@ -85,7 +93,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
             source.volume = musicVolume;
         }
 
-        musicVolumeSlider.value = musicVolume;
+        //Uncomment Later
+       //musicVolumeSlider.value = musicVolume;
     }
 
     public void SetSFXVolume(float volume)
@@ -97,8 +106,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         {
             source.volume = sfxVolume;
         }
-
-        sfxVolumeSlider.value = sfxVolume;
+        //Uncomment Later
+        //sfxVolumeSlider.value = sfxVolume;
     }
 
     public IEnumerator WaitForVoiceline(int ID)
@@ -119,5 +128,63 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         {
             subtitleBox.text = "";
         }
+    }
+
+    public void PlayMusicDirectly(AudioClip music)
+    {
+        StopAllMusic();
+        foreach (AudioSource source in musicSources)
+        {
+            if (!source.isPlaying)
+            {
+                source.clip = music;
+                source.Play();
+                return;
+            }
+        }
+    }
+
+    public void StopAllMusic()
+    {
+        foreach (AudioSource source in musicSources)
+        {
+            if (source.isPlaying)
+            {
+                source.Stop();
+            }
+        }
+    }
+    
+    public void FadeInMusic(AudioClip music,float fadeTime = 1f)
+    {
+        AudioSource fadeInSource = null;
+        foreach (AudioSource source in musicSources)
+        {
+            if (source.isPlaying)
+            {
+                DOTween.To(() => source.volume, x => source.volume = x, 0, fadeTime).onComplete = () =>
+                {
+                    source.Stop();
+                };
+            }
+            else
+            {
+                fadeInSource = source;
+            }
+        }
+
+        if (fadeInSource != null)
+        {
+            fadeInSource.clip = music;
+            fadeInSource.volume = 0;
+            fadeInSource.Play();
+            DOTween.To(() => fadeInSource.volume, x => fadeInSource.volume = x, 1f, fadeTime);
+        }
+        else
+        {
+            Debug.Log("[DEBUG] No free AudioSource to perform a fade in....Using direct play");
+            PlayMusicDirectly(music);
+        }
+       
     }
 }
