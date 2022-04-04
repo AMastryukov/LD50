@@ -517,7 +517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 4586602790484711345}
   fpsOrigin: {fileID: 4586602789965685734}
-  cameraFOV: 90
+  cameraFOV: 70
   cameraLerpSpeed: 0.5
   xMouseSensitivity: 1
   yMouseSensitivity: 1
