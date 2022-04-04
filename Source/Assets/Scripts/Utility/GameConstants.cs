@@ -9,4 +9,9 @@ public static class GameConstants
         public const string TimerText = "Time: {0}";
         public const string EvidenceNotification = "Evidence has been added to the notebook [TAB]";
     }
+    public static class TagConstants
+    {
+        public const string SFXAudioSource = "SFXSource";
+        public const string MusicAudioSource = "MusicSource";
+    }
 }
