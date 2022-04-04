@@ -21,10 +21,6 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private CanvasGroup inspectionUI;
     [SerializeField] private TextMeshProUGUI inpsectionNameText;
     [SerializeField] private TextMeshProUGUI inpsectionDescriptionText;
-
-    [Space]
-    [Header("Inspection")]
-    //[SerializeField] private Transform inspectionTransform;
     
     private Vector2 inspectionObjectRotation = Vector2.zero;
     private Interactable clickedInteractable;
