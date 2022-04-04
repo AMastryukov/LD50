@@ -13,6 +13,23 @@ MonoBehaviour:
   m_Name: Upton O'Goode
   m_EditorClassIdentifier: 
   Name: Upton O'Goode
-  Description: 
+  Description: 'Arrested on multiple occasions and charged with petty theft, armed
+    robbery.
+
+    Spent 10 months in jail for possession of illegal narcotics.
+
+    Local
+    street dealer known to the NYPD.
+
+    Lanky build, blonde hair.
+
+    Avid fan
+    of baseball.
+
+    Drives a red sedan.'
   Sprite: {fileID: 0}
   KeyEvidence: []
+  KeyEvidenceVoicelines: []
+  GenericEvidenceVoicelines: []
+  IntroductionVoiceline: {fileID: 0}
+  ConfessionVoiceline: {fileID: 0}
