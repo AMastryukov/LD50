@@ -52,12 +52,17 @@ public class PlayerInteractor : MonoBehaviour
                 crosshair.enabled = false;
                 RotateInspectedObject();
                 volume.profile.TryGet<DepthOfField>(out var depthoffield);
+                if(!depthoffield.active)
+                    DOTween.To(() => depthoffield.focusDistance.value, x => depthoffield.focusDistance.value = x, 0.1f, 1f);
                 depthoffield.active = true;
-
                 if (Input.GetMouseButtonDown(1))
                 {
                     EndInspect();
-                    depthoffield.active = false;
+                    DOTween.To(() => depthoffield.focusDistance.value, x => depthoffield.focusDistance.value = x, 2f,
+                        1f).onComplete = () =>
+                    {
+                        depthoffield.active = false;
+                    };
                 }
 
                 break;
