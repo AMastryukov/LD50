@@ -1255,13 +1255,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 4586602790484711345}
   walkSpeed: 2
-  footStepSounds:
-  - {fileID: 8300000, guid: 8121b19b790fbaf4d960c1dfdbc3e512, type: 3}
-  - {fileID: 8300000, guid: a62610f4503367f449f85e2a9d16e18c, type: 3}
-  - {fileID: 8300000, guid: 0b0022e702db2d74999595586752fde2, type: 3}
-  - {fileID: 8300000, guid: 8d3c65960628f5343a4ee0f8e2c3936e, type: 3}
-  - {fileID: 8300000, guid: 7016048922a769142ab001b07a6e3a44, type: 3}
-  footStepFrequency: 0.75
+  footStepSound: {fileID: 8300000, guid: b0bc9213691f0094398ed022fe252aa3, type: 3}
+  footStepFrequency: 0.4
 --- !u!114 &4586602790484711500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1298,6 +1293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentState: 0
+<<<<<<< HEAD
+=======
 --- !u!82 &8864123901947594419
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1394,6 +1391,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+>>>>>>> main
 --- !u!1 &4586602790502219487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,8 +1553,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4586602790862744895}
-  m_LocalRotation: {x: 0.12559094, y: -0.07067383, z: 0.0090041645, w: 0.98952067}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0.11259312, y: -0.88673145, z: 0.29813355, w: 0.334883}
+  m_LocalPosition: {x: 3.2942395, y: -1.3140002, z: 2.2938244}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4586602790900023533}
@@ -1590,7 +1588,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
