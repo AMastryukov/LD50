@@ -12,10 +12,10 @@ public class SuspectData : ScriptableObject
     public List<EvidenceData> KeyEvidence;
 
     [Header("Voicelines")]
-    public List<AudioClip> KeyEvidenceVoicelines;
-    public List<AudioClip> GenericEvidenceVoicelines;
-    public AudioClip IntroductionVoiceline;
-    public AudioClip ConfessionVoiceline;
+    public List<VoiceLineData> KeyEvidenceVoicelines;
+    public List<VoiceLineData> GenericEvidenceVoicelines;
+    public VoiceLineData IntroductionVoiceline;
+    public VoiceLineData ConfessionVoiceline;
 }
 
 [Serializable]
