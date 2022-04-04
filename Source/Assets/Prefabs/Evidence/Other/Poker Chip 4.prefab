@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1268486166128393871
+--- !u!1 &311890470267069750
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8050227870925650852}
-  - component: {fileID: 6773541307940069336}
-  - component: {fileID: 87013250144570673}
+  - component: {fileID: 311890470267069747}
+  - component: {fileID: 311890470267069748}
+  - component: {fileID: 311890470267069749}
   m_Layer: 6
-  m_Name: Police File
+  m_Name: Poker Chip 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8050227870925650852
+--- !u!4 &311890470267069747
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268486166128393871}
+  m_GameObject: {fileID: 311890470267069750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4605077, y: -0.008000135, z: 1.0831927}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4655581706900369881}
+  - {fileID: 8691189722423246333}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6773541307940069336
+--- !u!114 &311890470267069748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268486166128393871}
+  m_GameObject: {fileID: 311890470267069750}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34766c217378c7749bf987c46098375c, type: 3}
@@ -48,7 +48,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6773541307940069336}
+      - m_Target: {fileID: 311890470267069748}
         m_TargetAssemblyTypeName: Evidence, Assembly-CSharp
         m_MethodName: Interact
         m_Mode: 1
@@ -60,21 +60,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  evidenceData: {fileID: 11400000, guid: 3ced10e7ca7690f44848882ba57c66cf, type: 2}
---- !u!65 &87013250144570673
+  evidenceData: {fileID: 11400000, guid: f8c2ebaf9c15b4f4dbb14ca1d382ce60, type: 2}
+--- !u!65 &311890470267069749
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268486166128393871}
+  m_GameObject: {fileID: 311890470267069750}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.56, y: 0.14, z: 0.77}
-  m_Center: {x: 0.013691306, y: 0.08607663, z: -0.0021488965}
---- !u!1 &5462904049158990691
+  m_Size: {x: 0.1, y: 0.19, z: 0.1}
+  m_Center: {x: -0.00000012665987, y: 0.07, z: -0.004048027}
+--- !u!1 &8347034527610201927
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,45 +82,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4655581706900369881}
-  - component: {fileID: 8589535950862122620}
-  - component: {fileID: 5823398657982302902}
-  m_Layer: 6
-  m_Name: Police files
+  - component: {fileID: 8691189722423246333}
+  - component: {fileID: 5706787043198055000}
+  - component: {fileID: 7554335228426176146}
+  m_Layer: 0
+  m_Name: Poker chip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4655581706900369881
+--- !u!4 &8691189722423246333
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5462904049158990691}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.076, z: 0}
+  m_GameObject: {fileID: 8347034527610201927}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8050227870925650852}
+  m_Father: {fileID: 311890470267069747}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8589535950862122620
+--- !u!33 &5706787043198055000
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5462904049158990691}
-  m_Mesh: {fileID: 5646325269550361626, guid: 11cfcf60e9f391b46bf66b3e8e193b08, type: 3}
---- !u!23 &5823398657982302902
+  m_GameObject: {fileID: 8347034527610201927}
+  m_Mesh: {fileID: 6374384350174430671, guid: ff90fe8e6c9f1554da17e7838cb21bde, type: 3}
+--- !u!23 &7554335228426176146
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5462904049158990691}
+  m_GameObject: {fileID: 8347034527610201927}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1

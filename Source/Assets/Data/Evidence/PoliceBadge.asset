@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PoliceBadge
   m_EditorClassIdentifier: 
   Name: Police Badge
-  Description: '[ TO BE ADDED ]'
+  Description: An NYPD badge. Someone's got some explaining to do.
   Sprite: {fileID: 0}

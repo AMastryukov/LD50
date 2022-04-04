@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Police File
   m_EditorClassIdentifier: 
   Name: Police File
-  Description: '[ TO BE ADDED ]'
+  Description: A police file... with my name in it? Looks like someone wants a piece
+    of me.
   Sprite: {fileID: 0}
