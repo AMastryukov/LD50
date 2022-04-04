@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Box of Donuts
   m_EditorClassIdentifier: 
   Name: Box of Donuts
-  Description: Half-eaten box of donuts. I kind of want to try some, but I must resist.
+  Description: Half-eaten. I kind of want to try some, but I must resist.
   Sprite: {fileID: 0}

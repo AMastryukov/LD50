@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Floppy Disk
   m_EditorClassIdentifier: 
   Name: Floppy Disk
-  Description: These contain bits and bytes. Bits of what, I am not sure.
+  Description: Contains bits and bytes. Bits of what, I am not sure.
   Sprite: {fileID: 0}

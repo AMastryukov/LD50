@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Rubbish
   m_EditorClassIdentifier: 
-  Name: Paper rubbish
-  Description: This was a paper once. Not anymore.
+  Name: Paper Rubbish
+  Description: The writing is indiscernible.
   Sprite: {fileID: 0}

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bottle
   m_EditorClassIdentifier: 
   Name: Glass Bottle
-  Description: A glass bottle with some liquid inside. I'm not drinking it.
+  Description: There is still some liquid inside. I'm not drinking it.
   Sprite: {fileID: 0}

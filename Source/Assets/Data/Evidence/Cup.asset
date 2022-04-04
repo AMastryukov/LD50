@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cup
   m_EditorClassIdentifier: 
   Name: Cup
-  Description: It's a cup. A cuppy kind of cup.
+  Description: A cuppy kind of cup.
   Sprite: {fileID: 0}
