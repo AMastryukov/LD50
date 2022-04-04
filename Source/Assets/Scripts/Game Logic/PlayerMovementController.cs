@@ -22,9 +22,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void GetMovementInput()
     {
-        
-        if (manager.playerState == PlayerManager.PlayerStates.Inspect ||
-            manager.playerState == PlayerManager.PlayerStates.Interrogate)
+        if (manager.CurrentState != PlayerManager.PlayerStates.Move)
         {
             desiredMovementVector = Vector3.zero;
             return;

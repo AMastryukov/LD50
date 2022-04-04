@@ -25,10 +25,6 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private TextMeshProUGUI inpsectionDescriptionText;
 
     [Space]
-    [Header("Inspection")]
-    //[SerializeField] private Transform inspectionTransform;
-
-    [Space]
     [Header("Post Processing")]
     [SerializeField] private Volume volume;
 
@@ -42,12 +38,14 @@ public class PlayerInteractor : MonoBehaviour
     private void Awake()
     {
         manager = FindObjectOfType<PlayerManager>();
-        //inspectionUI = 0f;
+
+        ResetInspectionUI();
+        ResetInteractionUI();
     }
 
     private void Update()
     {
-        switch (manager.playerState)
+        switch (manager.CurrentState)
         {
             case PlayerManager.PlayerStates.Inspect:
                 interactionUI.enabled = false;
@@ -67,24 +65,16 @@ public class PlayerInteractor : MonoBehaviour
             case PlayerManager.PlayerStates.Move:
                 if (lookingAtInteractable != null)
                 {
-                    
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        
+                        clickedInteractable = lookingAtInteractable;
+                        clickedInteractable.OnInteract?.Invoke();
+                        clickedInteractable.Interact();
                             
-                            clickedInteractable = lookingAtInteractable;
-                            
-                            clickedInteractable.OnInteract?.Invoke();
-                            
-                            Debug.Log(clickedInteractable);
-                            
-                            if (clickedInteractable is Evidence)
-                            {
-                                StartInspect((Evidence)clickedInteractable);
-                            }
-                        
-                        
-
+                        if (clickedInteractable is Evidence)
+                        {
+                            StartInspect((Evidence)clickedInteractable);
+                        }
                     }
                 }
                 break;
@@ -92,7 +82,7 @@ public class PlayerInteractor : MonoBehaviour
             case PlayerManager.PlayerStates.Interrogate:
                 if (Input.GetMouseButtonDown(1))
                 {
-                    manager.playerState = PlayerManager.PlayerStates.Move;
+                    manager.CurrentState = PlayerManager.PlayerStates.Move;
                 }
                 break;
         }
@@ -101,7 +91,7 @@ public class PlayerInteractor : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (manager.playerState == PlayerManager.PlayerStates.Move) //Or pause or anything else
+        if (manager.CurrentState == PlayerManager.PlayerStates.Move) //Or pause or anything else
         {
             CastInteractionRay();
         }
@@ -121,7 +111,6 @@ public class PlayerInteractor : MonoBehaviour
             lookingAtInteractable = hit.collider.GetComponent<Interactable>();
             if (lookingAtInteractable != null)
             {
-                Debug.Log(lookingAtInteractable.GetName());
                 showInteractToolTip = true;
             }
         }
@@ -139,17 +128,13 @@ public class PlayerInteractor : MonoBehaviour
         
         Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * 0.6f;
         evidence.StartInspect(inspectionPosition);
-        manager.playerState = PlayerManager.PlayerStates.Inspect;
+        manager.CurrentState = PlayerManager.PlayerStates.Inspect;
+
         if (clickedInteractable.gameObject.transform.childCount > 0)
         {
-
             foreach (Transform child in clickedInteractable.gameObject.transform)
             {
                 oldchildlayers.Add(child.gameObject.layer);
-            }
-
-            foreach (Transform child in clickedInteractable.gameObject.transform)
-            {
                 child.gameObject.layer = 7;
             }
         }
@@ -182,7 +167,7 @@ public class PlayerInteractor : MonoBehaviour
         clickedInteractable.GetComponent<Evidence>().StopInspect();
         clickedInteractable = null;
 
-        manager.playerState = PlayerManager.PlayerStates.Move;
+        manager.CurrentState = PlayerManager.PlayerStates.Move;
     }
 
     private void RotateInspectedObject()
@@ -225,5 +210,15 @@ public class PlayerInteractor : MonoBehaviour
             });
         crosshair.enabled = true;
     }
-    
+
+    private void ResetInteractionUI()
+    {
+        interactionUI.enabled = false;
+    }
+
+    private void ResetInspectionUI()
+    {
+        inpsectionDescriptionText.text = "";
+        inpsectionNameText.text = "";
+    }
 }

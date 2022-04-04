@@ -6,23 +6,35 @@ using UnityEngine.SceneManagement;
 
 public class Door : Interactable
 {
-    public static Action OnDoorOpened;
-
     public string SceneName;
     public bool IsUnlocked = false;
 
-    public void SetExitSceneName(string sceneName)
+    public void GoToNextScene()
     {
-        SceneName = sceneName;
+        if (!IsUnlocked) 
+        { 
+            Debug.Log("Door is locked"); 
+            return; 
+        }
+
+        if (SceneName.Equals("")) 
+        { 
+            Debug.LogError("This door is not bound to any scene"); 
+        }
+
+        SceneLoader.Instance.ChangeScene(SceneName);
     }
 
-    public override void Interact()
+    public void OpenDoorPhysically()
     {
-        if (SceneName.Equals("")) { Debug.LogError("This door is not bound to any scene"); }
-        
-        if (IsUnlocked)
+        if (!IsUnlocked)
         {
-            SceneManager.LoadScene(SceneName);
+            Debug.Log("Door is locked");
+            return;
         }
+
+        Debug.Log("Door has been opened, you are dead");
+
+        // Animate the door opening here
     }
 }

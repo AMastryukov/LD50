@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6257038255816178767}
   - component: {fileID: 919132149177040619}
   - component: {fileID: 919132149177040618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Empty Can
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,11 +41,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6746013498385606389}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.16190372, y: 0.24484384, z: 0.16083606}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0.03}
 --- !u!114 &919132149177040618
 MonoBehaviour:
   m_ObjectHideFlags: 0
