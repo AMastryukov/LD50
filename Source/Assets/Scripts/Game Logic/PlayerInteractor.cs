@@ -6,6 +6,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static CrimeSceneManager;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class PlayerInteractor : MonoBehaviour
 {
@@ -21,11 +23,17 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] private CanvasGroup inspectionUI;
     [SerializeField] private TextMeshProUGUI inpsectionNameText;
     [SerializeField] private TextMeshProUGUI inpsectionDescriptionText;
-    
+
+    [Space]
+    [Header("Post Processing")]
+    [SerializeField] private Volume volume;
+
     private Vector2 inspectionObjectRotation = Vector2.zero;
     private Interactable clickedInteractable;
     private Interactable lookingAtInteractable;
     private PlayerManager manager;
+    private int oldlayer;
+    private List<int> oldchildlayers = new List<int>();
 
     private void Awake()
     {
@@ -41,10 +49,13 @@ public class PlayerInteractor : MonoBehaviour
                 interactionUI.enabled = false;
                 crosshair.enabled = false;
                 RotateInspectedObject();
+                volume.profile.TryGet<DepthOfField>(out var depthoffield);
+                depthoffield.active = true;
 
                 if (Input.GetMouseButtonDown(1))
                 {
                     EndInspect();
+                    depthoffield.active = false;
                 }
 
                 break;
@@ -116,11 +127,41 @@ public class PlayerInteractor : MonoBehaviour
         Vector3 inspectionPosition = cameraTransform.position + cameraTransform.forward * 0.6f;
         evidence.StartInspect(inspectionPosition);
         manager.CurrentState = PlayerManager.PlayerStates.Inspect;
+
+        if (clickedInteractable.gameObject.transform.childCount > 0)
+        {
+
+            foreach (Transform child in clickedInteractable.gameObject.transform)
+            {
+                oldchildlayers.Add(child.gameObject.layer);
+                child.gameObject.layer = 7;
+            }
+        }
+        else
+        {
+            oldlayer = clickedInteractable.gameObject.layer;
+            clickedInteractable.gameObject.layer = 7;
+        }
     }
 
     private void EndInspect()
     {
         OnInspectionUIEnd();
+
+        if (clickedInteractable.gameObject.transform.childCount > 0)
+        {
+            int i = 0;
+
+            foreach (Transform child in clickedInteractable.gameObject.transform)
+            {
+                child.gameObject.layer = oldchildlayers[i];
+                i++;
+            }
+        }
+        else
+        {
+            clickedInteractable.gameObject.layer = oldlayer;
+        }
 
         clickedInteractable.GetComponent<Evidence>().StopInspect();
         clickedInteractable = null;

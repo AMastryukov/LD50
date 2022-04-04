@@ -274,6 +274,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2695616899041588673, guid: cc0541463e27a1d4b95a0ade95911fe0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00048828125
+      objectReference: {fileID: 0}
     - target: {fileID: 4586602790484711344, guid: cc0541463e27a1d4b95a0ade95911fe0, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -322,6 +326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWithVirtualCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 4586602790484711500, guid: cc0541463e27a1d4b95a0ade95911fe0, type: 3}
+      propertyPath: volume
+      value: 
+      objectReference: {fileID: 639626698}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc0541463e27a1d4b95a0ade95911fe0, type: 3}
 --- !u!1 &434368991
@@ -1091,6 +1099,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598990862}
   m_CullTransparentMesh: 1
+--- !u!114 &639626698 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2582171732651742376, guid: cc0541463e27a1d4b95a0ade95911fe0, type: 3}
+  m_PrefabInstance: {fileID: 321624630}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &675025588
 GameObject:
   m_ObjectHideFlags: 0
