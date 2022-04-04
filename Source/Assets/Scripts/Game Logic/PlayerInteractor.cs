@@ -53,13 +53,12 @@ public class PlayerInteractor : MonoBehaviour
                 interactionUI.enabled = false;
                 crosshair.enabled = false;
                 RotateInspectedObject();
-                volume.profile.TryGet<DepthOfField>(out var depthoffield);
-                depthoffield.active = true;
+                volume.enabled = true;
 
                 if (Input.GetMouseButtonDown(1))
                 {
                     EndInspect();
-                    depthoffield.active = false;
+                    volume.enabled = false;
                 }
 
                 break;
