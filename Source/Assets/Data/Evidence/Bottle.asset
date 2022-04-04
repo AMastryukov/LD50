@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Bottle
   m_EditorClassIdentifier: 
-  Name: Bottle of unkown liquid
-  Description: '"Blinds when drinked"'
+  Name: Glass Bottle
+  Description: A glass bottle with some liquid inside. I'm not drinking it.
   Sprite: {fileID: 0}

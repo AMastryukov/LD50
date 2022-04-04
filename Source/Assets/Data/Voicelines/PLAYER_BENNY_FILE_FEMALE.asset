@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
+  m_Name: PLAYER_BENNY_FILE_FEMALE
+  m_EditorClassIdentifier: 
+  AudioClip: {fileID: 8300000, guid: ab3af4c3b6682b94e97b9121515b4857, type: 3}
+  CharacterName: You
+  Subtitle: "I found a police file containing my information. \r"

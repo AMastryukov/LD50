@@ -18,16 +18,17 @@ public class PlayerManager : MonoBehaviour
     public PlayerStates _currentState = PlayerStates.Move;
 
 
-    public PlayerStates CurrentState { 
-        get 
+    public PlayerStates CurrentState
+    {
+        get
         {
             return _currentState;
-        } 
-        
-        set 
+        }
+
+        set
         {
             _currentState = value;
             OnPlayerStateChanged?.Invoke(value);
-        } 
+        }
     }
 }

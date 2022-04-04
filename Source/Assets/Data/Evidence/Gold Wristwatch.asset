@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Gold Wristwatch
   m_EditorClassIdentifier: 
   Name: Gold Wristwatch
-  Description: This is nice Rellox wristwatch. Probably costs like hell. I could
-    never afford to this.
+  Description: This is a nice Rellox wristwatch. I could never afford one, not on
+    this salary.
   Sprite: {fileID: 0}

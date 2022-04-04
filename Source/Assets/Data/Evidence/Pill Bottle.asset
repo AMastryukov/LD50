@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Pill Bottle
   m_EditorClassIdentifier: 
   Name: Pill Bottle
-  Description: '"Multivitamins with a kick"'
+  Description: Multivitamins with a kick. The label is peeled off. Probably a perscription.
   Sprite: {fileID: 0}

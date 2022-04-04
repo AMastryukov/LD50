@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Red Car Side Mirror
   m_EditorClassIdentifier: 
-  Name: Side mirror
-  Description: Red car side mirror probably belonging to red  car.
+  Name: Red Side mirror
+  Description: A side mirror colored red. Probably left behind by someone fleeing
+    the scene.
   Sprite: {fileID: 0}

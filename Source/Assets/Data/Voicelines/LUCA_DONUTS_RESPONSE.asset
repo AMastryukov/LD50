@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
+  m_Name: LUCA_DONUTS_RESPONSE
+  m_EditorClassIdentifier: 
+  AudioClip: {fileID: 8300000, guid: 6a1e1963c5c8d304e8bf1b73a6ed90bb, type: 3}
+  CharacterName: Luca Verdere
+  Subtitle: "Don\u2019t be so hasty, detective. It\u2019s true \u2013 I do like donuts.
+    But just because you found donuts it don't mean I was the one who ate \u2018em.\r"
