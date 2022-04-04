@@ -8,6 +8,13 @@ public class DataManager : UnitySingletonPersistent<DataManager>
 {
     public List<string> NotebookLog { get; private set; } = new List<string>();
     public List<EvidenceData> NotebookEvidence{ get; private set; } = new List<EvidenceData>();
+
+    internal VoiceLineData GetRandomGenericPlayerEvidenceVoiceline()
+    {
+        // I think you should put this somewhere else but up to you
+        throw new NotImplementedException();
+    }
+
     public List<SuspectData> NotebookSuspects { get; private set; } = new List<SuspectData>();
 
     public bool CheckIfLogAlreadyExists(string log)

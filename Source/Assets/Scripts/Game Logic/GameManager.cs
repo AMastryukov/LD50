@@ -90,7 +90,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         #endregion
 
         #region Unlock Door
-        door.SceneName = "Interrogation Room 1";
+        door.SceneName = "Interrogation Room";
         door.IsUnlocked = true;
         #endregion
 

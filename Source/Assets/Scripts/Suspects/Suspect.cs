@@ -23,9 +23,9 @@ public class Suspect : MonoBehaviour
     {
         RemainingKeyEvidence = new List<string>();
 
-        foreach (KeyEvidenceData keyev in Data.KeyEvidence)
+        foreach (EvidenceData ev in Data.KeyEvidence)
         {
-            RemainingKeyEvidence.Add(keyev.Evidence.Name);
+            RemainingKeyEvidence.Add(ev.Name);
         }
     }
 
@@ -33,34 +33,39 @@ public class Suspect : MonoBehaviour
     {
         yield return null;
 
-        KeyEvidenceData keyev = Data.KeyEvidence.FirstOrDefault(keyev => keyev.Evidence.Name == evidenceData.Name);
+        EvidenceData evidence = Data.KeyEvidence.FirstOrDefault(ev => ev.Name == evidenceData.Name);
 
-        if (keyev)
+        if (evidence)
         {
             // Remove from the remaining key evidence list
             RemainingKeyEvidence.Remove(evidenceData.Name);
             OnKeyEvidenceShown?.Invoke(this, evidenceData);
 
             Debug.Log("Key Evidence Found");
-            yield return sayLine(keyev.VoiceLine);
+            int i = Data.KeyEvidence.IndexOf(evidence);
+            VoiceLineData vld = Data.KeyEvidenceVoicelines[i];
+
+            yield return sayLine(vld.AudioClip);
 
             if (RemainingKeyEvidence.Count == 0)
             {
                 Debug.Log("Confessing");
                 OnConfess?.Invoke(this);
-                yield return sayLine(Data.Confession);
+                yield return sayLine(Data.ConfessionVoiceline.AudioClip);
             }
         }
         else
         {
             Debug.Log("Generic Evidence Found");
             OnGenericEvidenceShown?.Invoke(this);
+            yield return sayLine(Data.GenericEvidenceVoicelines[UnityEngine.Random.Range(0, Data.GenericEvidenceVoicelines.Count)].AudioClip);
         }
     }
 
     public IEnumerator sayLine(AudioClip clip)
     {
         Debug.LogError("Missing VoiceLine");
+        // yield return new WaitForSeconds(clip.length);
         yield return null;
     }
 }
