@@ -60,7 +60,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  evidenceData: {fileID: 11400000, guid: 24528a99c7ad7864683d8bcdcb917d5d, type: 2}
+  evidenceData: {fileID: 11400000, guid: 97098edefd6d3014abe533c6d5a246b8, type: 2}
 --- !u!65 &450778958832454137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -103,11 +103,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca1800dc149ca0945b6f5475f49ad047, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.10799998
+      value: -0.079
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca1800dc149ca0945b6f5475f49ad047, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.022
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca1800dc149ca0945b6f5475f49ad047, type: 3}
       propertyPath: m_LocalRotation.w
