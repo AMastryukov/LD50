@@ -41,17 +41,22 @@ public class CrimeSceneManager : MonoBehaviour
 
     private void EvidenceFound(Evidence evidence)
     {
-        // TODO: Add evidence to Notebook
-
-        CheckForAllEvidenceFound();
+        StartCoroutine(CheckForAllEvidenceFound());
     }
 
-    private void CheckForAllEvidenceFound()
+    private IEnumerator CheckForAllEvidenceFound()
     {
+        // Wait a frame for evidence to be added to notebook
+        yield return null;
+
         // Check the player's notebook
-        // for each evidence in evidenceData:
-        // if (!DataManager.Instance.NotebookEvidence.Contains(evidence.Name)) { return; }
-        // OnAllEvidenceFound?.Invoke();
+        foreach (EvidenceData evidence in evidenceData)
+        {
+            if (!DataManager.Instance.NotebookEvidence.Contains(evidence.Name)) { yield break; }
+        }
+
+        print("OnAllEvidenceFound");
+        OnAllEvidenceFound?.Invoke();
     }
 
     // DEV-ONLY: Automatically finds all evidence in the scene

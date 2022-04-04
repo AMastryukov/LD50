@@ -44,17 +44,21 @@ public class Suspect
         }
     }
 
-    public void AskAboutEvidence(EvidenceData evidenceData)
+    public IEnumerator AskAboutEvidence(EvidenceData evidenceData)
     {
+        yield return null;
         if (Data.KeyEvidence.Contains(evidenceData))
         {
             // Remove from the remaining key evidence list
             RemainingKeyEvidence.Remove(evidenceData.Name);
             OnKeyEvidenceShown?.Invoke(this, evidenceData);
 
+            // TODO yield return evidenceData.voiceLine;
+
             if (RemainingKeyEvidence.Count == 0)
             {
                 OnConfess?.Invoke(this);
+                // TODO yield return suspect.voiceLine;
             }
         }
         else
