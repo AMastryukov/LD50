@@ -7,14 +7,13 @@ public class SuspectTab : NotebookTab
 {
     [SerializeField] private GameObject prefab;
 
-    public void Add(string suspectName)
+    public void Add(SuspectData suspect)
     {
-        if(dataManager.CheckIfSuspectAlreadyExists(suspectName))
+        if(dataManager.CheckIfSuspectAlreadyExists(suspect))
             return;
 
-        dataManager.NotebookSuspects.Add(suspectName);
-        SuspectData suspectData = dataManager.GetSuspectDataFromKey(suspectName);
-        InstantiateSuspect(suspectData);
+        dataManager.NotebookSuspects.Add(suspect);
+        InstantiateSuspect(suspect);
     }
     
     public void InstantiateSuspect(SuspectData suspect)

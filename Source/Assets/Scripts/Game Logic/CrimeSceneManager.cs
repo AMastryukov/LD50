@@ -52,7 +52,7 @@ public class CrimeSceneManager : MonoBehaviour
         // Check the player's notebook
         foreach (EvidenceData evidence in evidenceData)
         {
-            if (!DataManager.Instance.NotebookEvidence.Contains(evidence.Name)) { yield break; }
+            if (!DataManager.Instance.CheckIfEvidenceAlreadyExists(evidence)) { yield break; }
         }
 
         print("OnAllEvidenceFound");
@@ -64,7 +64,7 @@ public class CrimeSceneManager : MonoBehaviour
     {
         foreach (var evidence in evidenceData)
         {
-            notebook?.AddEvidence(evidence.Name);
+            notebook?.AddEvidence(evidence);
         }
 
         OnAllEvidenceFound?.Invoke();
