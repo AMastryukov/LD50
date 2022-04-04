@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Red Car Side Mirror
   m_EditorClassIdentifier: 
-  EvidenceKey: 0
-  EvidenceName: Red car side mirror
-  Description: 
-  DisplayImage: {fileID: 0}
+  Name: Side mirror
+  Description: Red car side mirror probably belonging to red  car.
+  Sprite: {fileID: 0}

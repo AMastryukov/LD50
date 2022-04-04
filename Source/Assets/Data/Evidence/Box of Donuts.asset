@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Box of Donuts
   m_EditorClassIdentifier: 
-  EvidenceKey: 0
-  EvidenceName: 
-  Description: 
-  DisplayImage: {fileID: 0}
+  Name: Box of Donuts
+  Description: Looks yummy. I kinda want  to taste them.
+  Sprite: {fileID: 0}
