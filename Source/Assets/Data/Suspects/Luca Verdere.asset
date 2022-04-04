@@ -12,7 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08911f0b2cdad6f4aab5d684a2111dfd, type: 3}
   m_Name: Luca Verdere
   m_EditorClassIdentifier: 
-  SuspectName: 
-  SuspectDescription: 
-  SuspectDisplayImage: {fileID: 0}
-  SuspectsKeyEvidences: []
+  Name: Luca Verdere
+  Description: 'Has street-level criminal connections.
+
+    Ties to high-level organized
+    crime.
+
+    Runs a chop shop garage, possible money laundering operation.
+
+    Morbidly
+    obese.
+
+    Known for having a sweet tooth.
+
+    Spends a lot of time sleeping.
+
+    Enjoys
+    flashy jewelery.
+
+    Avid smoker of fine Cuban cigars.'
+  Sprite: {fileID: 0}
+  KeyEvidence: []
+  KeyEvidenceVoicelines:
+  - {fileID: 11400000, guid: cacfac12df7c9794ead89344885d279f, type: 2}
+  - {fileID: 11400000, guid: 2ca56e8442f2b4249a9cf3cde173a32b, type: 2}
+  - {fileID: 11400000, guid: 447eed9f5bd52454b9ee18a000e28d03, type: 2}
+  GenericEvidenceVoicelines:
+  - {fileID: 11400000, guid: e581c48778fbd2d449e72a7f4b5ad37d, type: 2}
+  - {fileID: 11400000, guid: 6c0c1d3062e177a409f41a6c5a7cbad0, type: 2}
+  - {fileID: 11400000, guid: 2e2fd1eeff51b2d40a344b909ed3b092, type: 2}
+  - {fileID: 11400000, guid: 20d205ff542a528468a964d081657c8a, type: 2}
+  - {fileID: 11400000, guid: e26fa98ca5971b245aeb82d25bcd5bcd, type: 2}
+  IntroductionVoiceline: {fileID: 11400000, guid: 159708b4ebe535444a2782b1ae645496, type: 2}
+  ConfessionVoiceline: {fileID: 11400000, guid: a925c80777a5ba149ac1a03ca41f4753, type: 2}

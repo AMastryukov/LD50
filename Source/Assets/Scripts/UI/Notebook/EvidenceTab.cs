@@ -11,7 +11,7 @@ public class EvidenceTab : NotebookTab
         if(dataManager.CheckIfEvidenceAlreadyExists(name))
             return;
         
-        dataManager.evidenceListInNotebook.Add(name);
+        dataManager.NotebookEvidence.Add(name);
         EvidenceData data = dataManager.GetEvidenceDataFromKey(name);
         InstantiateEvidence(data);
     }
@@ -24,6 +24,6 @@ public class EvidenceTab : NotebookTab
             return;
         }
         GameObject evidenceObject = Instantiate(evidencePrefab, content.gameObject.transform);
-        evidenceObject.GetComponent<EvidenceObject>().InitializeEvidence(evidence);
+        evidenceObject.GetComponent<EvidenceNotebookEntry>().InitializeEvidence(evidence);
     }
 }

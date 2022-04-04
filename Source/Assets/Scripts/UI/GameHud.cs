@@ -13,14 +13,12 @@ public class GameHud : MonoBehaviour
 
     private void AssignDelegates()
     {
-        GameEventSystem.Instance.OnTimerStart += ShowTimer;
+
     }
 
     private void UnAssignDelegates()
     {
-        if (GameEventSystem.Quitting)
-            return;
-        GameEventSystem.Instance.OnTimerStart -= ShowTimer;
+
     }
     
     #endregion

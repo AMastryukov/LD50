@@ -15,14 +15,12 @@ public class GameTimer : UnitySingletonPersistent<GameTimer>
 
     private void AssignDelegates()
     {
-        GameEventSystem.Instance.OnTimerStart += StartGameTimer;
+
     }
 
     private void UnAssignDelegates()
     {
-        if (GameEventSystem.Quitting)
-            return;
-        GameEventSystem.Instance.OnTimerStart -= StartGameTimer;
+
     }
 
     #endregion
@@ -48,7 +46,6 @@ public class GameTimer : UnitySingletonPersistent<GameTimer>
         {
             isRunning = false;
             Debug.Log("GameOver!");
-            GameEventSystem.Instance.OnTimerEnd?.Invoke();
         }
     }
 

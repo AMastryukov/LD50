@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
+  m_Name: BENNY_NOTE_RESPONSE
+  m_EditorClassIdentifier: 
+  AudioClip: {fileID: 8300000, guid: 32060adaf2581784e929176c22849ac6, type: 3}
+  CharacterName: Benny Factor
+  Subtitle: "The missing name is Badge, and he is one of my\u2026 associates. You
+    may have heard of him before. Be careful \u2013 he is much more dangerous than
+    you might think.\r"
