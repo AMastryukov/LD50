@@ -28,6 +28,15 @@ public class PlayerInteractor : MonoBehaviour
     [Header("Post Processing")]
     [SerializeField] private Volume volume;
 
+    [Space]
+    [Header("Materials")]
+    [SerializeField] private Material main_mat;
+    [SerializeField] private Material emissive_mat;
+
+    [Space]
+    [Header("Flashlight")]
+    [SerializeField] private Light flashlight;
+
     private Vector2 inspectionObjectRotation = Vector2.zero;
     private Interactable clickedInteractable;
     private Interactable lookingAtInteractable;
@@ -68,6 +77,17 @@ public class PlayerInteractor : MonoBehaviour
                 break;
 
             case PlayerManager.PlayerStates.Move:
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    if (flashlight.isActiveAndEnabled)
+                    {
+                        flashlight.enabled = false;
+                    }
+                    else
+                    {
+                        flashlight.enabled = true;
+                    }
+                }
                 if (lookingAtInteractable != null)
                 {
                     if (Input.GetKeyDown(KeyCode.E))
@@ -75,7 +95,7 @@ public class PlayerInteractor : MonoBehaviour
                         clickedInteractable = lookingAtInteractable;
                         clickedInteractable.OnInteract?.Invoke();
                         clickedInteractable.Interact();
-                            
+
                         if (clickedInteractable is Evidence)
                         {
                             StartInspect((Evidence)clickedInteractable);
@@ -141,12 +161,14 @@ public class PlayerInteractor : MonoBehaviour
             {
                 oldchildlayers.Add(child.gameObject.layer);
                 child.gameObject.layer = 7;
+                child.gameObject.GetComponent<Renderer>().material = emissive_mat;
             }
         }
         else
         {
             oldlayer = clickedInteractable.gameObject.layer;
             clickedInteractable.gameObject.layer = 7;
+            clickedInteractable.gameObject.GetComponent<Renderer>().material = emissive_mat;
         }
     }
 
@@ -161,12 +183,14 @@ public class PlayerInteractor : MonoBehaviour
             foreach (Transform child in clickedInteractable.gameObject.transform)
             {
                 child.gameObject.layer = oldchildlayers[i];
+                child.gameObject.GetComponent<Renderer>().material = main_mat;
                 i++;
             }
         }
         else
         {
             clickedInteractable.gameObject.layer = oldlayer;
+            clickedInteractable.gameObject.GetComponent<Renderer>().material = main_mat;
         }
 
         clickedInteractable.GetComponent<Evidence>().StopInspect();
@@ -199,7 +223,7 @@ public class PlayerInteractor : MonoBehaviour
         crosshair.enabled = false;
         
         inpsectionDescriptionText.text = evidence.evidenceData.Description;
-        inpsectionNameText.text = evidence.evidenceData.name;
+        inpsectionNameText.text = evidence.evidenceData.Name;
     }
     
     private void OnInspectionUIEnd()
