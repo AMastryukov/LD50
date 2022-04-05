@@ -64,10 +64,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1dfba4fd70e03084c959ec60fd241565, type: 3}
   - {fileID: 8300000, guid: 3d7b7bd7ace25f840910894696753b11, type: 3}
   - {fileID: 8300000, guid: 17c754cc91e5ebf479b4220bdff7c4dd, type: 3}
-  alleywayTheme: {fileID: 8300000, guid: 47236c3795430c74f8faa47ffbd2c904, type: 3}
-  victimApartmentTheme: {fileID: 8300000, guid: 6be08a20c0791b3408e5ed87b5cf7edf, type: 3}
+  alleyway1Theme: {fileID: 8300000, guid: 47236c3795430c74f8faa47ffbd2c904, type: 3}
+  alleyway2Theme: {fileID: 8300000, guid: 2a888973c590e434490dd84646d17a4c, type: 3}
+  victimApartment1Theme: {fileID: 8300000, guid: 6be08a20c0791b3408e5ed87b5cf7edf, type: 3}
+  victimApartment2Theme: {fileID: 8300000, guid: c9678cee612397f4faae71b6c66578df, type: 3}
   interrogationRoomTheme: {fileID: 8300000, guid: e66eccd983e98df4383f5c6fb9c81667, type: 3}
   chopShopTheme: {fileID: 8300000, guid: 64f30ee4dd57fae4a8635cf19e79393e, type: 3}
+  betrayalTheme: {fileID: 8300000, guid: feb691f184580804c91b3dd800f21079, type: 3}
+  endTheme: {fileID: 8300000, guid: 5d0a488f7384534469668772520260c9, type: 3}
   musicSources:
   - {fileID: 4880346319895964349}
   - {fileID: 6179873503963987953}
