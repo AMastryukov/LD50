@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ public class Door : Interactable
 
     public string SceneName;
     public bool IsUnlocked = false;
+    private bool Opened = false;
 
     public void GoToNextScene()
     {
@@ -35,10 +37,18 @@ public class Door : Interactable
             return;
         }
 
-        OnDoorOpened?.Invoke();
 
-        Debug.Log("Door has been opened, you are dead");
+        if (!Opened)
+        {
+            OnDoorOpened?.Invoke();
 
-        // Animate the door opening here
+            Debug.Log("Door has been opened, you are dead");
+
+            transform.DORotate(transform.rotation.eulerAngles + new Vector3(0, 120, 0), 3);
+            GetComponent<Collider>().enabled = false;
+            Opened = true;
+        }
+        
+        
     }
 }
