@@ -10,6 +10,13 @@ public class InterrogationManager : MonoBehaviour
     [SerializeField] private List<Suspect> Suspects;
 
     private Suspect currentSuspect;
+    public Suspect CurrentSuspect
+    {
+        get
+        {
+            return currentSuspect;
+        }
+    }
 
     private bool IsInterrogating;
 

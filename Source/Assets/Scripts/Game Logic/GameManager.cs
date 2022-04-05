@@ -170,7 +170,9 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         door.IsUnlocked = false;
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.interrogationRoomTheme);
-        #endregion
+        #endregion 
+        
+        yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("UPTON_INTRODUCTION"));
 
         #region Wait for Confession
         bool hasConfessed = false;
@@ -300,6 +302,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.interrogationRoomTheme);
         #endregion
+
+        yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("LUCA_INTRODUCTION"));
 
         #region Wait for Confession
         bool hasConfessed = false;
@@ -446,6 +450,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         Suspect.OnConfess -= onConfessed;
         #endregion
+
+        yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("BENNY_INTRODUCTION"));
 
         FindObjectOfType<Notebook>().AddSuspect(DataManager.Instance.GetSuspectDataFromKey("Benny Factor"));
 

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 168fb58c89899754abf262a8d1ea7f5d, type: 3}
-  m_Name: UPTON_INTRO
+  m_Name: UPTON_INTRODUCTION
   m_EditorClassIdentifier: 
   AudioClip: {fileID: 8300000, guid: dc79b0db505e40e4780d4acb01a3051c, type: 3}
   CharacterName: Upton O'Goode
