@@ -251,10 +251,12 @@ public class PlayerInteractor : MonoBehaviour
 
     private void OnNotificationUI(string text)
     {
+        notificationUI.DOKill();
+
         notificationMessage.text = text;
         notificationUI.DOFade(1f, 1f).onComplete = () =>
         {
-            notificationUI.DOFade(0, 3f).onComplete = ResetNotificationnUI;
+            notificationUI.DOFade(0, 5f).onComplete = ResetNotificationnUI;
         };
     }
     
@@ -285,6 +287,8 @@ public class PlayerInteractor : MonoBehaviour
     
     private void ResetNotificationnUI()
     {
+        notificationUI.DOKill();
+
         notificationUI.alpha = 0;
         notificationMessage.text = string.Empty;
     }
