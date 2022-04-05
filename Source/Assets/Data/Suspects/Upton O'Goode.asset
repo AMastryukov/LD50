@@ -27,7 +27,7 @@ MonoBehaviour:
     Avid fan of baseball.
 
     - Drives a red sedan.'
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: 823122321c9ee2a4e8e75fe9f81112ab, type: 3}
   KeyEvidence:
   - {fileID: 11400000, guid: fa9568d48029eb74bbd2315c1ad6f23f, type: 2}
   - {fileID: 11400000, guid: c43709164f44059408588acc60b5662e, type: 2}

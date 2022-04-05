@@ -32,7 +32,7 @@ MonoBehaviour:
 
     - Avid smoker of fine Cuban
     cigars.'
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 21300000, guid: f05c9fffce3420440aebca02c8c49da8, type: 3}
   KeyEvidence:
   - {fileID: 11400000, guid: 7e97412d55cd11146910fd4587f39312, type: 2}
   - {fileID: 11400000, guid: 16aa51dff29f34f4ca0a34c097663e1b, type: 2}
