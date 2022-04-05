@@ -35,16 +35,16 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameLoop()
     {
-        //yield return ChooseVoiceSequence();
-        //yield return IntroSequence();
-        //yield return AlleywayCrimeSequence();
-        //yield return InterrogationUptonSequence();
-        //yield return PreGarageSequence();
-        //yield return GarageSequence();
-        //yield return InterrogationLucaSequence();
-        //yield return PreApartmentSequence();
-        //yield return ApartmentSearchSequence();
-        //yield return AlleywayBennySequence();
+        yield return ChooseVoiceSequence();
+        yield return IntroSequence();
+        yield return AlleywayCrimeSequence();
+        yield return InterrogationUptonSequence();
+        yield return PreGarageSequence();
+        yield return GarageSequence();
+        yield return InterrogationLucaSequence();
+        yield return PreApartmentSequence();
+        yield return ApartmentSearchSequence();
+        yield return AlleywayBennySequence();
         yield return ApartmentFinalSequence();
         yield return GameEndSequence();
         yield return CreditsSequence();
@@ -109,7 +109,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         #region Lock Door & Fade In
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleywayTheme);
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleyway1Theme);
         #endregion
 
         #region Wait for Evidence Collection
@@ -369,7 +369,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         Debug.Log("[SCENE] Apartment 1 sequence");
 
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.victimApartmentTheme);
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.victimApartment1Theme);
 
         #region Wait for Evidence Collection
         bool collectedAllEvidence = false;
@@ -416,7 +416,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         door = FindObjectOfType<Door>();
         door.IsUnlocked = false;
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleywayTheme);
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleyway2Theme);
         #endregion
 
         #region Wait for Confession
@@ -466,7 +466,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         // TODO: Clear Notebook.Evidence
 
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleywayTheme);
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.victimApartment2Theme);
 
         #region Wait for Photo Inspection
         bool hasInspectedPhoto = false;
@@ -492,6 +492,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
         yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey($"PLAYER_REALIZATION"));
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.betrayalTheme);
 
         yield return new WaitForSeconds(1f);
 
@@ -524,6 +525,9 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         FindObjectOfType<PlayerMovementController>().transform.DOMove(new Vector3(-0.5f, 1, -1), 2f);
         FindObjectOfType<PlayerMovementController>().GetComponentInChildren<PlayerVCamController>().transform.DORotate(new Vector3(0, 90, 0), 2f);
         FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
+
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.endTheme);
+
         yield return new WaitForSeconds(3);
         FindObjectOfType<CopShooting>().CopShootGun();
         yield return new WaitForSeconds(10);
