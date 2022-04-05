@@ -38,8 +38,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     [SerializeField] private List<AudioSource> musicSources = new List<AudioSource>();
     [SerializeField] private List<AudioSource> sfxSources = new List<AudioSource>();
 
-    private float musicVolume = 1f;
-    private float sfxVolume = 1f;
+    //private float musicVolume = 1f;
+    //private float sfxVolume = 1f;
 
     public override void Awake()
     {
@@ -61,11 +61,11 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         }
         #endregion
 
-        musicVolume = PlayerPrefs.GetFloat(musicVolumeKey, 1f);
-        sfxVolume = PlayerPrefs.GetFloat(sfxVolumeKey, 1f);
+        //musicVolume = PlayerPrefs.GetFloat(musicVolumeKey, 1f);
+        //sfxVolume = PlayerPrefs.GetFloat(sfxVolumeKey, 1f);
 
-        SetMusicVolume(musicVolume);
-        SetSFXVolume(sfxVolume);
+        //SetMusicVolume(musicVolume);
+        //SetSFXVolume(sfxVolume);
     }
 
     public void OnNoteBookPageFlip()
@@ -82,12 +82,12 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
 
     public void SetMusicVolume(float volume)
     {
-        musicVolume = volume;
+        //musicVolume = volume;
         PlayerPrefs.SetFloat(musicVolumeKey, volume);
 
         foreach (var source in musicSources)
         {
-            source.volume = musicVolume;
+            //source.volume = musicVolume;
         }
 
         //Uncomment Later
@@ -96,12 +96,12 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
 
     public void SetSFXVolume(float volume)
     {
-        sfxVolume = volume;
+        //sfxVolume = volume;
         PlayerPrefs.SetFloat(sfxVolumeKey, volume);
 
         foreach (var source in sfxSources)
         {
-            source.volume = sfxVolume;
+            //source.volume = sfxVolume;
         }
 
         //Uncomment Later
@@ -176,7 +176,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
             fadeInSource.clip = music;
             fadeInSource.volume = 0;
             fadeInSource.Play();
-            DOTween.To(() => fadeInSource.volume, x => fadeInSource.volume = x, 1f, fadeTime);
+            DOTween.To(() => fadeInSource.volume, x => fadeInSource.volume = x, 0.1f, fadeTime);
         }
         else
         {
