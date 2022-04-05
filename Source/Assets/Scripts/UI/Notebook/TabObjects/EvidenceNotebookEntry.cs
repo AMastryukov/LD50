@@ -10,6 +10,7 @@ public class EvidenceNotebookEntry : MonoBehaviour
     public static Action<EvidenceData> OnEvidenceSelectedInNotebook;
 
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Image image;
 
     private EvidenceData evidenceData;
     
@@ -17,6 +18,7 @@ public class EvidenceNotebookEntry : MonoBehaviour
     {
         evidenceData = data;
         text.text = $"<b>{data.Name}</b>\n{data.Description}";
+        image.sprite = data.Sprite;
     }
 
     public void EvidenceClicked()
