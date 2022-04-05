@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Glass Cup
   m_EditorClassIdentifier: 
   Name: Glass Cup
-  Description: 
+  Description: Different from other cups I've seen in that this one is made of glass.
   Sprite: {fileID: 21300000, guid: 5ad598296cee92b47bba414bda5d22b8, type: 3}

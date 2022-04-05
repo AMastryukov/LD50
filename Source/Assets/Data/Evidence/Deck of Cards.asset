@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Deck of Cards
   m_EditorClassIdentifier: 
   Name: Deck of Cards
-  Description: 
+  Description: A stack of 52 cards, including the jokers.
   Sprite: {fileID: 21300000, guid: 20105206d565163458137188e32051ff, type: 3}

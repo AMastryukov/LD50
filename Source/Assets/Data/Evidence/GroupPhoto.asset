@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: GroupPhoto
   m_EditorClassIdentifier: 
-  Name: Old Photo
-  Description: A photo of Rico, Luca, Benny and... my boss, Chief Jassal.
+  Name: Group Photo
+  Description: A photo of Rico, Luca, Benny and... my boss, Chief Jassel.
   Sprite: {fileID: 21300000, guid: 7824dca668eb37843bab610a73f7b57f, type: 3}

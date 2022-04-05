@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Gloves
   m_EditorClassIdentifier: 
-  Name: A pair of gloves
-  Description: 
+  Name: A Pair of Gloves
+  Description: Leave no trace behind.
   Sprite: {fileID: 21300000, guid: b144605f9c515484f9ffe63ba7f03bff, type: 3}

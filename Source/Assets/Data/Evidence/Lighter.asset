@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646136c6675dc7b42b663c396cfbca8f, type: 3}
   m_Name: Lighter
   m_EditorClassIdentifier: 
-  Name: Lighter
-  Description: Hot!
+  Name: Flip Lighter
+  Description: One used to light cigars with, presumably.
   Sprite: {fileID: 21300000, guid: 794e5c5a9cdb5dd47be68e97f194ea64, type: 3}

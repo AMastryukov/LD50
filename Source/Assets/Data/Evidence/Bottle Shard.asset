@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bottle Shard
   m_EditorClassIdentifier: 
   Name: Piece of a Bottle
-  Description: Sharp boi.
+  Description: Sharp. I better leave it.
   Sprite: {fileID: 21300000, guid: 4b2e7df79eca02c48bb49a3a52758243, type: 3}
