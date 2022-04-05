@@ -34,11 +34,11 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameLoop()
     {
-        yield return ChooseVoiceSequence();
-        yield return IntroSequence();
-        yield return AlleywayCrimeSequence();
-        yield return InterrogationUptonSequence();
-        yield return PreGarageSequence();
+        //yield return ChooseVoiceSequence();
+        //yield return IntroSequence();
+        //yield return AlleywayCrimeSequence();
+        //yield return InterrogationUptonSequence();
+        //yield return PreGarageSequence();
         yield return GarageSequence();
         yield return InterrogationLucaSequence();
         yield return PreApartmentSequence();
@@ -94,10 +94,10 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return new WaitForSeconds(2f);
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
-        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_INTRO_CRIMESCENE"));
-        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("PLAYER_CHIEF_PHONE_INTRO_RESPONSE"));
-        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_INTRO_CRIMESCENE"));
+        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("PLAYER_CHIEF_PHONE_INTRO_RESPONSE"));
+        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
 
         yield return null;
     }
@@ -108,6 +108,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         #region Lock Door & Fade In
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleywayTheme);
         #endregion
 
         #region Wait for Evidence Collection
@@ -165,6 +166,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         door = FindObjectOfType<Door>();
         door.IsUnlocked = false;
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.interrogationRoomTheme);
         #endregion
 
         #region Wait for Confession
@@ -233,6 +235,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         Debug.Log("[SCENE] Garage sequence");
 
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.chopShopTheme);
 
         #region Wait for Evidence Collection
         bool collectedAllEvidence = false;
@@ -288,6 +291,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         door = FindObjectOfType<Door>();
         door.IsUnlocked = false;
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.interrogationRoomTheme);
         #endregion
 
         #region Wait for Confession
@@ -364,6 +368,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         Debug.Log("[SCENE] Apartment 1 sequence");
 
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.victimApartmentTheme);
 
         #region Wait for Evidence Collection
         bool collectedAllEvidence = false;
@@ -410,6 +415,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         door = FindObjectOfType<Door>();
         door.IsUnlocked = false;
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleywayTheme);
         #endregion
 
         #region Wait for Confession
@@ -459,6 +465,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         // TODO: Clear Notebook.Evidence
 
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleywayTheme);
 
         #region Wait for Photo Inspection
         bool hasInspectedPhoto = false;
