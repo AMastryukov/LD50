@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Interrogation Room.unity
     guid: 073bfc6fbf455ab479c2963512352a23
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 7fb1523f2636b7e459de20fdd3f2bcc9
-  - enabled: 1
     path: Assets/Scenes/Alleyway 1.unity
     guid: 7424e8bad8c1cd247b02a5e666999b27
   - enabled: 1
@@ -26,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Garage.unity
     guid: 36dfd257442474349b23aff29668c7ad
+  - enabled: 1
+    path: Assets/Scenes/EndCredits.unity
+    guid: 2582a2ec79da6924c908cade79bac950
   m_configObjects: {}

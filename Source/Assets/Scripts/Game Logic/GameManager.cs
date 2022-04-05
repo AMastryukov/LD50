@@ -153,6 +153,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
+
+        AudioManager.Instance.StopAllMusic();
     }
 
     private IEnumerator InterrogationUptonSequence()
@@ -208,13 +210,15 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
+
+        AudioManager.Instance.StopAllMusic();
     }
 
     private IEnumerator PreGarageSequence()
     {
         Debug.Log("[SCENE] Pre Garage sequence");
 
-        // TODO: Clear Notebook.Evidence
+        DataManager.Instance.NotebookEvidence.Clear();
 
         FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
 
@@ -279,6 +283,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
+
+        AudioManager.Instance.StopAllMusic();
     }
 
     private IEnumerator InterrogationLucaSequence()
@@ -333,13 +339,15 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
+
+        AudioManager.Instance.StopAllMusic();
     }
 
     private IEnumerator PreApartmentSequence()
     {
         Debug.Log("[SCENE] Pre Apartment sequence");
 
-        // TODO: Clear Notebook.Evidence
+        DataManager.Instance.NotebookEvidence.Clear();
 
         FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
 
@@ -360,8 +368,6 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
         yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_APARTMENT_KEEP_QUIET"));
         yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
-
-        yield return null;
     }
 
     private IEnumerator ApartmentSearchSequence()
@@ -403,6 +409,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
+
+        AudioManager.Instance.StopAllMusic();
     }
 
     private IEnumerator AlleywayBennySequence()
@@ -459,20 +467,22 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
+
+        AudioManager.Instance.StopAllMusic();
     }
 
     private IEnumerator ApartmentFinalSequence()
     {
-        // TODO: Clear Notebook.Evidence
+        DataManager.Instance.NotebookEvidence.Clear();
 
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.victimApartment2Theme);
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.betrayalTheme);
 
         #region Wait for Photo Inspection
         bool hasInspectedPhoto = false;
         Action<Evidence> onInspected = delegate (Evidence evidence)
         {
-            if (evidence.evidenceData.Name.Equals("Damning Evidence"))
+            if (evidence.evidenceData.Name.Equals("Group Photo"))
             {
                 hasInspectedPhoto = true;
             }
@@ -480,7 +490,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         Evidence.OnInspect += onInspected;
 
-        while (hasInspectedPhoto)
+        while (!hasInspectedPhoto)
         {
             yield return null;
         }
@@ -488,11 +498,12 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         Evidence.OnInspect -= onInspected;
         #endregion
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.victimApartment2Theme);
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
         yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey($"PLAYER_REALIZATION"));
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.betrayalTheme);
 
         yield return new WaitForSeconds(1f);
 
@@ -518,6 +529,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         Door.OnDoorOpened -= onDoorOpened;
         #endregion
+
+        AudioManager.Instance.StopAllMusic();
     }
 
     private IEnumerator GameEndSequence()
@@ -526,19 +539,32 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         FindObjectOfType<PlayerMovementController>().GetComponentInChildren<PlayerVCamController>().transform.DORotate(new Vector3(0, 90, 0), 2f);
         FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
 
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.endTheme);
-
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         FindObjectOfType<CopShooting>().CopShootGun();
-        yield return new WaitForSeconds(10);
-        // Animate the camera, etc.
+        yield return new WaitForSeconds(4);
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.endTheme);
+        yield return new WaitForSeconds(6);
 
-        yield return null;
+        #region Wait for Leaving Scene
+        bool hasLeftScene = false;
+        Action<string> onLeftScene = delegate (string scene) { hasLeftScene = true; };
+
+        SceneLoader.OnSceneLoaded += onLeftScene;
+
+        sceneLoader.ChangeScene("EndCredits");
+
+        while (!hasLeftScene)
+        {
+            yield return null;
+        }
+
+        SceneLoader.OnSceneLoaded -= onLeftScene;
+        #endregion
     }
 
     private IEnumerator CreditsSequence()
     {
-        // Yield credits
+        Debug.Log("Credit Scene");
 
         yield return null;
     }
@@ -551,7 +577,5 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         // wait 5 seconds
 
         yield return null;
-
-        sceneLoader.ChangeScene("MainMenu");
     }
 }
