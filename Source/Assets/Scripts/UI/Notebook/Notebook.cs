@@ -14,6 +14,7 @@ public enum Tabs
 
 public class Notebook : MonoBehaviour
 {
+    [SerializeField] private CanvasGroup homePage;
     [SerializeField] private LogsTab logsTab;
     [SerializeField] private EvidenceTab evidenceTab;
     [SerializeField] private SuspectTab suspectTab;
@@ -42,7 +43,7 @@ public class Notebook : MonoBehaviour
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        tabs = new List<NotebookTab> {logsTab, evidenceTab, suspectTab};
+        tabs = new List<NotebookTab> { logsTab, evidenceTab, suspectTab};
     }
 
     private void Start()
@@ -116,6 +117,8 @@ public class Notebook : MonoBehaviour
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
+
+            homePage.alpha = 1f;
         }
 
         isOpen = !isOpen;
@@ -130,6 +133,8 @@ public class Notebook : MonoBehaviour
 
     private void UnHighlightAllTabs()
     {
+        homePage.alpha = 0f;
+
         foreach (var tab in tabs)
         {
             tab.UnHighlight();

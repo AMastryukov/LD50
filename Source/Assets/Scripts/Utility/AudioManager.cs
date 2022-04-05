@@ -38,6 +38,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     [SerializeField] private List<AudioSource> musicSources = new List<AudioSource>();
     [SerializeField] private List<AudioSource> sfxSources = new List<AudioSource>();
 
+    private float defaultMusicVolume = 0.1f;
+
     //private float musicVolume = 1f;
     //private float sfxVolume = 1f;
 
@@ -45,6 +47,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     {
         base.Awake();
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        defaultMusicVolume = musicSources[0].volume;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -60,12 +64,6 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
             }
         }
         #endregion
-
-        //musicVolume = PlayerPrefs.GetFloat(musicVolumeKey, 1f);
-        //sfxVolume = PlayerPrefs.GetFloat(sfxVolumeKey, 1f);
-
-        //SetMusicVolume(musicVolume);
-        //SetSFXVolume(sfxVolume);
     }
 
     public void OnNoteBookPageFlip()
@@ -78,34 +76,6 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     {
         AudioClip clipToPlay = NotebookScribbleSFX[Random.Range(0, NotebookScribbleSFX.Length)];
         sfxSources[0]?.PlayOneShot(clipToPlay);
-    }
-
-    public void SetMusicVolume(float volume)
-    {
-        //musicVolume = volume;
-        PlayerPrefs.SetFloat(musicVolumeKey, volume);
-
-        foreach (var source in musicSources)
-        {
-            //source.volume = musicVolume;
-        }
-
-        //Uncomment Later
-        //musicVolumeSlider.value = musicVolume;
-    }
-
-    public void SetSFXVolume(float volume)
-    {
-        //sfxVolume = volume;
-        PlayerPrefs.SetFloat(sfxVolumeKey, volume);
-
-        foreach (var source in sfxSources)
-        {
-            //source.volume = sfxVolume;
-        }
-
-        //Uncomment Later
-        //sfxVolumeSlider.value = sfxVolume;
     }
 
     public IEnumerator WaitForVoiceline(int ID)
@@ -176,7 +146,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
             fadeInSource.clip = music;
             fadeInSource.volume = 0;
             fadeInSource.Play();
-            DOTween.To(() => fadeInSource.volume, x => fadeInSource.volume = x, 0.1f, fadeTime);
+            DOTween.To(() => fadeInSource.volume, x => fadeInSource.volume = x, defaultMusicVolume, fadeTime);
         }
         else
         {

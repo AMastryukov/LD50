@@ -35,8 +35,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameLoop()
     {
-        yield return ChooseVoiceSequence();
-        yield return IntroSequence();
+        //yield return ChooseVoiceSequence();
+        //yield return IntroSequence();
         yield return AlleywayCrimeSequence();
         yield return InterrogationUptonSequence();
         yield return PreGarageSequence();
@@ -431,6 +431,9 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleyway2Theme);
         #endregion
 
+        yield return new WaitForSeconds(2f);
+        yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("BENNY_INTRODUCTION"));
+
         #region Wait for Confession
         bool hasConfessed = false;
         Action<Suspect> onConfessed = delegate (Suspect suspect)
@@ -450,8 +453,6 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         Suspect.OnConfess -= onConfessed;
         #endregion
-
-        yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("BENNY_INTRODUCTION"));
 
         FindObjectOfType<Notebook>().AddSuspect(DataManager.Instance.GetSuspectDataFromKey("Benny Factor"));
 
