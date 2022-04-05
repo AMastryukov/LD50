@@ -16,6 +16,7 @@ public class DataManager : UnitySingletonPersistent<DataManager>
     [SerializeField] private VoiceLineData[] genericPlayerEvidencePromptsMale;
     [SerializeField] private VoiceLineData[] genericPlayerEvidencePromptsFemale;
     [SerializeField] private AudioClip[] soundEffects;
+    [SerializeField] private AudioClip[] voicemail;
 
     public bool CheckIfLogAlreadyExists(string log)
     {
@@ -129,6 +130,18 @@ public class DataManager : UnitySingletonPersistent<DataManager>
         }
 
         Debug.LogError($"[DataManager] Could not find sound effect with key {key}");
+
+        return null;
+    }
+
+    public AudioClip GetVoiceMail()
+    {
+        foreach (var mail in voicemail)
+        {
+            return mail;
+        }
+
+        Debug.LogError($"[DataManager] Could not find voicemail");
 
         return null;
     }
