@@ -9,6 +9,7 @@ public class NotebookTab : MonoBehaviour
 {
     [SerializeField] protected CanvasGroup content;
     [SerializeField] protected GameObject scrollViewContent;
+    [SerializeField] protected GameObject selectionCircle;
     private const float ScaleFactor = 1.1f;
     private readonly Vector3 originalScale = new Vector3(1f,1f,1f);
     private Button button;
@@ -22,14 +23,16 @@ public class NotebookTab : MonoBehaviour
 
     public void Highlight()
     {
-        gameObject.GetComponent<RectTransform>().DOScale(ScaleFactor, 0.25f);
+        selectionCircle.gameObject.SetActive(true);
+        //gameObject.GetComponent<RectTransform>().DOScale(ScaleFactor, 0.25f);
         button.interactable = false;
         Show();
     }
 
     public void UnHighlight()
     {
-        gameObject.GetComponent<RectTransform>().DOScale(originalScale, 0.25f);
+        selectionCircle.gameObject.SetActive(false);
+        //gameObject.GetComponent<RectTransform>().DOScale(originalScale, 0.25f);
         button.interactable = true;
         Hide();
     }
