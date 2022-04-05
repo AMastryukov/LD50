@@ -31,8 +31,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     [SerializeField] public AudioClip interrogationRoomTheme;
     [SerializeField] public AudioClip chopShopTheme;
     
-    private List<AudioSource> musicSources;
-    private List<AudioSource> sfxSources;
+    [SerializeField] private List<AudioSource> musicSources = new List<AudioSource>();
+    [SerializeField] private List<AudioSource> sfxSources = new List<AudioSource>();
 
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
@@ -46,18 +46,11 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         #region Organize Audio Sources
-        musicSources = new List<AudioSource>();
-        sfxSources = new List<AudioSource>();
-
         var audioSources = FindObjectsOfType<AudioSource>().ToList();
 
         foreach(var source in audioSources)
         {
-            if (source.CompareTag(GameConstants.TagConstants.MusicAudioSource))
-            {
-                musicSources.Add(source);
-            }
-            else if (source.CompareTag(GameConstants.TagConstants.SFXAudioSource))
+            if (source.CompareTag(GameConstants.TagConstants.SFXAudioSource))
             {
                 sfxSources.Add(source);
             }
@@ -94,7 +87,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         }
 
         //Uncomment Later
-       //musicVolumeSlider.value = musicVolume;
+        //musicVolumeSlider.value = musicVolume;
     }
 
     public void SetSFXVolume(float volume)
@@ -106,6 +99,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         {
             source.volume = sfxVolume;
         }
+
         //Uncomment Later
         //sfxVolumeSlider.value = sfxVolume;
     }

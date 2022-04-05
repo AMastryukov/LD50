@@ -81,7 +81,8 @@ public class PlayerInteractor : MonoBehaviour
                 crosshair.enabled = true;
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    flashlight.enabled = !flashlight.enabled;
+                    // FLASHLIGHT
+                    // flashlight.enabled = !flashlight.enabled;
                 }
                 if (lookingAtInteractable != null)
                 {
