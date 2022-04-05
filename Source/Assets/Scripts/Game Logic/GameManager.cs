@@ -553,5 +553,6 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return null;
 
         sceneLoader.ChangeScene("MainMenu");
+        AudioManager.Instance.StopAllMusic();
     }
 }
