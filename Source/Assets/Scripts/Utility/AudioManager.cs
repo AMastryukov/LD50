@@ -26,10 +26,10 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     [SerializeField] private AudioClip[] NotebookPageFlipSFX;
 
     [Header("Music")]
-    [SerializeField] private AudioClip alleywayTheme; 
-    [SerializeField] private AudioClip victimApartmentTheme;
-    [SerializeField] private AudioClip interrogationRoomTheme;
-    [SerializeField] private AudioClip chopShopTheme;
+    [SerializeField] public AudioClip alleywayTheme; 
+    [SerializeField] public AudioClip victimApartmentTheme;
+    [SerializeField] public AudioClip interrogationRoomTheme;
+    [SerializeField] public AudioClip chopShopTheme;
     
     private List<AudioSource> musicSources;
     private List<AudioSource> sfxSources;
