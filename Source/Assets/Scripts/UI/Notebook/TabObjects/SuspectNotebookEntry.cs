@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SuspectNotebookEntry : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Image image;
 
     private SuspectData suspectData;
     
@@ -14,5 +15,6 @@ public class SuspectNotebookEntry : MonoBehaviour
     {
         suspectData = data;
         text.text = $"<b>{data.Name}</b>\n{data.Description}";
+        image.sprite = data.Sprite;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UtilityCode;
 using System;
+using DG.Tweening;
 
 /// <summary>
 /// An instance of this class is meant to exist independant of what level is loaded
@@ -471,7 +472,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         bool hasInspectedPhoto = false;
         Action<Evidence> onInspected = delegate (Evidence evidence)
         {
-            if (evidence.evidenceData.Name.Equals("Photo of Benny, Luca, Rico and Badge"))
+            if (evidence.evidenceData.Name.Equals("Damning Evidence"))
             {
                 hasInspectedPhoto = true;
             }
@@ -479,7 +480,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         Evidence.OnInspect += onInspected;
 
-        while (false)
+        while (hasInspectedPhoto)
         {
             yield return null;
         }
@@ -520,8 +521,12 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameEndSequence()
     {
+        FindObjectOfType<PlayerMovementController>().transform.DOMove(new Vector3(-0.5f, 1, -1), 2f);
+        FindObjectOfType<PlayerMovementController>().GetComponentInChildren<PlayerVCamController>().transform.DORotate(new Vector3(0, 90, 0), 2f);
         FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
-
+        yield return new WaitForSeconds(3);
+        FindObjectOfType<CopShooting>().CopShootGun();
+        yield return new WaitForSeconds(10);
         // Animate the camera, etc.
 
         yield return null;
