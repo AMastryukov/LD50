@@ -472,7 +472,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         bool hasInspectedPhoto = false;
         Action<Evidence> onInspected = delegate (Evidence evidence)
         {
-            if (evidence.evidenceData.Name.Equals("Smoked Cigar"))
+            if (evidence.evidenceData.Name.Equals("Damning Evidence"))
             {
                 hasInspectedPhoto = true;
             }
