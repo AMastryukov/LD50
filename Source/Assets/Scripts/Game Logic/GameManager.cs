@@ -37,14 +37,14 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     {
         //yield return ChooseVoiceSequence();
         //yield return IntroSequence();
-        yield return AlleywayCrimeSequence();
-        yield return InterrogationUptonSequence();
-        yield return PreGarageSequence();
-        yield return GarageSequence();
-        yield return InterrogationLucaSequence();
-        yield return PreApartmentSequence();
-        yield return ApartmentSearchSequence();
-        yield return AlleywayBennySequence();
+        //yield return AlleywayCrimeSequence();
+        //yield return InterrogationUptonSequence();
+        //yield return PreGarageSequence();
+        //yield return GarageSequence();
+        //yield return InterrogationLucaSequence();
+        //yield return PreApartmentSequence();
+        //yield return ApartmentSearchSequence();
+        //yield return AlleywayBennySequence();
         yield return ApartmentFinalSequence();
         yield return GameEndSequence();
         yield return CreditsSequence();
@@ -154,7 +154,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
 
-        AudioManager.Instance.StopAllMusic();
+        AudioManager.Instance.FadeOutMusic();
     }
 
     private IEnumerator InterrogationUptonSequence()
@@ -213,7 +213,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
 
-        AudioManager.Instance.StopAllMusic();
+        AudioManager.Instance.FadeOutMusic();
     }
 
     private IEnumerator PreGarageSequence()
@@ -286,7 +286,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
 
-        AudioManager.Instance.StopAllMusic();
+        AudioManager.Instance.FadeOutMusic();
     }
 
     private IEnumerator InterrogationLucaSequence()
@@ -344,7 +344,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
 
-        AudioManager.Instance.StopAllMusic();
+        AudioManager.Instance.FadeOutMusic();
     }
 
     private IEnumerator PreApartmentSequence()
@@ -414,7 +414,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
 
-        AudioManager.Instance.StopAllMusic();
+        AudioManager.Instance.FadeOutMusic();
     }
 
     private IEnumerator AlleywayBennySequence()
@@ -475,7 +475,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         SceneLoader.OnSceneLoaded -= onLeftScene;
         #endregion
 
-        AudioManager.Instance.StopAllMusic();
+        AudioManager.Instance.FadeOutMusic();
     }
 
     private IEnumerator ApartmentFinalSequence()
@@ -483,40 +483,40 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         DataManager.Instance.NotebookEvidence.Clear();
 
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.betrayalTheme);
+        //AudioManager.Instance.FadeInMusic(AudioManager.Instance.betrayalTheme);
 
-        #region Wait for Photo Inspection
-        bool hasInspectedPhoto = false;
-        Action<Evidence> onInspected = delegate (Evidence evidence)
-        {
-            if (evidence.evidenceData.Name.Equals("Group Photo"))
-            {
-                hasInspectedPhoto = true;
-            }
-        };
+        //#region Wait for Photo Inspection
+        //bool hasInspectedPhoto = false;
+        //Action<Evidence> onInspected = delegate (Evidence evidence)
+        //{
+        //    if (evidence.evidenceData.Name.Equals("Group Photo"))
+        //    {
+        //        hasInspectedPhoto = true;
+        //    }
+        //};
 
-        Evidence.OnInspect += onInspected;
+        //Evidence.OnInspect += onInspected;
 
-        while (!hasInspectedPhoto)
-        {
-            yield return null;
-        }
+        //while (!hasInspectedPhoto)
+        //{
+        //    yield return null;
+        //}
 
-        Evidence.OnInspect -= onInspected;
-        #endregion
+        //Evidence.OnInspect -= onInspected;
+        //#endregion
 
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.victimApartment2Theme);
+        //AudioManager.Instance.FadeInMusic(AudioManager.Instance.victimApartment2Theme);
 
-        var playerVoice = FindObjectOfType<PlayerVoice>();
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey($"PLAYER_REALIZATION"));
+        //var playerVoice = FindObjectOfType<PlayerVoice>();
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey($"PLAYER_REALIZATION"));
 
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_BAIT"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_BAIT"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
 
         #region Unlock Door
         door = FindObjectOfType<Door>();
@@ -536,21 +536,43 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         Door.OnDoorOpened -= onDoorOpened;
         #endregion
-
-        AudioManager.Instance.StopAllMusic();
     }
 
     private IEnumerator GameEndSequence()
     {
-        FindObjectOfType<PlayerMovementController>().transform.DOMove(new Vector3(-0.5f, 1, -1), 2f);
-        FindObjectOfType<PlayerMovementController>().GetComponentInChildren<PlayerVCamController>().transform.DORotate(new Vector3(0, 90, 0), 2f);
+        AudioManager.Instance.FadeOutMusic();
+
+        // Rotate the Virtual camera into position
+        var vCamController = FindObjectOfType<PlayerVCamController>();
+        vCamController.transform.DORotate(new Vector3(0, 90, 0), 1f).SetEase(Ease.OutQuad);
+        vCamController.enabled = false;
+
+        GameObject.FindGameObjectWithTag("deathCam").transform.DORotate(new Vector3(0, 90, 0), 1f).SetEase(Ease.OutQuad);
+
+        // Disable the [E] on screen
+        FindObjectOfType<PlayerInteractor>().ResetInteractionUI();
+
+        var playerMovementController = FindObjectOfType<PlayerMovementController>();
+        playerMovementController.transform.DOMove(new Vector3(-0.5f, 1, -1), 1f).SetEase(Ease.OutQuad);
+        playerMovementController.transform.DORotate(new Vector3(0, 90, 0), 1f).SetEase(Ease.OutQuad);
+
         FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
 
+        yield return new WaitForSeconds(0.35f);
+
+        yield return FindObjectOfType<CopShooting>().RaiseWeapon();
+
+        yield return new WaitForSeconds(1.5f);
+
+        yield return FindObjectOfType<CopShooting>().ShootGun();
+
         yield return new WaitForSeconds(2);
-        FindObjectOfType<CopShooting>().CopShootGun();
-        yield return new WaitForSeconds(4);
+
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.endTheme);
-        yield return new WaitForSeconds(6);
+        FindObjectOfType<PlayerManager>().FadeInDeathOverlay();
+
+        // Kind of dumb but this is perfect timing for the song
+        yield return new WaitForSeconds(18.5f);
 
         #region Wait for Leaving Scene
         bool hasLeftScene = false;
@@ -571,9 +593,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator CreditsSequence()
     {
-        Debug.Log("Credit Scene");
-
-        yield return null;
+        FindObjectOfType<SceneLoader>().FadeInInstant();
+        yield return FindObjectOfType<EndCredits>().RollCredits();
     }
 
     private IEnumerator PostCreditSequence()

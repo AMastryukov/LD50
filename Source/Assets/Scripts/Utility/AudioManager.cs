@@ -100,7 +100,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
 
     public void PlayMusicDirectly(AudioClip music)
     {
-        StopAllMusic();
+        FadeOutMusic();
         foreach (AudioSource source in musicSources)
         {
             if (!source.isPlaying)
@@ -112,13 +112,16 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         }
     }
 
-    public void StopAllMusic()
+    public void FadeOutMusic()
     {
         foreach (AudioSource source in musicSources)
         {
             if (source.isPlaying)
             {
-                source.Stop();
+                DOTween.To(() => source.volume, x => source.volume = x, 0, 1f).onComplete = () =>
+                {
+                    source.Stop();
+                };
             }
         }
     }

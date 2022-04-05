@@ -274,7 +274,7 @@ public class PlayerInteractor : MonoBehaviour
         crosshair.enabled = true;
     }
 
-    private void ResetInteractionUI()
+    public void ResetInteractionUI()
     {
         interactionUI.enabled = false;
     }

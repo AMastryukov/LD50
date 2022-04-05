@@ -3,40 +3,53 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using DG.Tweening;
 
-
-[RequireComponent(typeof(AudioSource))]
 public class CopShooting : MonoBehaviour
 {
     [SerializeField] private GameObject muzzleFlash; 
+    [SerializeField] private AudioSource shootSource;
     [SerializeField] private AudioClip shootSoundEffect;
+    [SerializeField] private Transform shootingArmTransform;
+    [SerializeField] private Transform bloodPool;
     
-    
-    private AudioSource CopAudioSource;
     private GameObject deathCamera;
-    private float flashTimer = 0.08f;
+    private float flashTimer = 0.1f;
     private PlayerManager manager;
+
+    private float originalZArmPosition;
     
     
     private void Start()
     {
         muzzleFlash.SetActive(false);
         
-        CopAudioSource = gameObject.GetComponent<AudioSource>();
         manager = FindObjectOfType<PlayerManager>();
         deathCamera = GameObject.FindWithTag("deathCam");
         
         if(deathCamera == null)
             Debug.LogWarning("Death camera not found!");
+
+        bloodPool.gameObject.SetActive(false);
     }
 
-    
-    //Call this to shoot the gun
-    public void CopShootGun()
+    public IEnumerator RaiseWeapon()
     {
-        //Animation 
-        CopAudioSource.PlayOneShot(shootSoundEffect);
+        originalZArmPosition = shootingArmTransform.localEulerAngles.z;
+        shootingArmTransform.DOLocalRotate(new Vector3(shootingArmTransform.localEulerAngles.x, shootingArmTransform.localEulerAngles.y, -15f), 1f).SetEase(Ease.OutQuart);
+
+        yield return null;
+    }
+
+    public IEnumerator ShootGun()
+    {
+        shootSource.PlayOneShot(shootSoundEffect);
+
         muzzleFlash.SetActive(true);
+
+        yield return new WaitForSeconds(flashTimer);
+
+        muzzleFlash.SetActive(false);
 
         if (deathCamera != null)
         {
@@ -47,25 +60,19 @@ public class CopShooting : MonoBehaviour
                     deathCamera.GetComponent<CinemachineVirtualCamera>().Priority = 15;
                     deathCamera.GetComponent<Animator>().SetTrigger("Die");
                     
-                    if(manager != null)
+                    if (manager != null)
                         manager._currentState = PlayerManager.PlayerStates.Wait;
                 }
             }
         }
-    }
 
+        bloodPool.gameObject.SetActive(true);
+        bloodPool.DOScale(Vector3.one * 20f, 20f);
 
-    private void Update()
-    {
-        if (muzzleFlash.activeSelf == true)
-        {
-            flashTimer -= Time.deltaTime;
+        yield return new WaitForSeconds(0.25f);
 
-            if (flashTimer <= 0f)
-            {
-                muzzleFlash.SetActive(false);
-                flashTimer = 0.08f;
-            }
-        }
+        shootingArmTransform.DOLocalRotate(new Vector3(shootingArmTransform.localEulerAngles.x, shootingArmTransform.localEulerAngles.y, originalZArmPosition), 10f).SetEase(Ease.OutQuart);
+
+        yield return null;
     }
 }

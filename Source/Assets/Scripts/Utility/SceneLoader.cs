@@ -80,6 +80,13 @@ public class SceneLoader : MonoBehaviour
                 });
     }
 
+    public void FadeInInstant()
+    {
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+    }
+
     /// <summary>
     /// Change scene with a smooth fading transition
     /// </summary>

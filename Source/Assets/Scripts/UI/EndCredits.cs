@@ -7,25 +7,19 @@ using UnityEngine;
 public class EndCredits : MonoBehaviour
 {
     [SerializeField] private List<CanvasGroup> creditPanels;
-    private int currentIndex = -1;
 
-    private void Start()
+    public IEnumerator RollCredits()
     {
-        RollCredits();
-    }
-
-    private void RollCredits()
-    {
-        currentIndex++;
-        if (currentIndex >= creditPanels.Count)
+        foreach(var panel in creditPanels)
         {
-            //Main Menu?
-            return;
+            panel.alpha = 1f;
+            panel.transform.DOScale(Vector2.one * 1.15f, 5f);
+
+            yield return new WaitForSeconds(2f);
+
+            panel.DOFade(0f, 1f).SetEase(Ease.OutQuad);
+
+            yield return new WaitForSeconds(1f);
         }
-
-        creditPanels[currentIndex].DOFade(1, 4f).onComplete = () =>
-        {
-            creditPanels[currentIndex].DOFade(0, 4f).onComplete = RollCredits;
-        };
     }
 }
