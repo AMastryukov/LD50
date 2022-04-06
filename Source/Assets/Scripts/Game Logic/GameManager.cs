@@ -34,8 +34,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameLoop()
     {
-        yield return ChooseVoiceSequence();
-        yield return IntroSequence();
+        //yield return ChooseVoiceSequence();
+        //yield return IntroSequence();
         yield return AlleywayCrimeSequence();
         yield return InterrogationUptonSequence();
         yield return PreGarageSequence();
