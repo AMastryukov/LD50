@@ -2524,7 +2524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611989735084715194, guid: 8786d6722577b0749a244997d68757e1, type: 3}
       propertyPath: EnableVoicelines
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 611989735084715195, guid: 8786d6722577b0749a244997d68757e1, type: 3}
       propertyPath: m_Name

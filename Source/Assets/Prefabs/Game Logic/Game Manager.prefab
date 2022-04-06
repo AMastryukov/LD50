@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ccfe7d55574bc43b1e5f2649d24e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EnableVoicelines: 1
