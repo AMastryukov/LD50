@@ -8,10 +8,10 @@ public class EvidenceTab : NotebookTab
     
     public void Add(EvidenceData evidence)
     {
-        if(dataManager.CheckIfEvidenceAlreadyExists(evidence))
+        if (DataManager.Instance.CheckIfEvidenceAlreadyExists(evidence))
             return;
-            
-        dataManager.NotebookEvidence.Add(evidence);
+
+        DataManager.Instance.NotebookEvidence.Add(evidence);
         InstantiateEvidence(evidence);
     }
 

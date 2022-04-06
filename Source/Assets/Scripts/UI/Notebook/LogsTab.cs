@@ -8,9 +8,9 @@ public class LogsTab : NotebookTab
 
     public void Add(string log)
     {
-        if (dataManager.CheckIfLogAlreadyExists(log))
+        if (DataManager.Instance.CheckIfLogAlreadyExists(log))
             return;
-        dataManager.NotebookLog.Add(log);
+        DataManager.Instance.NotebookLog.Add(log);
         InstantiateLog(log);
     }
 

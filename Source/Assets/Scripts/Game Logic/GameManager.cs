@@ -95,12 +95,10 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return new WaitForSeconds(2f);
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_INTRO_CRIMESCENE"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("PLAYER_CHIEF_PHONE_INTRO_RESPONSE"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
-
-        yield return null;
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_INTRO_CRIMESCENE"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("PLAYER_CHIEF_PHONE_INTRO_RESPONSE"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
     }
 
     private IEnumerator AlleywayCrimeSequence()
@@ -130,9 +128,9 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return new WaitForSeconds(2f);
 
         var playerVoice = FindObjectOfType<PlayerVoice>(); 
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_DETAIN_UPTON"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_DETAIN_UPTON"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
 
         FindObjectOfType<Notebook>().AddSuspect(DataManager.Instance.GetSuspectDataFromKey("Upton O'Goode"));
 
@@ -175,7 +173,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.interrogationRoomTheme);
         #endregion 
         
-        yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("UPTON_INTRODUCTION"));
+        //yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("UPTON_INTRODUCTION"));
 
         #region Wait for Confession
         bool hasConfessed = false;
@@ -236,9 +234,9 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return new WaitForSeconds(2f);
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_PRE_GARAGE_WARNING"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_PRE_GARAGE_WARNING"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
     }
 
     private IEnumerator GarageSequence()
@@ -263,12 +261,12 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         CrimeSceneManager.OnAllEvidenceFound -= onCollectAllEvidence;
         #endregion
 
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_DETAIN_LUCA"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_DETAIN_LUCA"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
 
         FindObjectOfType<Notebook>().AddSuspect(DataManager.Instance.GetSuspectDataFromKey("Luca Verdere"));
 
@@ -310,7 +308,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.interrogationRoomTheme);
         #endregion
 
-        yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("LUCA_INTRODUCTION"));
+        // yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("LUCA_INTRODUCTION"));
 
         #region Wait for Confession
         bool hasConfessed = false;
@@ -371,15 +369,15 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         yield return new WaitForSeconds(2f);
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_APARTMENT_KEEP_QUIET"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_APARTMENT_KEEP_QUIET"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
 
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("BENNY_PHONE_FIRST_CONTACT"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("BENNY_PHONE_FIRST_CONTACT"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
     }
 
     private IEnumerator ApartmentSearchSequence()
@@ -442,8 +440,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.alleyway2Theme);
         #endregion
 
-        yield return new WaitForSeconds(2f);
-        yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("BENNY_INTRODUCTION"));
+        //yield return new WaitForSeconds(2f);
+        //yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("BENNY_INTRODUCTION"));
 
         #region Wait for Confession
         bool hasConfessed = false;
@@ -518,18 +516,18 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         Evidence.OnInspect -= onInspected;
         #endregion
 
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.victimApartment2Theme);
 
         var playerVoice = FindObjectOfType<PlayerVoice>();
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey($"PLAYER_REALIZATION"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey($"PLAYER_REALIZATION"));
 
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
 
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_BAIT"));
-        yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-pickup"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("CHIEF_PHONE_BAIT"));
+        //yield return playerVoice.PlayAudio(DataManager.Instance.GetSoundEffect("phone-hangup"));
 
         #region Unlock Door
         door = FindObjectOfType<Door>();

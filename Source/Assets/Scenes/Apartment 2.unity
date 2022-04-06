@@ -2985,14 +2985,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneLoader
       objectReference: {fileID: 0}
-    - target: {fileID: 2160107359550909379, guid: fc4f40eff8577704d8059fd066e3f1c8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8498555555606077251, guid: fc4f40eff8577704d8059fd066e3f1c8, type: 3}
-      propertyPath: m_Alpha
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc4f40eff8577704d8059fd066e3f1c8, type: 3}
 --- !u!1 &991606848 stripped
@@ -4136,14 +4128,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.032
       objectReference: {fileID: 0}
-    - target: {fileID: 543450651835768636, guid: 96e83f1f9e6d2654fbe437fd2cbaceb0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 543450651835768636, guid: 96e83f1f9e6d2654fbe437fd2cbaceb0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 5.31
-      objectReference: {fileID: 0}
     - target: {fileID: 1081336562582715059, guid: 96e83f1f9e6d2654fbe437fd2cbaceb0, type: 3}
       propertyPath: m_Name
       value: Cop_Shooting 1
@@ -4682,6 +4666,7 @@ MonoBehaviour:
   SceneName: 
   IsUnlocked: 0
   doorOpen: {fileID: 8300000, guid: 2b681c1ce9c81a646917c932d4998691, type: 3}
+  doorLocked: {fileID: 0}
 --- !u!65 &1451006851
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6423,45 +6408,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2575740552318359032, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2575740552318359032, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2575740552318359032, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2868349750555194159, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2868349750555194159, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3986419102657208957, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3986419102657208957, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3986419102657208957, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6730603314183352611, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
       propertyPath: m_Name
       value: NotebookCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6730603314183352613, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_Alpha
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6730603314183352617, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
       propertyPath: m_Pivot.x
@@ -6545,18 +6502,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6730603314183352617, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7695862931989143015, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7695862931989143015, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7695862931989143015, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}
-      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8016688721469650507, guid: 346c4f3da11e38141a69e086102a5dcd, type: 3}

@@ -127,7 +127,7 @@ MonoBehaviour:
   SceneName: 
   IsUnlocked: 0
   doorOpen: {fileID: 8300000, guid: 2b681c1ce9c81a646917c932d4998691, type: 3}
-  doorLocked: {fileID: 8300000, guid: ac2a27c82db002c4782af52fe7604405, type: 3}
+  doorLocked: {fileID: 8300000, guid: 99ac58d332273ea42b8f36a2efa98874, type: 3}
 --- !u!82 &412692515200207631
 AudioSource:
   m_ObjectHideFlags: 0

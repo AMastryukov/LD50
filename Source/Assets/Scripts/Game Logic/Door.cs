@@ -29,6 +29,7 @@ public class Door : Interactable
         if (!IsUnlocked) 
         { 
             Debug.Log("Door is locked"); 
+            audioSource.PlayOneShot(doorLocked);
             return; 
         }
 
@@ -40,6 +41,8 @@ public class Door : Interactable
         audioSource.PlayOneShot(doorOpen);
 
         SceneLoader.Instance.ChangeScene(SceneName);
+
+        IsUnlocked = false;
     }
 
     public void OpenDoorPhysically()

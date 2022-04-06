@@ -9,10 +9,10 @@ public class SuspectTab : NotebookTab
 
     public void Add(SuspectData suspect)
     {
-        if(dataManager.CheckIfSuspectAlreadyExists(suspect))
+        if(DataManager.Instance.CheckIfSuspectAlreadyExists(suspect))
             return;
 
-        dataManager.NotebookSuspects.Add(suspect);
+        DataManager.Instance.NotebookSuspects.Add(suspect);
         InstantiateSuspect(suspect);
     }
     
