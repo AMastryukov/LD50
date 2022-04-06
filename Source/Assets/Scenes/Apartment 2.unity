@@ -4773,6 +4773,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cop_Shooting 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2438248307001465889, guid: 96e83f1f9e6d2654fbe437fd2cbaceb0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438248307001465889, guid: 96e83f1f9e6d2654fbe437fd2cbaceb0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1589
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438248307001465889, guid: 96e83f1f9e6d2654fbe437fd2cbaceb0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0237
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438248307001466078, guid: 96e83f1f9e6d2654fbe437fd2cbaceb0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2438248307001466079, guid: 96e83f1f9e6d2654fbe437fd2cbaceb0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96e83f1f9e6d2654fbe437fd2cbaceb0, type: 3}
 --- !u!1001 &1276894195

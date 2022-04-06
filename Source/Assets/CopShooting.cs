@@ -14,7 +14,7 @@ public class CopShooting : MonoBehaviour
     [SerializeField] private Transform bloodPool;
     
     private GameObject deathCamera;
-    private float flashTimer = 0.1f;
+    private float flashTimer = 0.15f;
     private PlayerManager manager;
 
     private float originalZArmPosition;
