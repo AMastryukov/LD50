@@ -11,6 +11,7 @@ public class Suspect : MonoBehaviour
     public static Action<Suspect> OnConfess;
 
     public SuspectData Data;
+    public bool HasConfessed { get; private set; } = false;
 
     [SerializeField] private AudioSource mouthAudioSource;
 
@@ -24,7 +25,6 @@ public class Suspect : MonoBehaviour
     private PlayerVoice playerVoice;
 
     private bool isTalking = false;
-    private bool hasConfessed = false;
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class Suspect : MonoBehaviour
 
     public IEnumerator AskAboutEvidence(EvidenceData evidenceData)
     {
-        if (hasConfessed || isTalking) { yield break; }
+        if (HasConfessed || isTalking) { yield break; }
 
         EvidenceData evidence = Data.KeyEvidence.FirstOrDefault(ev => ev.Name == evidenceData.Name);
 
@@ -79,7 +79,7 @@ public class Suspect : MonoBehaviour
 
                 yield return PlayAudio(Data.ConfessionVoiceline);
 
-                hasConfessed = true;
+                HasConfessed = true;
             }
         }
         else
@@ -95,6 +95,8 @@ public class Suspect : MonoBehaviour
 
     public IEnumerator PlayAudio(VoiceLineData voicelineData)
     {
+        if (!GameManager.Instance.EnableVoicelines) { yield break; }
+
         StartCoroutine(voicelineSubtitles.ShowSubtitle(voicelineData));
 
         mouthAudioSource.clip = voicelineData.AudioClip;
@@ -106,6 +108,8 @@ public class Suspect : MonoBehaviour
 
     public IEnumerator PlayAudio(AudioClip clip)
     {
+        if (!GameManager.Instance.EnableVoicelines) { yield break; }
+
         mouthAudioSource.clip = clip;
         mouthAudioSource.Play();
 

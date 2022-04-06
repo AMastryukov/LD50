@@ -13,12 +13,7 @@ MonoBehaviour:
   m_Name: Benny Factor
   m_EditorClassIdentifier: 
   Name: Benny Factor
-  Description: '- No previous arrests, but known to be tied to high-level organized
-    crime.
-
-    -Clean cut & slender.
-
-    - Sharp dresser.'
+  Description: '[REDACTED]'
   Sprite: {fileID: 21300000, guid: 81aa98b547445e645b773f4e96ca2d6c, type: 3}
   KeyEvidence:
   - {fileID: 11400000, guid: 82e936c43d3a53d4d802a4b76801aa27, type: 2}

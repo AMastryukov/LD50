@@ -18,6 +18,8 @@ public class PlayerVoice : MonoBehaviour
 
     public IEnumerator PlayAudio(VoiceLineData voicelineData)
     {
+        if (!GameManager.Instance.EnableVoicelines) { yield break; }
+
         StartCoroutine(voicelineSubtitles.ShowSubtitle(voicelineData));
 
         audioSource.clip = voicelineData.AudioClip;
@@ -29,6 +31,8 @@ public class PlayerVoice : MonoBehaviour
 
     public IEnumerator PlayAudio(AudioClip clip)
     {
+        if (!GameManager.Instance.EnableVoicelines) { yield break; }
+
         audioSource.clip = clip;
         audioSource.Play();
 

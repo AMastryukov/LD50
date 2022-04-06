@@ -70,7 +70,8 @@ public class CrimeSceneManager : MonoBehaviour
             if (!DataManager.Instance.CheckIfEvidenceAlreadyExists(evidence)) { yield break; }
         }
 
-        print("OnAllEvidenceFound");
+        objectiveText.text = $"Leave the Crime Scene";
+
         OnAllEvidenceFound?.Invoke();
     }
 

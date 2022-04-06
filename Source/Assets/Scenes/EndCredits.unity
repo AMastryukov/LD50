@@ -278,7 +278,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Thank you for playing
+  m_text: 'Made for Ludum Dare 50
+
+    Thank you for playing'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8e8dcbd5c6d25114abbccac3064191ca, type: 2}
   m_sharedMaterial: {fileID: 131127349830074424, guid: 8e8dcbd5c6d25114abbccac3064191ca, type: 2}

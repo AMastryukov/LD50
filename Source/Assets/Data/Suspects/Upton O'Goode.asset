@@ -13,20 +13,12 @@ MonoBehaviour:
   m_Name: Upton O'Goode
   m_EditorClassIdentifier: 
   Name: Upton O'Goode
-  Description: '- Arrested on multiple occasions and charged with petty theft, armed
-    robbery.
+  Description: '- Avid fan of baseball.
 
-    - Spent 10 months in jail for possession of illegal narcotics.
+    - Drives a red sedan.
 
-    -
-    Local street dealer known to the NYPD.
-
-    - Lanky build, blonde hair.
-
-    -
-    Avid fan of baseball.
-
-    - Drives a red sedan.'
+    - Street-level
+    cocaine dealer.'
   Sprite: {fileID: 21300000, guid: 823122321c9ee2a4e8e75fe9f81112ab, type: 3}
   KeyEvidence:
   - {fileID: 11400000, guid: fa9568d48029eb74bbd2315c1ad6f23f, type: 2}

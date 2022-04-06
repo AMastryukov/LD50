@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Rico Shade
   m_EditorClassIdentifier: 
   Name: Rico Shade
-  Description: "- Ties to organized crime\r\n- Suspected of running a gambling ring\n-
-    Likely knew the perpetrators\r\n- Severely beaten, then shot dead\r"
-  Sprite: {fileID: 0}
+  Description: "- Suspected of running a gambling ring\n- Severely beaten, then shot
+    dead\r\n- Likely knew the perpetrators\r"
+  Sprite: {fileID: 21300000, guid: d4094873165b65e49a648ad9ea115783, type: 3}
   KeyEvidence: []
   KeyEvidenceVoicelines: []
   GenericEvidenceVoicelines: []

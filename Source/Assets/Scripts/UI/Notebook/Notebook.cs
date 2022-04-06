@@ -18,8 +18,9 @@ public class Notebook : MonoBehaviour
     [SerializeField] private LogsTab logsTab;
     [SerializeField] private EvidenceTab evidenceTab;
     [SerializeField] private SuspectTab suspectTab;
+    [SerializeField] private CanvasGroup notebookCG;
+    [SerializeField] private CanvasGroup miniNotebookCG;
 
-    private CanvasGroup canvasGroup;
     private bool isOpen = false;
     private List<NotebookTab> tabs;
     private DataManager dataManager;
@@ -42,7 +43,6 @@ public class Notebook : MonoBehaviour
 
     private void Awake()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
         tabs = new List<NotebookTab> { logsTab, evidenceTab, suspectTab};
     }
 
@@ -97,12 +97,17 @@ public class Notebook : MonoBehaviour
                 FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move;
             PlayerInteractor.OnModifyDOF(false);
             UnHighlightAllTabs();
-            canvasGroup.alpha = 0f;
-            canvasGroup.interactable = false;
-            canvasGroup.blocksRaycasts = false;
+
+            notebookCG.alpha = 0f;
+            notebookCG.interactable = false;
+            notebookCG.blocksRaycasts = false;
+
+            miniNotebookCG.alpha = 1f;
 
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+
+            AudioManager.Instance.PlayNotebookFlipSound();
         }
         else
         {
@@ -111,14 +116,19 @@ public class Notebook : MonoBehaviour
             if(FindObjectOfType<PlayerManager>().CurrentState!=PlayerManager.PlayerStates.Interrogate)
                 FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
             PlayerInteractor.OnModifyDOF(true);
-            canvasGroup.alpha = 1f;
-            canvasGroup.interactable = true;
-            canvasGroup.blocksRaycasts = true;
+
+            notebookCG.alpha = 1f;
+            notebookCG.interactable = true;
+            notebookCG.blocksRaycasts = true;
+
+            miniNotebookCG.alpha = 0f;
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
 
             homePage.alpha = 1f;
+
+            AudioManager.Instance.PlayNotebookFlipSound();
         }
 
         isOpen = !isOpen;
@@ -128,7 +138,7 @@ public class Notebook : MonoBehaviour
     {
         UnHighlightAllTabs();
         tabs[n].Highlight();
-        AudioManager.Instance.OnNoteBookPageFlip();
+        AudioManager.Instance.PlayNotebookFlipSound();
     }
 
     private void UnHighlightAllTabs()

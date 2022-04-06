@@ -8,6 +8,8 @@ TagManager:
   - SFX
   - SFXSource
   - MusicSource
+  - deathCam
+  - Shooting Position
   layers:
   - Default
   - TransparentFX

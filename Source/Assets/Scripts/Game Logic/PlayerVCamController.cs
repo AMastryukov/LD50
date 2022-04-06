@@ -45,7 +45,7 @@ public class PlayerVCamController : MonoBehaviour
         
         //Player camera
         currentVirtualCamera = gameObject.GetComponent<CinemachineVirtualCamera>();
-        if(currentVirtualCamera != null)
+        if(currentVirtualCamera == null)
             Debug.LogWarning("No virtual camera found for player");
         
         currentVirtualCamera.m_Lens.FieldOfView = cameraFOV;

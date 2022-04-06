@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 35, y: 0}
-  m_SizeDelta: {x: -80, y: 0}
+  m_AnchoredPosition: {x: 64.00897, y: 0}
+  m_SizeDelta: {x: -138.02, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1062281634774472864
 CanvasRenderer:
@@ -65,25 +65,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Has street-level criminal connections.
+  m_text: 'Suspect Name:
 
-    - Ties to high-level organized
-    crime.
+    - Bullet points
 
-    - Runs a chop shop garage, possible money laundering operation.
+    - Relevant information
 
     -
-    Morbidly obese.
-
-    - Known for having a sweet tooth.
-
-    - Spends a lot of
-    time sleeping.
-
-    - Enjoys flashy jewelery.
-
-    - Avid smoker of fine Cuban
-    cigars.'
+    Helps with questioning'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5482badf33bd03545923226320db2337, type: 2}
   m_sharedMaterial: {fileID: -5704395706532595117, guid: 5482badf33bd03545923226320db2337, type: 2}
@@ -110,12 +99,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
+  m_fontSize: 18
   m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 1
-  m_fontSizeMax: 10
+  m_fontSizeMin: 12
+  m_fontSizeMax: 18
   m_fontStyle: 2
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -189,7 +178,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 0, y: 125}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4877568768278396854
 CanvasRenderer:
@@ -247,8 +236,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 37.5, y: -37.5}
-  m_SizeDelta: {x: 75, y: 75}
+  m_AnchoredPosition: {x: 70.517944, y: -62.5}
+  m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8454044367168565105
 CanvasRenderer:

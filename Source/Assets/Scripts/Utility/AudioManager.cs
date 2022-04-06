@@ -66,13 +66,13 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         #endregion
     }
 
-    public void OnNoteBookPageFlip()
+    public void PlayNotebookFlipSound()
     {
         AudioClip clipToPlay = NotebookPageFlipSFX[Random.Range(0, NotebookPageFlipSFX.Length)];
         sfxSources[0]?.PlayOneShot(clipToPlay);
     }
     
-    public void OnNoteBookScribble()
+    public void PlayNotebookScribble()
     {
         AudioClip clipToPlay = NotebookScribbleSFX[Random.Range(0, NotebookScribbleSFX.Length)];
         sfxSources[0]?.PlayOneShot(clipToPlay);

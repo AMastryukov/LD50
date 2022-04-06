@@ -16,6 +16,9 @@ public class GameManager : UnitySingletonPersistent<GameManager>
     private InterrogationManager interrogationManager;
     private Door door;
 
+    // For debugging. Disable to ignore all voice lines to move through the scenes faster
+    public bool EnableVoicelines = true;
+
     public override void Awake()
     {
         base.Awake();
@@ -34,15 +37,15 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameLoop()
     {
-        yield return ChooseVoiceSequence();
-        yield return IntroSequence();
-        yield return AlleywayCrimeSequence();
-        yield return InterrogationUptonSequence();
-        yield return PreGarageSequence();
-        yield return GarageSequence();
-        yield return InterrogationLucaSequence();
-        yield return PreApartmentSequence();
-        yield return ApartmentSearchSequence();
+        //yield return ChooseVoiceSequence();
+        //yield return IntroSequence();
+        //yield return AlleywayCrimeSequence();
+        //yield return InterrogationUptonSequence();
+        //yield return PreGarageSequence();
+        //yield return GarageSequence();
+        //yield return InterrogationLucaSequence();
+        //yield return PreApartmentSequence();
+        //yield return ApartmentSearchSequence();
         yield return AlleywayBennySequence();
         yield return ApartmentFinalSequence();
         yield return GameEndSequence();
@@ -556,22 +559,34 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         vCamController.transform.DORotate(new Vector3(0, 90, 0), 1f).SetEase(Ease.OutQuad);
         vCamController.enabled = false;
 
-        GameObject.FindGameObjectWithTag("deathCam").transform.DORotate(new Vector3(0, 90, 0), 1f).SetEase(Ease.OutQuad);
-
         // Disable the [E] on screen
         FindObjectOfType<PlayerInteractor>().ResetInteractionUI();
+        FindObjectOfType<Notebook>().GetComponent<Canvas>().enabled = false;
 
         var playerMovementController = FindObjectOfType<PlayerMovementController>();
-        playerMovementController.transform.DOMove(new Vector3(-0.5f, 1, -1), 1f).SetEase(Ease.OutQuad);
+        var deathPosition = GameObject.FindGameObjectWithTag("Shooting Position");
+
+        yield return new WaitForSeconds(0.1f);
+
+        // Stupid fucking thing needs to be disabled before tweening or else it just ignores the tween for some reason
+        // Unless, of course, you start in the apartment scene... then it works fine. Because that makes sense somehow?
+        // Piece of shit
+        playerMovementController.enabled = false;
+
+        playerMovementController.transform.DOMove(deathPosition.transform.position, 2f).SetEase(Ease.OutCirc);
         playerMovementController.transform.DORotate(new Vector3(0, 90, 0), 1f).SetEase(Ease.OutQuad);
+
+        GameObject.FindGameObjectWithTag("deathCam").transform.DORotate(new Vector3(0, 90, 0), 1f).SetEase(Ease.OutQuad);
 
         FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
 
-        yield return new WaitForSeconds(0.35f);
+        yield return new WaitForSeconds(0.3f);
 
         yield return FindObjectOfType<CopShooting>().RaiseWeapon();
 
         yield return new WaitForSeconds(1.5f);
+
+        playerMovementController.transform.DOKill();
 
         yield return FindObjectOfType<CopShooting>().ShootGun();
 

@@ -64,9 +64,9 @@ public class InterrogationManager : MonoBehaviour
         yield return currentSuspect.AskAboutEvidence(evidenceData);
 
         var progress = currentSuspect.Data.KeyEvidence.Count - currentSuspect.RemainingKeyEvidence.Count;
-
-        objectiveText.text = $"Ask about relevant Evidence ({progress}/{currentSuspect.Data.KeyEvidence.Count})";
         progressSlider.value = (float)progress / (float)currentSuspect.Data.KeyEvidence.Count;
+
+        objectiveText.text = currentSuspect.HasConfessed ? $"Leave the Interrogation Room" : objectiveText.text = $"Ask about relevant Evidence ({progress}/{currentSuspect.Data.KeyEvidence.Count})";
     }
 
     public void SetCurrentSuspect(string suspectName)
