@@ -5,6 +5,9 @@ using UnityEngine;
 public class Voicemail : MonoBehaviour
 {
     private AudioSource audioSource;
+    private bool played = false;
+
+    [SerializeField] private AudioClip warranty;
 
     private void Awake()
     {
@@ -13,7 +16,11 @@ public class Voicemail : MonoBehaviour
 
     public void PlayRandomVoiceline()
     {
-        audioSource.clip = DataManager.Instance.GetVoiceMail();
+        if (played) return;
+
+        audioSource.clip = warranty;
         audioSource.Play();
+
+        played = true;
     }
 }

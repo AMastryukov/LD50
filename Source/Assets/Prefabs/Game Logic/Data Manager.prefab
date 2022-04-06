@@ -188,3 +188,5 @@ MonoBehaviour:
   soundEffects:
   - {fileID: 8300000, guid: 9b86e4c23db8e504b9183a162abfa1c1, type: 3}
   - {fileID: 8300000, guid: b3dcd1144cc317f44960c36c30e8257e, type: 3}
+  voicemail:
+  - {fileID: 8300000, guid: aba92316639c6734bb4f2cd633e46df3, type: 3}
