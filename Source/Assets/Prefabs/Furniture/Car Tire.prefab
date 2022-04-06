@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3361263054531059409}
+  - component: {fileID: 2263040654594146157}
   m_Layer: 0
   m_Name: Car Tire
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2263040654594146157
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6415630164922333222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0069613, y: 0.42714357, z: 1.020889}
+  m_Center: {x: -0.000028371811, y: 0.39753425, z: -0.010444522}
 --- !u!1001 &4537315224898840951
 PrefabInstance:
   m_ObjectHideFlags: 0

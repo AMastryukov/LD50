@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491340025866009297}
+  - component: {fileID: 4749789173863200654}
   m_Layer: 0
   m_Name: Closet_Open
   m_TagString: Untagged
@@ -25,12 +26,25 @@ Transform:
   m_GameObject: {fileID: 4820393757655453668}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 7752158968990114626}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4749789173863200654
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4820393757655453668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2371676, y: 2.0825155, z: 1.2043952}
+  m_Center: {x: -0.000647068, y: 1.0248445, z: 0.24037647}
 --- !u!1001 &7791098708392592553
 PrefabInstance:
   m_ObjectHideFlags: 0

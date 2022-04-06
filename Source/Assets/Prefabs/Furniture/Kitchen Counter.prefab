@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2029901712529435812}
+  - component: {fileID: 6572783316659631176}
   m_Layer: 0
   m_Name: Kitchen Counter
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6572783316659631176
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168425353952515814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0373108, y: 0.9835995, z: 1.0511531}
+  m_Center: {x: 0.001345396, y: 0.47998747, z: 0.50042087}
 --- !u!1001 &3608113731244846557
 PrefabInstance:
   m_ObjectHideFlags: 0

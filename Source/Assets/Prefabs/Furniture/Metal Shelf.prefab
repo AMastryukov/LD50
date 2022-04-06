@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7332149581629550864}
+  - component: {fileID: -5808549449915897938}
   m_Layer: 0
   m_Name: Metal Shelf
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-5808549449915897938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9058753077398081604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2406902, y: 1.9655896, z: 0.5610842}
+  m_Center: {x: 0.0015378892, y: 0.9703166, z: 0.0014761388}
 --- !u!1001 &4594114865192264055
 PrefabInstance:
   m_ObjectHideFlags: 0
