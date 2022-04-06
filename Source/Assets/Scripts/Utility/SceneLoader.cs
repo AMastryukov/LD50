@@ -27,6 +27,8 @@ public class SceneLoader : MonoBehaviour
 
         SceneManager.sceneLoaded += SceneLoadEvent;
         SceneManager.sceneUnloaded += SceneUnloadEvent;
+
+        canvasGroup.alpha = 1f;
     }
 
     private void OnDestroy()

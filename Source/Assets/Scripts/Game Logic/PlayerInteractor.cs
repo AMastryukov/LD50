@@ -49,6 +49,7 @@ public class PlayerInteractor : MonoBehaviour
     private PlayerManager manager;
     private int oldlayer;
     private List<int> oldchildlayers = new List<int>();
+    private Vector3 inspectStartRotation;
 
     private void Awake()
     {
@@ -69,7 +70,7 @@ public class PlayerInteractor : MonoBehaviour
                 crosshair.enabled = false;
                 RotateInspectedObject();
                 EnableDOF(true);
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     EndInspect();
                     EnableDOF(false);
@@ -224,11 +225,18 @@ public class PlayerInteractor : MonoBehaviour
 
     private void RotateInspectedObject()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            inspectionObjectRotation.x = 0f;
+            inspectionObjectRotation.y = 0f;
+            inspectStartRotation = clickedInteractable.transform.rotation.eulerAngles;
+        }
+
         if (Input.GetMouseButton(0))
         {
-            inspectionObjectRotation.x -= Input.GetAxisRaw("Mouse Y") * 2f;
-            inspectionObjectRotation.y += Input.GetAxisRaw("Mouse X") * -2f;
-            clickedInteractable.transform.rotation = Quaternion.Euler(inspectionObjectRotation.x, inspectionObjectRotation.y, 0f);
+            inspectionObjectRotation.x -= Input.GetAxisRaw("Mouse Y") * 3f;
+            inspectionObjectRotation.y += Input.GetAxisRaw("Mouse X") * 3f;
+            clickedInteractable.transform.rotation = Quaternion.Euler(inspectStartRotation.x + inspectionObjectRotation.x, inspectStartRotation.y + inspectionObjectRotation.y, inspectStartRotation.z);
         }
     }
 
