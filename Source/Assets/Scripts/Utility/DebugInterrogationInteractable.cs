@@ -16,6 +16,11 @@ public class DebugInterrogationInteractable : Interactable
             Debug.LogError("Scene is missing an interrogation manager!");
             Destroy(gameObject);
         }
+
+        if (!Application.isEditor)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public override void Interact()

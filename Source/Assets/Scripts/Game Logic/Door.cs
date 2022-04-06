@@ -14,6 +14,7 @@ public class Door : Interactable
     public bool IsUnlocked = false;
 
     [SerializeField] private AudioClip doorOpen;
+    [SerializeField] private AudioClip doorLocked;
 
     private AudioSource audioSource;
     private bool Opened = false;
@@ -46,6 +47,7 @@ public class Door : Interactable
         if (!IsUnlocked)
         {
             Debug.Log("Door is locked");
+            audioSource.PlayOneShot(doorLocked);
             return;
         }
 

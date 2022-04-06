@@ -163,6 +163,6 @@ public class Notebook : MonoBehaviour
 
     public void ClearEvidence()
     {
-        
+        evidenceTab.ClearEvidence();
     }
 }

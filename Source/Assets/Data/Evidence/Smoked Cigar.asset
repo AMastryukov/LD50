@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Smoked Cigar
   m_EditorClassIdentifier: 
   Name: Smoked Cigar
-  Description: Smells cuban. These one's are expensive.
+  Description: Smells cuban. These ones are expensive.
   Sprite: {fileID: 21300000, guid: 5ef133294b17b4945be028be5e974cf2, type: 3}

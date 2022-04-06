@@ -103,7 +103,7 @@ public class PlayerInteractor : MonoBehaviour
             case PlayerManager.PlayerStates.Interrogate:
                 interactionUI.enabled = false;
                 crosshair.enabled = false;
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     manager.CurrentState = PlayerManager.PlayerStates.Move;
                 }

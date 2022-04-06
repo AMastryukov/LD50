@@ -28,4 +28,12 @@ public class EvidenceTab : NotebookTab
         GameObject evidenceObject = Instantiate(evidencePrefab, scrollViewContent.transform);
         evidenceObject.GetComponent<EvidenceNotebookEntry>().InitializeEvidence(evidence);
     }
+
+    public void ClearEvidence()
+    {
+        foreach(Transform item in scrollViewContent.transform)
+        {
+            Destroy(item.gameObject);
+        }
+    }
 }

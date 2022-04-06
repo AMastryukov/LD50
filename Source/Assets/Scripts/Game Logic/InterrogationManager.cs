@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static PlayerManager;
@@ -20,6 +21,7 @@ public class InterrogationManager : MonoBehaviour
 
     private bool IsInterrogating;
 
+    [SerializeField] private TextMeshProUGUI objectiveText;
     [SerializeField] private Canvas progressUI;
     [SerializeField] private Slider progressSlider;
 
@@ -31,21 +33,17 @@ public class InterrogationManager : MonoBehaviour
         }
 
         OnPlayerStateChanged += CheckInterrogating;
-
-        progressSlider.value = 0;
     }
 
     private void CheckInterrogating(PlayerStates state)
     {
         if (IsInterrogating && state != PlayerStates.Interrogate)
         {
-            print("Stop interrogating");
             EvidenceNotebookEntry.OnEvidenceSelectedInNotebook -= PresentEvidenceToSuspect;
             IsInterrogating = false;
         }
         else if (!IsInterrogating && state == PlayerStates.Interrogate)
         {
-            print("Now Interrogating " + currentSuspect.Data.Name);
             EvidenceNotebookEntry.OnEvidenceSelectedInNotebook += PresentEvidenceToSuspect;
             IsInterrogating = true;
         }
@@ -58,15 +56,17 @@ public class InterrogationManager : MonoBehaviour
 
     private void PresentEvidenceToSuspect(EvidenceData evidenceData)
     {
-        print("Evidence Being presented to suspect");
-        progressSlider.value = (float) currentSuspect.RemainingKeyEvidence.Count / (float) currentSuspect.Data.KeyEvidence.Count;
         StartCoroutine(Interrogate(evidenceData));
     }
 
     private IEnumerator Interrogate(EvidenceData evidenceData)
     {
         yield return currentSuspect.AskAboutEvidence(evidenceData);
-        
+
+        var progress = currentSuspect.Data.KeyEvidence.Count - currentSuspect.RemainingKeyEvidence.Count;
+
+        objectiveText.text = $"Ask about relevant Evidence ({progress}/{currentSuspect.Data.KeyEvidence.Count})";
+        progressSlider.value = (float)progress / (float)currentSuspect.Data.KeyEvidence.Count;
     }
 
     public void SetCurrentSuspect(string suspectName)
@@ -80,6 +80,9 @@ public class InterrogationManager : MonoBehaviour
             // Match the game object by name
             sus.gameObject.SetActive(sus.Data.Name.Equals(currentSuspect.Data.Name));
         }
+
+        progressSlider.value = 0;
+        objectiveText.text = $"Ask about relevant Evidence ({0}/{currentSuspect.Data.KeyEvidence.Count})";
     }
 
     public void DebugForceConfession()

@@ -17,6 +17,7 @@ public class CrimeSceneManager : MonoBehaviour
 
     private List<EvidenceData> evidenceData;
     private Notebook notebook;
+
     [SerializeField] private TextMeshProUGUI objectiveText;
     [SerializeField] private Canvas progressUI;
     [SerializeField] private Slider progressSlider;
@@ -38,17 +39,17 @@ public class CrimeSceneManager : MonoBehaviour
 
         notebook = FindObjectOfType<Notebook>();
 
+        progressSlider.value = 0;
+        objectiveText.text = $"Discover all Evidence ({0}/{evidenceData.Count})";
+
         Evidence.OnInspect += EvidenceFound;
         PlayerManager.OnPlayerStateChanged += UpdateCanvas;
-
-        progressSlider.value = 0;
-
-        objectiveText.text = $"Discover all Evidence ({0}/{evidenceData.Count})";
     }
 
     private void OnDestroy()
     {
         Evidence.OnInspect -= EvidenceFound;
+        PlayerManager.OnPlayerStateChanged -= UpdateCanvas;
     }
 
     private void EvidenceFound(Evidence evidence)
@@ -88,6 +89,6 @@ public class CrimeSceneManager : MonoBehaviour
 
     private void UpdateCanvas(PlayerStates state)
     {
-        // progressUI.enabled = state == PlayerStates.Move;
+        //progressUI.enabled = state == PlayerStates.Move;
     }
 }

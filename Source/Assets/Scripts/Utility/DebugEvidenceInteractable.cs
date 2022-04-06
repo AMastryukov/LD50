@@ -15,6 +15,11 @@ public class DebugEvidenceInteractable : Interactable
             Debug.LogError("Scene is missing a crime scene manager!");
             Destroy(gameObject);
         }
+
+        if (!Application.isEditor)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public override void Interact()

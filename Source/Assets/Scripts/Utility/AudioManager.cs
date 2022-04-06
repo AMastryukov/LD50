@@ -158,4 +158,12 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         }
        
     }
+
+    public void SetMusicLoop(bool shouldLoop)
+    {
+        foreach (AudioSource source in musicSources)
+        {
+            source.loop = shouldLoop;
+        }
+    }
 }
