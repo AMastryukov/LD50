@@ -34,8 +34,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameLoop()
     {
-        //yield return ChooseVoiceSequence();
-        //yield return IntroSequence();
+        yield return ChooseVoiceSequence();
+        yield return IntroSequence();
         yield return AlleywayCrimeSequence();
         yield return InterrogationUptonSequence();
         yield return PreGarageSequence();
@@ -89,8 +89,6 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         FindObjectOfType<Notebook>().ClearEvidence();
         DataManager.Instance.NotebookEvidence.Clear();
-
-        FindObjectOfType<Notebook>().AddSuspect(DataManager.Instance.GetSuspectDataFromKey("Rico Shade"));
 
         yield return new WaitForSeconds(2f);
 
