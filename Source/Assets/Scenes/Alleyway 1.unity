@@ -2530,10 +2530,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 611989735084715194, guid: 8786d6722577b0749a244997d68757e1, type: 3}
-      propertyPath: EnableVoicelines
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 611989735084715195, guid: 8786d6722577b0749a244997d68757e1, type: 3}
       propertyPath: m_Name
       value: Game Manager
