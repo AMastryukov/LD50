@@ -37,8 +37,8 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameLoop()
     {
-        //yield return ChooseVoiceSequence();
-        //yield return IntroSequence();
+        yield return ChooseVoiceSequence();
+        yield return IntroSequence();
         yield return AlleywayCrimeSequence();
         yield return InterrogationUptonSequence();
         yield return PreGarageSequence();
@@ -552,7 +552,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
     private IEnumerator GameEndSequence()
     {
-        AudioManager.Instance.FadeOutMusic();
+        AudioManager.Instance.FadeOutMusic(2f);
 
         // Rotate the Virtual camera into position
         var vCamController = FindObjectOfType<PlayerVCamController>();
@@ -573,7 +573,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         // Piece of shit
         playerMovementController.enabled = false;
 
-        playerMovementController.transform.DOMove(deathPosition.transform.position, 2f).SetEase(Ease.OutCirc);
+        playerMovementController.transform.DOMove(deathPosition.transform.position, 1.5f).SetEase(Ease.OutQuad);
         playerMovementController.transform.DORotate(new Vector3(0, 90, 0), 1f).SetEase(Ease.OutQuad);
 
         GameObject.FindGameObjectWithTag("deathCam").transform.DORotate(new Vector3(0, 90, 0), 1f).SetEase(Ease.OutQuad);
@@ -590,9 +590,9 @@ public class GameManager : UnitySingletonPersistent<GameManager>
 
         yield return FindObjectOfType<CopShooting>().ShootGun();
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1f);
 
-        AudioManager.Instance.FadeInMusic(AudioManager.Instance.endTheme);
+        AudioManager.Instance.FadeInMusic(AudioManager.Instance.endTheme, 18.5f);
         FindObjectOfType<PlayerManager>().FadeInDeathOverlay();
 
         // Kind of dumb but this is perfect timing for the song

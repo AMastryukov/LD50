@@ -103,13 +103,13 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         }
     }
 
-    public void FadeOutMusic()
+    public void FadeOutMusic(float fadeTime = 1f)
     {
         foreach (AudioSource source in musicSources)
         {
             if (source.isPlaying)
             {
-                DOTween.To(() => source.volume, x => source.volume = x, 0, 1f).onComplete = () =>
+                DOTween.To(() => source.volume, x => source.volume = x, 0, fadeTime).onComplete = () =>
                 {
                     source.Stop();
                 };

@@ -234,8 +234,8 @@ public class PlayerInteractor : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            inspectionObjectRotation.x -= Input.GetAxisRaw("Mouse Y") * 3f;
-            inspectionObjectRotation.y += Input.GetAxisRaw("Mouse X") * 3f;
+            inspectionObjectRotation.x -= Input.GetAxisRaw("Mouse Y") * -3f;
+            inspectionObjectRotation.y -= Input.GetAxisRaw("Mouse X") * 3f;
             clickedInteractable.transform.rotation = Quaternion.Euler(inspectStartRotation.x + inspectionObjectRotation.x, inspectStartRotation.y + inspectionObjectRotation.y, inspectStartRotation.z);
         }
     }
