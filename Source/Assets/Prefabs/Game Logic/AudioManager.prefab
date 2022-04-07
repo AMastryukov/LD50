@@ -48,9 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicVolumeSlider: {fileID: 0}
   sfxVolumeSlider: {fileID: 0}
-  voiceSource: {fileID: 0}
-  voiceLines: []
-  subtitleBox: {fileID: 0}
+  musicSources:
+  - {fileID: 4880346319895964349}
+  - {fileID: 6179873503963987953}
+  globalSFXSource: {fileID: 5108603265088927588}
   NotebookScribbleSFX:
   - {fileID: 8300000, guid: 3d6160751060c304aa732a018bf9660e, type: 3}
   - {fileID: 8300000, guid: 03eee3fc4e58d3b4489289eb67847ee5, type: 3}
@@ -72,11 +73,6 @@ MonoBehaviour:
   chopShopTheme: {fileID: 8300000, guid: 64f30ee4dd57fae4a8635cf19e79393e, type: 3}
   betrayalTheme: {fileID: 8300000, guid: feb691f184580804c91b3dd800f21079, type: 3}
   endTheme: {fileID: 8300000, guid: 5d0a488f7384534469668772520260c9, type: 3}
-  musicSources:
-  - {fileID: 4880346319895964349}
-  - {fileID: 6179873503963987953}
-  sfxSources:
-  - {fileID: 5108603265088927588}
 --- !u!1 &5246115719767674402
 GameObject:
   m_ObjectHideFlags: 0

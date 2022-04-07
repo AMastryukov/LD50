@@ -5,11 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - benchCam
-  - SFX
   - SFXSource
   - MusicSource
   - deathCam
   - Shooting Position
+  - VoiceSource
   layers:
   - Default
   - TransparentFX

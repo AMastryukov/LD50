@@ -18,9 +18,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Slider sfxVolumeSlider;
 
-    [SerializeField] private AudioSource voiceSource;
-    [SerializeField] private SubtitleAudio[] voiceLines;
-    [SerializeField] private TextMeshProUGUI subtitleBox;
+    [SerializeField] private AudioSource[] musicSources;
+    [SerializeField] private AudioSource globalSFXSource;
 
     [SerializeField] private AudioClip[] NotebookScribbleSFX;
     [SerializeField] private AudioClip[] NotebookPageFlipSFX;
@@ -35,8 +34,8 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     [SerializeField] public AudioClip betrayalTheme;
     [SerializeField] public AudioClip endTheme;
     
-    [SerializeField] private List<AudioSource> musicSources = new List<AudioSource>();
-    [SerializeField] private List<AudioSource> sfxSources = new List<AudioSource>();
+    private List<AudioSource> sfxSources = new List<AudioSource>();
+    private List<AudioSource> voiceSources = new List<AudioSource>();
 
     private float defaultMusicVolume = 0.1f;
 
@@ -51,9 +50,17 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         defaultMusicVolume = musicSources[0].volume;
     }
 
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         #region Organize Audio Sources
+        sfxSources.Clear();
+        voiceSources.Clear();
+
         var audioSources = FindObjectsOfType<AudioSource>().ToList();
 
         foreach(var source in audioSources)
@@ -62,6 +69,10 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
             {
                 sfxSources.Add(source);
             }
+            else if (source.CompareTag(GameConstants.TagConstants.SFXAudioSource))
+            {
+                voiceSources.Add(source);
+            }
         }
         #endregion
     }
@@ -69,33 +80,13 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     public void PlayNotebookFlipSound()
     {
         AudioClip clipToPlay = NotebookPageFlipSFX[Random.Range(0, NotebookPageFlipSFX.Length)];
-        sfxSources[0]?.PlayOneShot(clipToPlay);
+        globalSFXSource?.PlayOneShot(clipToPlay);
     }
     
     public void PlayNotebookScribble()
     {
         AudioClip clipToPlay = NotebookScribbleSFX[Random.Range(0, NotebookScribbleSFX.Length)];
-        sfxSources[0]?.PlayOneShot(clipToPlay);
-    }
-
-    public IEnumerator WaitForVoiceline(int ID)
-    {
-        if (ID >= voiceLines.Length) { yield break; }
-
-        voiceSource.clip = voiceLines[ID].clip;
-        voiceSource.Play();
-
-        if (subtitleBox != null)
-        {
-            subtitleBox.text = voiceLines[ID].subtitle;
-        }
-
-        yield return new WaitForSeconds(voiceSource.clip.length);
-
-        if (subtitleBox != null)
-        {
-            subtitleBox.text = "";
-        }
+        globalSFXSource?.PlayOneShot(clipToPlay);
     }
 
     public void PlayMusicDirectly(AudioClip music)

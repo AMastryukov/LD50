@@ -12,6 +12,6 @@ public static class GameConstants
     public static class TagConstants
     {
         public const string SFXAudioSource = "SFXSource";
-        public const string MusicAudioSource = "MusicSource";
+        public const string VoiceAudioSource = "VoiceSource";
     }
 }

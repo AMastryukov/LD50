@@ -1000,7 +1000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2192412925192945766, guid: 0a1e66c1245501d4487b206472c06386, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.43360174
+      value: 0.43360177
       objectReference: {fileID: 0}
     - target: {fileID: 2192412925192945766, guid: 0a1e66c1245501d4487b206472c06386, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1559,6 +1559,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3802473992553677129, guid: 07d248b6080a689479c5cb42105761f5, type: 3}
+      propertyPath: m_TagString
+      value: SFXSource
+      objectReference: {fileID: 0}
     - target: {fileID: 7181071365528730861, guid: 07d248b6080a689479c5cb42105761f5, type: 3}
       propertyPath: m_Name
       value: Door
@@ -2662,6 +2666,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4586602789965685737, guid: cc0541463e27a1d4b95a0ade95911fe0, type: 3}
+      propertyPath: m_TagString
+      value: VoiceSource
+      objectReference: {fileID: 0}
     - target: {fileID: 4586602790484711344, guid: cc0541463e27a1d4b95a0ade95911fe0, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -6097,8 +6105,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f952f5dc6d56afc47a8bcbe06275d723, type: 3}
   m_PrefabInstance: {fileID: 1725821995}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1725821998
-BoxCollider:
+--- !u!64 &1725821998
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -6107,9 +6115,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.1996596, y: 2.0501866, z: 1.1618731}
-  m_Center: {x: 0.0000054836287, y: 1.0250933, z: 0.23746306}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7715097054414498598, guid: f952f5dc6d56afc47a8bcbe06275d723, type: 3}
 --- !u!1 &1735524170
 GameObject:
   m_ObjectHideFlags: 0
