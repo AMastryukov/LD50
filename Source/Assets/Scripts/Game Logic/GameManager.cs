@@ -172,8 +172,9 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Wait;
         sceneLoader.FadeIn(() => { FindObjectOfType<PlayerManager>().CurrentState = PlayerManager.PlayerStates.Move; });
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.interrogationRoomTheme);
-        #endregion 
-        
+        #endregion
+
+        yield return new WaitForSeconds(2f);
         yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("UPTON_INTRODUCTION"));
 
         #region Wait for Confession
@@ -309,6 +310,7 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.interrogationRoomTheme);
         #endregion
 
+        yield return new WaitForSeconds(2f);
         yield return interrogationManager.CurrentSuspect.PlayAudio(DataManager.Instance.GetVoiceLineDataFromKey("LUCA_INTRODUCTION"));
 
         #region Wait for Confession
@@ -589,8 +591,6 @@ public class GameManager : UnitySingletonPersistent<GameManager>
         playerMovementController.transform.DOKill();
 
         yield return FindObjectOfType<CopShooting>().ShootGun();
-
-        yield return new WaitForSeconds(1f);
 
         AudioManager.Instance.FadeInMusic(AudioManager.Instance.endTheme, 18.5f);
         FindObjectOfType<PlayerManager>().FadeInDeathOverlay();

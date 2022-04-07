@@ -12,19 +12,18 @@ using Random = UnityEngine.Random;
 
 public class AudioManager : UnitySingletonPersistent<AudioManager>
 {
-    private static string musicVolumeKey = "MusicVolume";
-    private static string sfxVolumeKey = "SFXVolume";
+    [Header("Volumes")]
+    [SerializeField] private float musicVolume = 0.5f;
+    [SerializeField] private float sfxVolume = 0.75f;
+    [SerializeField] private float voiceVolume = 1f;
 
-    [SerializeField] private Slider musicVolumeSlider;
-    [SerializeField] private Slider sfxVolumeSlider;
-
+    [Header("Audio Sources")]
     [SerializeField] private AudioSource[] musicSources;
     [SerializeField] private AudioSource globalSFXSource;
 
+    [Header("Sound Clips")]
     [SerializeField] private AudioClip[] NotebookScribbleSFX;
     [SerializeField] private AudioClip[] NotebookPageFlipSFX;
-
-    [Header("Music")]
     [SerializeField] public AudioClip alleyway1Theme; 
     [SerializeField] public AudioClip alleyway2Theme; 
     [SerializeField] public AudioClip victimApartment1Theme;
@@ -37,17 +36,10 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
     private List<AudioSource> sfxSources = new List<AudioSource>();
     private List<AudioSource> voiceSources = new List<AudioSource>();
 
-    private float defaultMusicVolume = 0.1f;
-
-    //private float musicVolume = 1f;
-    //private float sfxVolume = 1f;
-
     public override void Awake()
     {
         base.Awake();
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        defaultMusicVolume = musicSources[0].volume;
     }
 
     private void OnDestroy()
@@ -57,7 +49,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        #region Organize Audio Sources
+        #region Organize Audio Sources & Update Volumes
         sfxSources.Clear();
         voiceSources.Clear();
 
@@ -67,12 +59,19 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         {
             if (source.CompareTag(GameConstants.TagConstants.SFXAudioSource))
             {
+                source.volume = sfxVolume;
                 sfxSources.Add(source);
             }
             else if (source.CompareTag(GameConstants.TagConstants.SFXAudioSource))
             {
+                source.volume = voiceVolume;
                 voiceSources.Add(source);
             }
+        }
+
+        foreach(var source in musicSources)
+        {
+            source.volume = musicVolume;
         }
         #endregion
     }
@@ -103,7 +102,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         }
     }
 
-    public void FadeOutMusic(float fadeTime = 1f)
+    public void FadeOutMusic(float fadeTime = 2f)
     {
         foreach (AudioSource source in musicSources)
         {
@@ -117,14 +116,14 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
         }
     }
     
-    public void FadeInMusic(AudioClip music,float fadeTime = 1f)
+    public void FadeInMusic(AudioClip music,float fadeTime = 2f)
     {
         AudioSource fadeInSource = null;
         foreach (AudioSource source in musicSources)
         {
             if (source.isPlaying)
             {
-                DOTween.To(() => source.volume, x => source.volume = x, 0, fadeTime).onComplete = () =>
+                DOTween.To(() => source.volume, x => source.volume = x, 0, fadeTime).SetEase(Ease.OutQuad).onComplete = () =>
                 {
                     source.Stop();
                 };
@@ -140,7 +139,7 @@ public class AudioManager : UnitySingletonPersistent<AudioManager>
             fadeInSource.clip = music;
             fadeInSource.volume = 0;
             fadeInSource.Play();
-            DOTween.To(() => fadeInSource.volume, x => fadeInSource.volume = x, defaultMusicVolume, fadeTime);
+            DOTween.To(() => fadeInSource.volume, x => fadeInSource.volume = x, musicVolume, fadeTime).SetEase(Ease.InQuad);
         }
         else
         {

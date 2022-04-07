@@ -759,9 +759,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5113080488265797602, guid: 9e76973b0720d1e4f9f30a2666dc0075, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.051208
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113080488265797602, guid: 9e76973b0720d1e4f9f30a2666dc0075, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.051208
+      objectReference: {fileID: 0}
+    - target: {fileID: 5113080488265797602, guid: 9e76973b0720d1e4f9f30a2666dc0075, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.051208
+      objectReference: {fileID: 0}
     - target: {fileID: 5278686609254416103, guid: 9e76973b0720d1e4f9f30a2666dc0075, type: 3}
       propertyPath: m_Name
       value: "Upton O\u2019Goode"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125326675477822723, guid: 9e76973b0720d1e4f9f30a2666dc0075, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125326675477822723, guid: 9e76973b0720d1e4f9f30a2666dc0075, type: 3}
+      propertyPath: MinDistance
+      value: 6.6596656
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125326675477822723, guid: 9e76973b0720d1e4f9f30a2666dc0075, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7125326675477822723, guid: 9e76973b0720d1e4f9f30a2666dc0075, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e76973b0720d1e4f9f30a2666dc0075, type: 3}
@@ -854,6 +882,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Benny Factor
       objectReference: {fileID: 0}
+    - target: {fileID: 7562872974164166392, guid: 97a71ca4cbb3d3c40b90199e61435a33, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562872974164166392, guid: 97a71ca4cbb3d3c40b90199e61435a33, type: 3}
+      propertyPath: MaxDistance
+      value: 5523.422
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562872974164166392, guid: 97a71ca4cbb3d3c40b90199e61435a33, type: 3}
+      propertyPath: MinDistance
+      value: 10.405605
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562872974164166392, guid: 97a71ca4cbb3d3c40b90199e61435a33, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562872974164166392, guid: 97a71ca4cbb3d3c40b90199e61435a33, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97a71ca4cbb3d3c40b90199e61435a33, type: 3}
 --- !u!1 &8939795510533012727 stripped
@@ -897,6 +945,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4697317342968076710}
     m_Modifications:
+    - target: {fileID: 1459583166772312811, guid: 8e4e657e91dcff747ba10e157c9127da, type: 3}
+      propertyPath: MaxDistance
+      value: 7.4066505
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459583166772312811, guid: 8e4e657e91dcff747ba10e157c9127da, type: 3}
+      propertyPath: MinDistance
+      value: 6.536985
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459583166772312811, guid: 8e4e657e91dcff747ba10e157c9127da, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459583166772312811, guid: 8e4e657e91dcff747ba10e157c9127da, type: 3}
+      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8308346442120213045, guid: 8e4e657e91dcff747ba10e157c9127da, type: 3}
       propertyPath: m_Name
       value: Luca Verdere
